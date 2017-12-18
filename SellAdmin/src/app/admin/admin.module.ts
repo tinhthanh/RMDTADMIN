@@ -1,3 +1,4 @@
+import { AuthenticationService } from './_services/AuthenticationService';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminMainComponent } from './components/admin-main/admin-main.component';
 import { NgModule } from '@angular/core';
@@ -9,6 +10,7 @@ import { NgModule } from '@angular/core';
     ],
     exports: [],
     declarations: [AdminMainComponent] ,
-    providers: [],
+    providers: [
+    ],
 })
 export class AdminModule { }

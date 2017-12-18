@@ -1,10 +1,18 @@
+import { AuthGuard } from './../admin/_guards/AuthGuard';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './components/home/home.component';
-@NgModule({
-    imports: [
-        RouterModule.forRoot([
-            {path: '', component: HomeComponent},
+import { AdminComponent } from '../admin/admin.component';
+
+const routes: Routes = [
+    {
+       path: 'pages',
+       loadChildren: '../admin//components/pages/pages.module#PagesModule'
+     },
+    {
+        path: '', component: AdminComponent,
+        children: [
+
             {path: 'admin', loadChildren: '../admin/admin.module#AdminModule'},
             {path: 'setup', loadChildren: './components/setup/setup.module#SetupModule'},
             {path: 'theming', loadChildren: './components/theming/theming.module#ThemingModule'},
@@ -89,7 +97,13 @@ import { HomeComponent } from './components/home/home.component';
             // tslint:disable-next-line:max-line-length
             {path: 'tristatecheckbox', loadChildren: './components/tristatecheckbox/tristatecheckboxdemo.module#TriStateCheckboxDemoModule'},
             {path: 'validation', loadChildren: './components/validation/validationdemo.module#ValidationDemoModule'}
-        ])
+        ],
+        canActivate: [ AuthGuard ]
+    },
+] ;
+@NgModule({
+    imports: [
+        RouterModule.forRoot(routes)
     ],
     exports: [RouterModule]
 })

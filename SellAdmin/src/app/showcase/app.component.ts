@@ -27,8 +27,4 @@ export class AppComponent {
         themeLink.href = 'assets/components/themes/' + theme + '/theme.css';
         event.preventDefault();
     }
-    onMenuButtonClick(event: Event) {
-        this.menuActive = !this.menuActive;
-        event.preventDefault();
-    }
 }

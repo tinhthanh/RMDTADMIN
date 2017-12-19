@@ -13,6 +13,11 @@ import { InputTextareaModule } from 'app/components/inputtextarea/inputtextarea'
 import { ButtonModule } from 'app/components/button/button';
 import { TabViewModule } from 'app/components/tabview/tabview';
 import { CodeHighlighterModule } from 'app/components/codehighlighter/codehighlighter';
+import { EditorModule } from 'app/components/editor/editor';
+import { FileUploadModule } from 'app/components/fileupload/fileupload';
+import { TrangThaiKhoaHocComponent } from 'app/admin/components/khoa-hoc/trang-thai-khoa-hoc/trang-thai-khoa-hoc.component';
+import { CapNhatKhoaHocComponent } from 'app/admin/components/khoa-hoc/cap-nhat-khoa-hoc/cap-nhat-khoa-hoc.component';
+import { DoiMatKhauComponent } from 'app/admin/components/khoa-hoc/doi-mat-khau/doi-mat-khau.component';
 
 @NgModule({
     imports: [
@@ -27,10 +32,12 @@ import { CodeHighlighterModule } from 'app/components/codehighlighter/codehighli
         InputTextareaModule,
         ButtonModule,
         TabViewModule,
+        EditorModule,
+        FileUploadModule,
         CodeHighlighterModule
     ],
     exports: [],
-    declarations: [KhoaHocComponent, ThemKhoaHocComponent],
+    declarations: [KhoaHocComponent, ThemKhoaHocComponent, TrangThaiKhoaHocComponent, CapNhatKhoaHocComponent, DoiMatKhauComponent],
     providers: [],
 })
 export class KhoaHocModule { }

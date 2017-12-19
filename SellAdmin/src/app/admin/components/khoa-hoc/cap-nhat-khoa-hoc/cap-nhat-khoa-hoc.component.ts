@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Message, SelectItem } from 'app/components/common/api';
-import { EditorModule } from 'app/components/editor/editor';
-import { FileUploadModule } from 'app/components/fileupload/fileupload';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
-    templateUrl: 'them-khoa-hoc.component.html'
+    templateUrl: 'cap-nhat-khoa-hoc.component.html'
 })
-export class ThemKhoaHocComponent implements OnInit {
+
+export class CapNhatKhoaHocComponent implements OnInit {
     msgs: Message[] = [];
     userform: FormGroup;
     submitted: boolean;
@@ -18,7 +17,6 @@ export class ThemKhoaHocComponent implements OnInit {
 
     avts: Message[] = [];
     uploadedAvt: any[] = [];
-
     constructor(private fb: FormBuilder) { }
 
     ngOnInit() {

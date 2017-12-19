@@ -37,6 +37,7 @@ import { CommonModule } from '@angular/common';
     BrowserAnimationsModule
   ],
   providers: [
+    AuthenticationService,
       { provide: LocationStrategy, useClass: HashLocationStrategy },
       CarService, CountryService, EventService, NodeService,  ConfigValue,
       {
@@ -48,7 +49,6 @@ import { CommonModule } from '@angular/common';
       // mocktest
       AuthenticationRest,
       UserRest,
-      AuthenticationService
 
   ],
   bootstrap: [AppComponent]

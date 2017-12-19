@@ -23,7 +23,7 @@ export class UserRestInterceptor implements HttpInterceptor {
                 if (request.url.endsWith('/user/info') && request.method === 'GET') {
                     //  tìm thấy nếu có bất kỳ người dùng phù hợp với thông tin đăng nhập
                    // console.log(request.headers);
-                    // console.log(request.headers.get('Authorization') + 'hihi ');
+                    console.log(request.headers.get('Authorization') + 'hihi ');
                     if (datauser.checkToke(request.headers.get('Authorization'))) {
                         const filteredUsers = users.filter((user: User) => {
                             return user.email === request.headers.get('Authorization');
@@ -40,8 +40,10 @@ export class UserRestInterceptor implements HttpInterceptor {
                 } else {
                     return Observable.throw(  new HttpErrorResponse({status: 401, statusText: 'Token hết hạng '}));
                 }
-            }}).materialize()
-                .delay(500)
+            }
+            return next.handle(request);
+        }).materialize()
+                .delay(1500)
                 .dematerialize();
 
           }

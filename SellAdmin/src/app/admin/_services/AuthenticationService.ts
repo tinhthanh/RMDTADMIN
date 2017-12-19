@@ -1,6 +1,6 @@
 import { User } from './../_models/User';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { ConfigValue } from '../_helpers/config-value';
@@ -27,6 +27,8 @@ export class AuthenticationService {
         .map
             ( (user: User ) => {
                 return user;
+            }, (err: HttpErrorResponse) => {
+                console.log(err.error);
             }
         );
     }

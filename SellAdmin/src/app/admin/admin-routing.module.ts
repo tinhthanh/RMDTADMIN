@@ -6,7 +6,8 @@ const routes: Routes = [
   children: [
    {
     path: 'prestashop', loadChildren: './components/prestashop/prestashop.module#PrestashopModule'
-    }
+    },
+    { path: 'khoa-hoc', loadChildren: './components/khoa-hoc/khoa-hoc.module#KhoaHocModule'}
    ]
    }
   ];

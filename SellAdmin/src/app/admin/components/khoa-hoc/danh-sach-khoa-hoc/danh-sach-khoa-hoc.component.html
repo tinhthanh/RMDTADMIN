@@ -1,0 +1,29 @@
+<div class="content-section introduction">
+    <div>
+        <span class="feature-title"> Quản lý danh sách khóa học </span>
+    </div>
+</div>
+
+<div class="content-section implementation">
+    <p-dataTable [value]="cars" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20, 100]"
+                [totalRecords]="totalRecords" 
+                (onPageChange)="paginate($event)"
+                sortMode="multiple" (onSort)="changeSort($event)"
+                >
+        <p-header> Danh sách sản phẩm </p-header>
+        <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+        <p-column field="year" header="Year" [sortable]="true" ></p-column>
+        <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+       
+        <p-column field="color" header="Color">
+                <ng-template let-col let-car="rowData" pTemplate="body">
+                    <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                </ng-template>
+            </p-column>
+    </p-dataTable>
+</div>
+
+<div class="content-section implementation ui-fluid">
+    <p-paginator rows="10" totalRecords="100" (onPageChange)="paginate($event)"></p-paginator>
+</div>
+

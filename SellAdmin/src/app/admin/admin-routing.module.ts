@@ -7,7 +7,11 @@ const routes: Routes = [
    {
     path: 'prestashop', loadChildren: './components/prestashop/prestashop.module#PrestashopModule'
     },
-    { path: 'khoa-hoc', loadChildren: './components/khoa-hoc/khoa-hoc.module#KhoaHocModule'}
+    { path: 'khoa-hoc', loadChildren: './components/khoa-hoc/khoa-hoc.module#KhoaHocModule'},
+    { path: 'chu-de', loadChildren: './components/chu-de/chu-de.module#ChuDeModule'},
+    {
+      path: 'mau-demo', loadChildren: './components/mau-demo/mau-demo.module#MauDemoModule'
+    }
    ]
    }
   ];

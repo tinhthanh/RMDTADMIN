@@ -1,3 +1,4 @@
+import { DanhSachKhoaHocComponent } from 'app/admin/components/khoa-hoc/danh-sach-khoa-hoc/danh-sach-khoa-hoc.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ThemKhoaHocComponent } from 'app/admin/components/khoa-hoc/them-khoa-hoc/them-khoa-hoc.component';
@@ -22,6 +23,10 @@ const routes: Routes = [
         }, {
           path: 'doi-mat-khau',
           component: DoiMatKhauComponent
+        },
+        {
+          path: 'danh-sach-khoa-hoc',
+          component: DanhSachKhoaHocComponent
         }
       ]
     }

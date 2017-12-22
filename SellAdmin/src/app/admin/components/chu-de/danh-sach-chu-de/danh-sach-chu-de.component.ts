@@ -26,7 +26,9 @@ export class DanhSachChuDeComponent implements OnInit {
              this.loadingTopic();
             }
             paginate(event) { // sư kiện phân trang
+                console.log(event);
                 this.page = event.page; // thay đổi vị trí trang đang đứng
+                this.size = event.rows;
                 this.loadingTopic();
             }
             // hàm loading dư liệu
@@ -67,9 +69,9 @@ export class DanhSachChuDeComponent implements OnInit {
                             this.msgs.push({severity: 'error', summary: 'Error Message', detail: 'Thêm thất bại'});
                         });
                     } else {
+                        console.log(this.toppic);
                         this.http.patch(this.config.url_port + '/admin/topic' , this.toppic).subscribe(
                             data => {
-                                console.log(data);
                                 this.msgs = [];
                                 this.msgs.push({severity: 'success', summary: 'Success Message', detail: ' Thêm thành công '});
                                 this.loading = false;
@@ -78,7 +80,6 @@ export class DanhSachChuDeComponent implements OnInit {
                         );
                         listTopic[this.findSelectedTopicIndex()] = this.toppic;
                      }
-                  
                         this.toppic = null;
                         this.displayDialogTopic = false;
                 } else {

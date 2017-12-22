@@ -14,7 +14,6 @@
 <div style="margin: 0 5px 0 5px" >
 <p-dataTable [value]="listTopic" selectionMode="single" [(selection)]="toppic" (onRowSelect)="suKienChon($event)"
 [responsive]="true"
-[rowsPerPageOptions]="[10,20,30]"
 >
     <p-header>Quản lý chủ đề</p-header>
     <p-column field="topicID" header="ID Chủ đề" [sortable]="true"></p-column>
@@ -32,7 +31,7 @@
     <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAddToppic()" label="Add"></button></div></p-footer>
 </p-dataTable>
 
-<p-paginator rows="{{size}}"  totalRecords="{{totalRow}}" (onPageChange)="paginate($event)"></p-paginator>
+<p-paginator rows="{{size}}"  totalRecords="{{totalRow}}" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20, 100]" ></p-paginator>
 
 </div>
 <p-dialog header="Chỉnh sửa chủ đề "  [minWidth]="600"  [(visible)]="displayDialogTopic" [responsive]="true" showEffect="fade" [modal]="true">

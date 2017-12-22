@@ -56,16 +56,16 @@ export class DanhSachChuDeComponent implements OnInit {
                  && this.toppic.topicStatus  ) {
                     const listTopic = [...this.listTopic];
                     if ( this.newTopic ) {
-                        this.http.post(this.config.url_port + '/admin/topic', this.toppic).subscribe( data => {
-                            console.log(data);
+                        this.http.post(this.config.url_port + '/admin/topic', this.toppic).subscribe( (data: any) => {
+                            listTopic.push(data);
                             this.msgs = [];
                             this.msgs.push({severity: 'success', summary: 'Success Message', detail: ' Thêm thành công '});
                             this.loading = false;
+                            this.listTopic = listTopic;
                         }, (err: HttpErrorResponse ) => {
                             this.msgs = [];
                             this.msgs.push({severity: 'error', summary: 'Error Message', detail: 'Thêm thất bại'});
                         });
-                        listTopic.push(this.toppic);
                     } else {
                         this.http.patch(this.config.url_port + '/admin/topic' , this.toppic).subscribe(
                             data => {
@@ -73,11 +73,12 @@ export class DanhSachChuDeComponent implements OnInit {
                                 this.msgs = [];
                                 this.msgs.push({severity: 'success', summary: 'Success Message', detail: ' Thêm thành công '});
                                 this.loading = false;
+                                this.listTopic = listTopic;
                             }
                         );
                         listTopic[this.findSelectedTopicIndex()] = this.toppic;
                      }
-                    this.listTopic = listTopic;
+                  
                         this.toppic = null;
                         this.displayDialogTopic = false;
                 } else {

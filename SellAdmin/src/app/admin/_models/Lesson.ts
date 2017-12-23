@@ -1,8 +1,8 @@
 export  class Lesson {
-   private lessonID: string;
-   private lessonTitle: string;
-   private lessonContent: string;
-   private chapterID: string;
-   private views: number;
-   private listOfComments: Comment[];
+    lessonID: string;
+    lessonTitle: string;
+    lessonContent: string;
+    chapterID: string;
+    views: number;
+     listOfComments: Comment[];
 }

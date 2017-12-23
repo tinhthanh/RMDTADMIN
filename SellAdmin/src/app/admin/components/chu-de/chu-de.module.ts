@@ -1,11 +1,13 @@
-import { SidebarModule } from './../../../components/sidebar/sidebar';
+import { ProgressBarModule } from './../../../components/progressbar/progressbar';
+import { DialogModule } from './../../../components/dialog/dialog';
+import { DanhSachChuDeComponent } from './danh-sach-chu-de/danh-sach-chu-de.component';
+import { ChuDeComponent } from './chu-de.component';
+import { ChuDeRoutingModule } from './chu-de-rouing.module';
 import { PaginatorModule } from './../../../components/paginator/paginator';
 import { DataTableModule } from './../../../components/datatable/datatable';
 import { NgModule } from '@angular/core';
 
-import { KhoaHocComponent } from './khoa-hoc.component';
-import { ThemKhoaHocComponent } from 'app/admin/components/khoa-hoc/them-khoa-hoc/them-khoa-hoc.component';
-import { KhoaHocRoutingModule } from 'app/admin/components/khoa-hoc/khoa-hoc-routing.module';
+
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GrowlModule } from 'app/components/growl/growl';
@@ -18,20 +20,14 @@ import { TabViewModule } from 'app/components/tabview/tabview';
 import { CodeHighlighterModule } from 'app/components/codehighlighter/codehighlighter';
 import { EditorModule } from 'app/components/editor/editor';
 import { FileUploadModule } from 'app/components/fileupload/fileupload';
-import { TrangThaiKhoaHocComponent } from 'app/admin/components/khoa-hoc/trang-thai-khoa-hoc/trang-thai-khoa-hoc.component';
-import { CapNhatKhoaHocComponent } from 'app/admin/components/khoa-hoc/cap-nhat-khoa-hoc/cap-nhat-khoa-hoc.component';
-import { DoiMatKhauComponent } from 'app/admin/components/khoa-hoc/doi-mat-khau/doi-mat-khau.component';
-import { DanhSachKhoaHocComponent } from 'app/admin/components/khoa-hoc/danh-sach-khoa-hoc/danh-sach-khoa-hoc.component';
-import { AuthorCourseComponent } from '../../components/khoa-hoc/author-course/author-course.component';
-import { TreeModule } from 'app/components/tree/tree';
-import { ContextMenuModule } from 'app/components/contextmenu/contextmenu';
+
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        KhoaHocRoutingModule,
+        ChuDeRoutingModule,
         GrowlModule,
         PanelModule,
         DropdownModule,
@@ -44,14 +40,11 @@ import { ContextMenuModule } from 'app/components/contextmenu/contextmenu';
         CodeHighlighterModule,
         DataTableModule,
         PaginatorModule,
-        TreeModule,
-        ContextMenuModule,
-        SidebarModule
+        DialogModule,
+        ProgressBarModule
     ],
     exports: [],
-    declarations: [KhoaHocComponent, ThemKhoaHocComponent, TrangThaiKhoaHocComponent, CapNhatKhoaHocComponent, DoiMatKhauComponent
-       , DanhSachKhoaHocComponent ,
-       AuthorCourseComponent ],
+    declarations: [ ChuDeComponent , DanhSachChuDeComponent ],
     providers: [],
 })
-export class KhoaHocModule { }
+export class ChuDeModule { }

@@ -47,8 +47,8 @@ import { CommonModule } from '@angular/common';
       },
       AuthGuard, // chặn không cho truy cập vào trang admin
       // mocktest
-      AuthenticationRest,
-      UserRest,
+  //    AuthenticationRest,
+    //  UserRest,
 
   ],
   bootstrap: [AppComponent]

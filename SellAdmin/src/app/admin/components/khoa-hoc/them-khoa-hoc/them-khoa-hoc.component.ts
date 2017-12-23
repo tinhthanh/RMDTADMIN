@@ -18,7 +18,9 @@ export class ThemKhoaHocComponent implements OnInit {
 
     avts: Message[] = [];
     uploadedAvt: any[] = [];
-
+    
+    uploadedFiles: any[] = [];
+    
     constructor(private fb: FormBuilder) { }
 
     ngOnInit() {
@@ -44,14 +46,14 @@ export class ThemKhoaHocComponent implements OnInit {
     }
 
 
-    // upload avatar
+ 
     onUpload(event) {
-        // tslint:disable-next-line:prefer-const
-        for (let file of event.files) {
-            this.uploadedAvt.push(file);
+        console.log(event);
+        for(let file of event.files) {
+            this.uploadedFiles.push(file);
         }
-        this.avts = [];
-        this.avts.push({severity: 'info', summary: 'File Uploaded', detail: ''});
+        this.msgs = [];
+        this.msgs.push({severity: 'info', summary: 'Success', detail: 'File Uploaded'});
     }
 
     onSubmit(value: string) {

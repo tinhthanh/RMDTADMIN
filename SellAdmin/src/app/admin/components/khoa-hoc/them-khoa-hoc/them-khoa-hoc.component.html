@@ -1,6 +1,15 @@
 <p-growl [value]="msgs" sticky="sticky">
 </p-growl>
-
+<div class="content-section implementation">            
+        <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" 
+                multiple="multiple" accept="image/*" maxFileSize="1000000"> 
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                    </ul>
+                </ng-template>    
+        </p-fileUpload>
+        </div>
 <form [formGroup]="userform" (ngSubmit)="onSubmit(userform.value)">
     <p-panel header="Tạo khóa học">
         <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
@@ -74,13 +83,7 @@
                     Ảnh đại diện:
                 </div>
                 <div class="ui-grid-col-6">
-                    <p-fileUpload name="uploadAvt[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple" accept="image/*" maxFileSize="1000000">
-                        <ng-template pTemplate type="content">
-                            <ul *ngIf="uploadedAvt.length">
-                                <li *ngFor="let file of uploadedAvt">{{file.name}} - {{file.size}} bytes</li>
-                            </ul>
-                        </ng-template>
-                    </p-fileUpload>
+                      
                 </div>
                 <div class="ui-grid-col-4">
                     <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userform.controls['courseAvatar'].valid&&userform.controls['courseAvatar'].dirty">
@@ -94,7 +97,7 @@
                     Chi tiết khóa học:
                 </div>
                 <div class="ui-grid-col-6">
-                    <p-editor formControlName="ScourseDetail" [(ngModel)]="sourceDetail" [style]="{'height':'320px'}"></p-editor>
+                    <p-editor formControlName="ScourseDetail" [(ngModel)]="sourceDetail" [style]="{'height':'150px'}"></p-editor>
                 </div>
                 <div class="ui-grid-col-4"></div>
             </div>

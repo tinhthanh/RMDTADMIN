@@ -7,5 +7,5 @@ export * from './Role';
 export * from './Topic';
 export * from './User';
 export * from './UserCustom';
-
+export * from './FileOfLesson';
 export * from './json';

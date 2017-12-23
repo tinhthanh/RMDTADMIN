@@ -2,19 +2,20 @@
     "data": 
     [
         {
-            "label": "Documents",
-            "data": "Documents Folder",
+            "label": "Chương 1",
+            "data": { "CH": "CH1-12" },
             "expandedIcon": "fa-folder-open",
             "collapsedIcon": "fa-folder",
             "children": [{
-                    "label": "Work",
+                    "label": "Bài một",
                     "data": "Work Folder",
                     "expandedIcon": "fa-folder-open",
                     "collapsedIcon": "fa-folder",
-                    "children": [{"label": "Expenses.doc", "icon": "fa-file-word-o", "data": "Expenses Document"}, {"label": "Resume.doc", "icon": "fa-file-word-o", "data": "Resume Document"}]
+                    "children": [{"label": "tài_liệu_bài_một.doc", "icon": "fa-file-word-o", "data": "Expenses Document"}, 
+                     {"label": "tài_liệu_bài_2.doc", "icon": "fa-file-word-o", "data": "Resume Document"}]
                 },
                 {
-                    "label": "Home",
+                    "label": "Bài hai",
                     "data": "Home Folder",
                     "expandedIcon": "fa-folder-open",
                     "collapsedIcon": "fa-folder",
@@ -22,7 +23,7 @@
                 }]
         },
         {
-            "label": "Pictures",
+            "label": "Chương 2",
             "data": "Pictures Folder",
             "expandedIcon": "fa-folder-open",
             "collapsedIcon": "fa-folder",
@@ -39,7 +40,8 @@
             "children": [{
                     "label": "Al Pacino",
                     "data": "Pacino Movies",
-                    "children": [{"label": "Scarface", "icon": "fa-file-video-o", "data": "Scarface Movie"}, {"label": "Serpico", "icon": "fa-file-video-o", "data": "Serpico Movie"}]
+                    "children": [
+                        {"label": "Scarface", "icon": "fa-file-video-o", "data": "Scarface Movie"}, {"label": "Serpico", "icon": "fa-file-video-o", "data": "Serpico Movie"}]
                 },
                 {
                     "label": "Robert De Niro",

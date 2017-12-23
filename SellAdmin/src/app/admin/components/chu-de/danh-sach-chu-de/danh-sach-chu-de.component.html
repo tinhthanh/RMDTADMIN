@@ -11,9 +11,11 @@
     </div>
 </div>
 
+<button pButton type="button" (click)="stacked=!stacked" style="margin-bottom:10px" label="Hiện thị dạng table" icon="fa-list"></button>
 <div style="margin: 0 5px 0 5px" >
 <p-dataTable [value]="listTopic" selectionMode="single" [(selection)]="toppic" (onRowSelect)="suKienChon($event)"
 [responsive]="true"
+[stacked]="stacked"
 >
     <p-header>Quản lý chủ đề</p-header>
     <p-column field="topicID" header="ID Chủ đề" [sortable]="true"></p-column>

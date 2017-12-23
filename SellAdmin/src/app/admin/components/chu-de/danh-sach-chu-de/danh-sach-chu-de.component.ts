@@ -1,27 +1,29 @@
+import { Router } from '@angular/router';
+import { SelectItem } from 'app/components/common/api';
 import { Message } from './../../../../components/common/message';
 import { ConfigValue } from './../../../_helpers/config-value';
 import { CarService } from './../../../../showcase/service/carservice';
 import { Car } from './../../../../showcase/domain/car';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { HttpErrorResponse } from '@angular/common/http/src/response';
-
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 @Component({
     templateUrl: 'danh-sach-chu-de.component.html'
 })
-
 export class DanhSachChuDeComponent implements OnInit {
-    loading = false;
+        stacked = true ;
+        loading = false;
         msgs: Message[] = [];
         totalRow = 0 ; // tổng số row trong database
         page = 0 ; // vi tri trang đang đứng
         size  = 10 ; // số row muốn hiển thị
         displayDialogTopic: boolean;  // show pop thêm topic
+
       public  listTopic: any = [] ; // danh sách topic
         toppic: any  = {};  // topic thêm vào
         newTopic: boolean;  // trang thái có thêm topic mới hay không
         constructor(private carService: CarService, private http: HttpClient  ,
-        private config: ConfigValue ) { }
+        private config: ConfigValue,
+        private router: Router ) { }
             ngOnInit() {
              this.loadingTopic();
             }
@@ -65,6 +67,11 @@ export class DanhSachChuDeComponent implements OnInit {
                             this.loading = false;
                             this.listTopic = listTopic;
                         }, (err: HttpErrorResponse ) => {
+                            if ( err.status === 401 ) {
+                                this.msgs = [];
+                                this.msgs.push({severity: 'success', summary: 'Success Message', detail: ' token hết hạng '});
+                                    this.router.navigate(['/pages/dang-nhap']);
+                                }
                             this.msgs = [];
                             this.msgs.push({severity: 'error', summary: 'Error Message', detail: 'Thêm thất bại'});
                         });
@@ -76,6 +83,13 @@ export class DanhSachChuDeComponent implements OnInit {
                                 this.msgs.push({severity: 'success', summary: 'Success Message', detail: ' Thêm thành công '});
                                 this.loading = false;
                                 this.listTopic = listTopic;
+                            }, (err: HttpErrorResponse) => {
+                                console.log(err.status);
+                                if ( err.status === 401 ) {
+                                this.msgs = [];
+                                this.msgs.push({severity: 'success', summary: 'Success Message', detail: ' token hết hạng '});
+                                    this.router.navigate(['/pages/dang-nhap']);
+                                }
                             }
                         );
                         listTopic[this.findSelectedTopicIndex()] = this.toppic;

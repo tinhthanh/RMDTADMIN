@@ -1,3 +1,4 @@
+import { SidebarModule } from './../../../components/sidebar/sidebar';
 import { PaginatorModule } from './../../../components/paginator/paginator';
 import { DataTableModule } from './../../../components/datatable/datatable';
 import { NgModule } from '@angular/core';
@@ -21,6 +22,9 @@ import { TrangThaiKhoaHocComponent } from 'app/admin/components/khoa-hoc/trang-t
 import { CapNhatKhoaHocComponent } from 'app/admin/components/khoa-hoc/cap-nhat-khoa-hoc/cap-nhat-khoa-hoc.component';
 import { DoiMatKhauComponent } from 'app/admin/components/khoa-hoc/doi-mat-khau/doi-mat-khau.component';
 import { DanhSachKhoaHocComponent } from 'app/admin/components/khoa-hoc/danh-sach-khoa-hoc/danh-sach-khoa-hoc.component';
+import { AuthorCourseComponent } from '../../components/khoa-hoc/author-course/author-course.component';
+import { TreeModule } from 'app/components/tree/tree';
+import { ContextMenuModule } from 'app/components/contextmenu/contextmenu';
 
 @NgModule({
     imports: [
@@ -40,10 +44,14 @@ import { DanhSachKhoaHocComponent } from 'app/admin/components/khoa-hoc/danh-sac
         CodeHighlighterModule,
         DataTableModule,
         PaginatorModule,
+        TreeModule,
+        ContextMenuModule,
+        SidebarModule
     ],
     exports: [],
     declarations: [KhoaHocComponent, ThemKhoaHocComponent, TrangThaiKhoaHocComponent, CapNhatKhoaHocComponent, DoiMatKhauComponent
-       , DanhSachKhoaHocComponent],
+       , DanhSachKhoaHocComponent ,
+       AuthorCourseComponent ],
     providers: [],
 })
 export class KhoaHocModule { }

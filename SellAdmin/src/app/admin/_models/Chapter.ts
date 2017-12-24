@@ -5,5 +5,5 @@ export class Chapter {
     private chapterTitle: string;
     private chapterContent: string;
     private chapterSummary: string;
-    private listOfLession: Lesson[];
+    private listOfLesson: Lesson[];
 }

@@ -1,8 +1,12 @@
+import { MenuItem } from './../components/common/menuitem';
+import { MenuModule } from 'app/components/menu/menu';
+
 import { User } from './_models/User';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'app/admin/_services/AuthenticationService';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+
 
 @Component({
     templateUrl: 'admin.component.html'

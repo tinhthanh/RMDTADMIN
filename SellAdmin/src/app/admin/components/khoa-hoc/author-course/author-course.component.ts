@@ -121,7 +121,7 @@ export class AuthorCourseComponent implements OnInit {
                         node.data  = chapter[i];
                         node.expandedIcon = 'fa-folder-open';
                         node.collapsedIcon = 'fa-folder';
-                        const danhSachBaiHoc: Lesson[] = chapter[i].listOfLession ;
+                        const danhSachBaiHoc: Lesson[] = chapter[i].listOfLesson ;
                         const nodeBaiHoc: TreeNode[] = [];
                         for ( let j = 0 ; j <  danhSachBaiHoc.length; j++) {
                             const baihoc: TreeNode  = {};

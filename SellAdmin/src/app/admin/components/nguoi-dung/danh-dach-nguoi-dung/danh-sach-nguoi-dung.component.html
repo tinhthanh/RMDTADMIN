@@ -1,0 +1,30 @@
+
+<h3>Multiple Columns</h3>
+<p-dataTable [value]="listNguoiDung" sortMode="multiple"
+[(selection)]="selectedNguoiDung"
+selectionMode="single"
+(onRowSelect)="suKienChon($event)">
+    <p-column field="topicID" header="Mã người dùng" [sortable]="true"></p-column>
+    <p-column field="topicName" header="Tên" [sortable]="true"></p-column>
+    <p-column field="topicDescription" header="Mô tả" [sortable]="true"></p-column>
+    <p-column field="topicStatus" header="Trạng thái" [sortable]="true"></p-column>
+</p-dataTable>
+
+<p-paginator (onPageChange)="paginate($event)" rows="{{rows}}" totalRecords="{{toltalRow}}" [rowsPerPageOptions]="[10,20,30]"></p-paginator>
+
+<div  *ngIf="selectedNguoiDung" ><p-dialog  header="Godfather I" [(visible)]="display" modal="modal" width="300" [responsive]="true">
+
+  <div class="ui-grid-row">
+        <div class="ui-grid-col-4"><label for="topicID">Vin</label></div>
+        <div class="ui-grid-col-8"><input pInputText id="topicID" [(ngModel)]="selectedNguoiDung.topicID" /></div>
+    </div>
+      <p-footer>
+          <div class="ui-dialog-buttonpane ui-helper-clearfix">
+          <button type="button" pButton icon="fa-check" (click)="display=false" label="Yes"></button>
+          <button type="button" pButton icon="fa-close" (click)="display=false" label="No"></button>
+    </div>
+        </p-footer>
+</p-dialog>
+</div>
+
+<button type="button" (click)="display = !display" pButton icon="fa-external-link-square" label="Show"></button>

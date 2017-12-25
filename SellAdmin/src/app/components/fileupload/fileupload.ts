@@ -331,7 +331,7 @@ export class FileUpload implements OnInit,AfterViewInit,AfterContentInit,OnDestr
             };
 
             xhr.open(this.method, this.url, true);
-
+             xhr.setRequestHeader('Authorization', JSON.parse(localStorage.getItem('token')));
             this.onBeforeSend.emit({
                 'xhr': xhr,
                 'formData': formData

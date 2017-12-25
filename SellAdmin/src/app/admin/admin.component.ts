@@ -18,7 +18,6 @@ export class AdminComponent implements OnInit {
 
     ngOnInit() {
  this.auth.getInformation().subscribe(data => {
-    console.log(data);
      this.user =  data;
     }, (err: HttpErrorResponse) => {
         if ( err.status  === 403 ) {

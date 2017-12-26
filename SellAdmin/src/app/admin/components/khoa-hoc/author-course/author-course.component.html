@@ -37,6 +37,63 @@
             </ng-template>        
         </p-fileUpload>
     </p-sidebar>
+ <!-- thêm chương mục  -->
+    <p-sidebar [(visible)]="visibleChater" position="right" [baseZIndex]="10000">
+        <h1 style="font-weight:normal">Thêm chương mục</h1>
+        <form *ngIf="chapterForm" [formGroup]="chapterForm" (ngSubmit)="themChuongMuc()">
+            <p-panel header="Điền thông tin chương">
+                <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+                    <div class="ui-grid-row">
+                        <div class="ui-grid-col-3">
+                            Tên chương mục *:
+                        </div>
+                        <div [ngClass]=" (!chapterForm.controls['chapterTitle'].valid&&chapterForm.controls['chapterTitle'].dirty)?'ui-grid-col-6':'ui-grid-col-9' ">
+                            <input pInputText type="text" formControlName="chapterTitle" placeholder=" Tên chương mục"/>
+                        </div>
+                        <div   *ngIf="!chapterForm.controls['chapterTitle'].valid&&chapterForm.controls['chapterTitle'].dirty"  class="ui-grid-col-3">
+                            <div class="ui-message ui-messages-error ui-corner-all" >
+                                <i class="fa fa-close"></i>
+                                Tên chương mục không được để trống
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-grid-row">
+                        <div class="ui-grid-col-3">
+                            Giới thiệu *:
+                        </div>
+                        <div class="ui-grid-col-9">
+                            <input pInputText type="text" formControlName="chapterContent" placeholder="Giới thiệu "/>
+                        </div>
+                    </div>
+                    <div class="ui-grid-row">
+                        <div class="ui-grid-col-3">
+                            Mô tả chi tiết  *:
+                        </div>
+                        <div class="ui-grid-col-9">
+                                
+                            <!-- <p-editor  [(ngModel)]="chapterForm.value.chapterSummary"   [style]="{'height':'150px'}"></p-editor> -->
+                          <!-- <p-editor  formControlName="chapterSummary"  [style]="{'height':'150px'}"></p-editor> -->
+                         
+                            <textarea rows="4"  pInputText type="text" formControlName="chapterSummary" placeholder="Giới thiệu ">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="ui-grid-row">
+                        <div class="ui-grid-col-3"></div>
+                        <div class="ui-grid-col-9">
+                            <button pButton type="submit" [disabled]="submitted" label="Submit" [disabled]="!chapterForm.valid">
+                                
+                                <img *ngIf="submitted" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                            
+                            </button>
+                        </div>
+                    
+                    </div>
+                </div>
+            </p-panel>
+        </form>
+    </p-sidebar>
+ <!-- hết phần thêm chương mục -->
     
     <!-- xem thông tin chi tiết khóa hoc -->
     <p-sidebar [(visible)]="visibleCource" [fullScreen]="true" [baseZIndex]="10000">
@@ -47,7 +104,30 @@
                 <p-panel header="Tạo khóa học">
                     <div  class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px; margin-bottom: 70px;">
                        
-                          
+                            <div class="ui-grid-row">
+                                    <div class="ui-grid-col-2">
+                                      Danh sách chương: 
+                                    </div>
+                                    <div class="ui-grid-col-10">
+                                   
+<p-fieldset  [collapsed]="true" legend="Xem thêm" [toggleable]="true">   
+    <div  *ngFor="let temp of listCharter" class="ui-messages ui-widget ui-corner-all ui-messages-success" style="display:block" ng-reflect-klass="ui-messages ui-widget ui-corne" ng-reflect-ng-class="[object Object]">
+         <a class="ui-messages-close" (click)="clickXoaChuong(temp)" >
+                <i class="fa fa-close"></i>
+            </a>
+            <span class="ui-messages-icon fa fa-fw fa-2x fa-check" ng-reflect-klass="ui-messages-icon fa fa-fw fa-2" ng-reflect-ng-class="fa-check"></span>
+            <ul>
+            <li>
+          <span class="ui-messages-summary">{{temp.chapterTitle}}</span>
+                   <span class="ui-messages-detail">Số bài học {{temp.listOfLesson?.length}}</span>
+                </li>
+            </ul>
+        </div>
+        <button pButton type="button" (click)="clickThemChuongMuc()" icon="fa-plus" label="Thêm chương mục" class="ui-button-info"></button> 
+        <!-- <pre>{{ listCharter | json }}</pre>    -->
+</p-fieldset>
+                                    </div>
+                                </div>
                     
                                 <div class="ui-grid-row">
                                         <div class="ui-grid-col-2">
@@ -181,7 +261,9 @@
                         <div class="ui-grid-row">
                             <div class="ui-grid-col-2"></div>
                             <div class="ui-grid-col-6">
-                                <button pButton type="submit" label="Lưu lại" [disabled]="!userform.valid"></button>
+                                <button pButton type="submit" [disabled]="submitted"    label="Lưu lại" [disabled]="!userform.valid">
+                                    <img *ngIf="submitted" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                </button>
                             </div>
                             <div class="ui-grid-col-4"></div>
                         </div>

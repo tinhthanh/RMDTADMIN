@@ -1,3 +1,6 @@
+import { DataListModule } from './../../../components/datalist/datalist';
+import { AccordionModule } from './../../../components/accordion/accordion';
+import { FieldsetModule } from './../../../components/fieldset/fieldset';
 import { ProgressSpinnerModule } from './../../../components/progressspinner/progressspinner';
 import { SidebarModule } from './../../../components/sidebar/sidebar';
 import { PaginatorModule } from './../../../components/paginator/paginator';
@@ -50,7 +53,10 @@ import { RadioButtonModule } from 'app/components/radiobutton/radiobutton';
         ContextMenuModule,
         SidebarModule,
         ProgressSpinnerModule,
-        RadioButtonModule
+        RadioButtonModule,
+        FieldsetModule,
+        AccordionModule,
+        DataListModule
     ],
     exports: [],
     declarations: [KhoaHocComponent, ThemKhoaHocComponent, TrangThaiKhoaHocComponent, CapNhatKhoaHocComponent, DoiMatKhauComponent

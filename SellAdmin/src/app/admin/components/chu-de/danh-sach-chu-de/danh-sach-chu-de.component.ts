@@ -10,7 +10,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
     templateUrl: 'danh-sach-chu-de.component.html'
 })
 export class DanhSachChuDeComponent implements OnInit {
-        stacked = true ;
+        stacked = false ;
         loading = false;
         msgs: Message[] = [];
         totalRow = 0 ; // tổng số row trong database

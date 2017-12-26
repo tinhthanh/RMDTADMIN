@@ -9,8 +9,8 @@ export class Course {
     author: string;
     createDate: any;
     price: number;
-    courseType: CourseType[] ;
-    topic: Topic[];
+    courseType: CourseType;
+    topic: Topic;
     confirmedBy: UserCustom[] ;
     status: number;
     confirmedDate: any;

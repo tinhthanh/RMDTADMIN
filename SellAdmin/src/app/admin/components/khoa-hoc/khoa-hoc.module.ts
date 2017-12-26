@@ -1,3 +1,7 @@
+import { DataListModule } from './../../../components/datalist/datalist';
+import { AccordionModule } from './../../../components/accordion/accordion';
+import { FieldsetModule } from './../../../components/fieldset/fieldset';
+import { ProgressSpinnerModule } from './../../../components/progressspinner/progressspinner';
 import { SidebarModule } from './../../../components/sidebar/sidebar';
 import { PaginatorModule } from './../../../components/paginator/paginator';
 import { DataTableModule } from './../../../components/datatable/datatable';
@@ -25,6 +29,7 @@ import { DanhSachKhoaHocComponent } from 'app/admin/components/khoa-hoc/danh-sac
 import { AuthorCourseComponent } from '../../components/khoa-hoc/author-course/author-course.component';
 import { TreeModule } from 'app/components/tree/tree';
 import { ContextMenuModule } from 'app/components/contextmenu/contextmenu';
+import { RadioButtonModule } from 'app/components/radiobutton/radiobutton';
 
 @NgModule({
     imports: [
@@ -46,7 +51,12 @@ import { ContextMenuModule } from 'app/components/contextmenu/contextmenu';
         PaginatorModule,
         TreeModule,
         ContextMenuModule,
-        SidebarModule
+        SidebarModule,
+        ProgressSpinnerModule,
+        RadioButtonModule,
+        FieldsetModule,
+        AccordionModule,
+        DataListModule
     ],
     exports: [],
     declarations: [KhoaHocComponent, ThemKhoaHocComponent, TrangThaiKhoaHocComponent, CapNhatKhoaHocComponent, DoiMatKhauComponent

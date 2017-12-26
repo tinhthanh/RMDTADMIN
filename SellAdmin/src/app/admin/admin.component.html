@@ -66,29 +66,37 @@
         <img src="assets/showcase/images/icons/misc.svg" class="layout-menu-icon-inactive" />
         <span>Chức năng quản lý</span>
       </a>
-      <div   [ngClass]="{'submenushow': (misctitle.id == activeMenuId), 'submenuhide': (misctitle.id != activeMenuId)}">
-        <a style="width: 100%" [routerLink]="['/admin/chu-de/danh-sach-chu-de']"  (click)="menuActive = false">&#9679; Danh sách chủ đề</a>
-        <a  style="width: 100%" [routerLink]="['/admin/khoa-hoc/danh-sach-khoa-hoc']" (click)="menuActive = false">&#9679; Danh sách khóa học</a>
+      <div [ngClass]="{'submenushow': (misctitle.id == activeMenuId), 'submenuhide': (misctitle.id != activeMenuId)}">
+        <a style="width: 100%" [routerLink]="['/admin/chu-de/danh-sach-chu-de']" (click)="menuActive = false">&#9679; Danh sách chủ đề</a>
+        <a style="width: 100%" [routerLink]="['/admin/khoa-hoc/danh-sach-khoa-hoc']" (click)="menuActive = false">&#9679; Danh sách khóa học</a>
       </div>
       <!-- /thang -->
       <a id="khoa_hoc_menu" #khoaHocMenu [class.active-menuitem]="khoaHocMenu.id == activeMenuId" (click)="activeMenuId = (activeMenuId === khoaHocMenu.id ? null : khoaHocMenu.id)">
-          <img src="assets/showcase/images/icons/misc-active.svg" class="layout-menu-icon-active" />
-          <img src="assets/showcase/images/icons/misc.svg" class="layout-menu-icon-inactive" />
-          <span>Khóa học</span>
+        <img src="assets/showcase/images/icons/misc-active.svg" class="layout-menu-icon-active" />
+        <img src="assets/showcase/images/icons/misc.svg" class="layout-menu-icon-inactive" />
+        <span>Khóa học</span>
       </a>
       <div [ngClass]="{'submenushow': (khoaHocMenu.id == activeMenuId), 'submenuhide': (khoaHocMenu.id != activeMenuId)}">
-          <a [routerLink]="['/admin/khoa-hoc/danh-sach-khoa-hoc']" (click)="menuActive = false">&#9679; Danh sách khóa học</a>
-          <a [routerLink]="['/admin/khoa-hoc/khoa-hoc-cua-toi']" (click)="menuActive = false">&#9679; Khóa học của tôi</a>
-           <a [routerLink]="['/admin/khoa-hoc/them-khoa-hoc']" (click)="menuActive = false">&#9679; Thêm khóa học</a>
-        </div>
-        <a id="chu_de_menu" #chuDeMenu [class.active-menuitem]="chuDeMenu.id == activeMenuId" (click)="activeMenuId = (activeMenuId === chuDeMenu.id ? null : chuDeMenu.id)">
-            <img src="assets/showcase/images/icons/misc-active.svg" class="layout-menu-icon-active" />
-            <img src="assets/showcase/images/icons/misc.svg" class="layout-menu-icon-inactive" />
-            <span>Chủ đề</span>
-        </a>
-        <div [ngClass]="{'submenushow': (chuDeMenu.id == activeMenuId), 'submenuhide': (chuDeMenu.id != activeMenuId)}">
-            <a [routerLink]="['/admin/chu-de/danh-sach-chu-de']" (click)="menuActive = false">&#9679; Danh sách chủ đề</a>
-            </div>
+        <a [routerLink]="['/admin/khoa-hoc/danh-sach-khoa-hoc']" (click)="menuActive = false">&#9679; Danh sách khóa học</a>
+        <a [routerLink]="['/admin/khoa-hoc/khoa-hoc-cua-toi']" (click)="menuActive = false">&#9679; Khóa học của tôi</a>
+        <a [routerLink]="['/admin/khoa-hoc/them-khoa-hoc']" (click)="menuActive = false">&#9679; Thêm khóa học</a>
+      </div>
+      <a id="chu_de_menu" #chuDeMenu [class.active-menuitem]="chuDeMenu.id == activeMenuId" (click)="activeMenuId = (activeMenuId === chuDeMenu.id ? null : chuDeMenu.id)">
+        <img src="assets/showcase/images/icons/misc-active.svg" class="layout-menu-icon-active" />
+        <img src="assets/showcase/images/icons/misc.svg" class="layout-menu-icon-inactive" />
+        <span>Chủ đề</span>
+      </a>
+      <div [ngClass]="{'submenushow': (chuDeMenu.id == activeMenuId), 'submenuhide': (chuDeMenu.id != activeMenuId)}">
+        <a [routerLink]="['/admin/chu-de/danh-sach-chu-de']" (click)="menuActive = false">&#9679; Danh sách chủ đề</a>
+      </div>
+      <a id="account_menu" #accountMenu [class.active-menuitem]="accountMenu.id == activeMenuId" (click)="activeMenuId = (activeMenuId === accountMenu.id ? null : accountMenu.id)">
+        <img src="assets/showcase/images/icons/misc-active.svg" class="layout-menu-icon-active" />
+        <img src="assets/showcase/images/icons/misc.svg" class="layout-menu-icon-inactive" />
+        <span>Tài khoản người dùng</span>
+      </a>
+      <div [ngClass]="{'submenushow': (accountMenu.id == activeMenuId), 'submenuhide': (accountMenu.id != activeMenuId)}">
+        <a [routerLink]="['/admin/nguoi-dung/danh-sach-nguoi-dung']" (click)="menuActive = false">&#9679; Danh sách người dùng</a>
+      </div>
       <!-- ./thang -->
 
 

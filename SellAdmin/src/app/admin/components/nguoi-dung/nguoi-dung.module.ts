@@ -1,3 +1,6 @@
+import { ButtonModule } from 'app/components/button/button';
+import { EditorModule } from 'app/components/editor/editor';
+import { MultiSelectModule } from './../../../components/multiselect/multiselect';
 import { DialogModule } from './../../../components/dialog/dialog';
 import { DataTableModule } from './../../../components/datatable/datatable';
 import { PaginatorModule } from './../../../components/paginator/paginator';
@@ -7,6 +10,7 @@ import { DanhSachNguoiDungComponent } from 'app/admin/components/nguoi-dung/danh
 import { CommonModule } from '@angular/common';
 import { NguoiDungRoutingModule } from 'app/admin/components/nguoi-dung/nguoi-dung-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GrowlModule } from 'app/components/growl/growl';
 
 @NgModule({
   imports: [
@@ -17,6 +21,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule
+    , MultiSelectModule,
+    EditorModule,
+    ButtonModule,
+    GrowlModule,
   ],
   exports: [],
   declarations: [DanhSachNguoiDungComponent, NguoiDungComponent],

@@ -1,5 +1,5 @@
 export class CourseType {
-    private courseTypeID: string;
-    private courseTitle: string;
-    private courseDescription: string;
+     courseTypeID: string;
+     courseTitle: string;
+    courseDescription: string;
 }

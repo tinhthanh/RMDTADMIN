@@ -4,5 +4,5 @@ export  class Lesson {
     lessonContent: string;
     chapterID: string;
     views: number;
-     listOfComments: Comment[];
+    listOfComments: Comment[];
 }

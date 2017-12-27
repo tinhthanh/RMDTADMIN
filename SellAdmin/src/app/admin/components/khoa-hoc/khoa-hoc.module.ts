@@ -1,3 +1,4 @@
+import { LightboxModule } from './../../../components/lightbox/lightbox';
 import { DataListModule } from './../../../components/datalist/datalist';
 import { AccordionModule } from './../../../components/accordion/accordion';
 import { FieldsetModule } from './../../../components/fieldset/fieldset';
@@ -56,7 +57,8 @@ import { RadioButtonModule } from 'app/components/radiobutton/radiobutton';
         RadioButtonModule,
         FieldsetModule,
         AccordionModule,
-        DataListModule
+        DataListModule,
+        LightboxModule
     ],
     exports: [],
     declarations: [KhoaHocComponent, ThemKhoaHocComponent, TrangThaiKhoaHocComponent, CapNhatKhoaHocComponent, DoiMatKhauComponent

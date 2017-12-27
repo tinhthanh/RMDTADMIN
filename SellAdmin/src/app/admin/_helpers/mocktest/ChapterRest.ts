@@ -17,11 +17,10 @@ export class ChapterRestInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
               return Observable.of(null).mergeMap(() => {
                 // thêm chapter
-                if (request.url.endsWith('/users/course') && request.method === 'POST') {
+                if (request.url.endsWith('/users/chapter') && request.method === 'POST') {
                     //  tìm thấy nếu có bất kỳ người dùng phù hợp với thông tin đăng nhập
                     if (request.body) {
                         // phần body gửi lên
-                        // "chapterID": "KH1CH1",
                         // "courseID": "KH1",
                         // "chapterTitle": "Tổng quan về Android",
                         // "chapterContent": "Cung cấp cái nhìn tổng quan về android",
@@ -30,6 +29,23 @@ export class ChapterRestInterceptor implements HttpInterceptor {
                     // trả về y chan vậy công với ID mới phát sinh
                        const chapter = request.body ;
                        chapter.chapterID = Math.floor(Math.random() * 999999 ) + 1 ;
+                        return Observable.of(new HttpResponse({ status: 200, body: chapter }));
+                    } else {
+                        // nếu tài khoản không tồn tại trả về mã lỗi 403
+                        return Observable.throw(new HttpErrorResponse({status: 400, statusText: 'Bad request'}));
+                    }
+                }
+                if (request.url.endsWith('/users/chapter') && request.method === 'PATCH') {
+                    //  tìm thấy nếu có bất kỳ người dùng phù hợp với thông tin đăng nhập
+                    if (request.body) {
+                        // phần body gửi lên
+                        // "chapterID": "KH1CH1",
+                        // "courseID": "KH1",
+                        // "chapterTitle": "Tổng quan về Android",
+                        // "chapterContent": "Cung cấp cái nhìn tổng quan về android",
+                        // "chapterSummary": "Cung cấp cái nhìn tổng quan về android",
+                    // trả về y chan vậy công với ID mới phát sinh
+                       const chapter = request.body ;
                         return Observable.of(new HttpResponse({ status: 200, body: chapter }));
                     } else {
                         // nếu tài khoản không tồn tại trả về mã lỗi 403

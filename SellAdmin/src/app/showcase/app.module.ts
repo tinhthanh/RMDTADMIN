@@ -21,6 +21,7 @@ import { AdminComponent } from 'app/admin/admin.component';
 import { AuthenticationRest, UserRest } from '../admin/_helpers';
 import { CommonModule } from '@angular/common';
 import { ChapterRest } from 'app/admin/_helpers/mocktest/ChapterRest';
+import { LessonRest } from 'app/admin/_helpers/mocktest/LessonRest';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ChapterRest } from 'app/admin/_helpers/mocktest/ChapterRest';
       // mocktest
   //    AuthenticationRest,
     //  UserRest,
-    ChapterRest
+    ChapterRest,
+    LessonRest
 
   ],
   bootstrap: [AppComponent]

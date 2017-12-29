@@ -43,14 +43,14 @@
 <!-- thêm bài học -->
 <p-sidebar [(visible)]="visibleLesson" position="right" [baseZIndex]="10000">
     <form *ngIf="lessonForm" [formGroup]="lessonForm" (ngSubmit)="themBaiHoc()">
-        <p-panel header="Thêm chương mục">
+        <p-panel header="Thêm bài học">
             <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-3">
                         Tên Bài học *:
                     </div>
                     <div [ngClass]=" (!lessonForm.controls['lessonTitle'].valid&&lessonForm.controls['lessonTitle'].dirty)?'ui-grid-col-6':'ui-grid-col-9' ">
-                        <input pInputText type="text" formControlName="lessonTitle" placeholder=" Tên chương mục" />
+                        <input pInputText type="text" formControlName="lessonTitle" placeholder="Tên bài học" />
                     </div>
                     <div *ngIf="!lessonForm.controls['lessonTitle'].valid&&lessonForm.controls['lessonTitle'].dirty" class="ui-grid-col-3">
                         <div class="ui-message ui-messages-error ui-corner-all">
@@ -64,17 +64,21 @@
                         Giới thiệu *:
                     </div>
                     <div class="ui-grid-col-9">
-                        <input pInputText type="text" formControlName="lessonContent" placeholder="link viedeo " />
+                             <div style="width: 100%;">
+                            <app-form-upload  (eventUp) ="onUploadVideo($event)"  ></app-form-upload>   
+                            </div>
                     </div>
                 </div>
                 <div class="ui-grid-row">
-                    <div class="ui-grid-col-3"></div>
+                    <div class="ui-grid-col-3">
+                        <!-- <pre>{{  !isThemBaiHoc }}</pre>
+                        <pre>{{  !lessonForm.controls['lessonTitle'].valid }}</pre>
+                        <pre>{{((lessonForm.controls['lessonTitle'].valid)&&(isThemBaiHoc))?true:false }}</pre> -->
+                    </div>
                     <div class="ui-grid-col-9">
-                        <button pButton type="submit" [disabled]="submitted" label="Submit" [disabled]="!lessonForm.valid">
-
+                        <button pButton type="submit" [disabled]="!((lessonForm.controls['lessonTitle'].valid)&&(isThemBaiHoc))?true:false" label="Submit" >
                             <img *ngIf="submitted" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
                             />
-
                         </button>
                     </div>
 
@@ -146,30 +150,26 @@
         <p-fieldset (onBeforeToggle)="xemDanhSachKhoaHoc($event)" [collapsed]="true" legend="Danh sách bài học" [toggleable]="true">
             <button pButton type="button" (click)="clickThemBaiHoc()" icon="fa-plus" label="Bài học mới" class="ui-button-info"></button>
             <!-- <iframe style=" width: 100% ,  height auto "  src="https://drive.google.com/file/d/1ZlThHQI5HND7l96FsF7T6dl1HV7MAJvk/preview"></iframe> -->
+
+            <div *ngIf="submitted" >
+                    <p-progressSpinner></p-progressSpinner>
+                </div> 
+                <div *ngIf="!submitted" > 
             <div class="ui-grid-row">
                 <div *ngFor="let temp of selectLesson?.listOfLesson" class="ui-grid-col-3">
-                    <div (click)="updateLink(temp?.lessonContent)" class="video-thumbnail">
-                        <img src="https://drive.google.com/thumbnail?authuser=0&sz=w320&id={{temp?.lessonContent}}" alt="Video thumbnail" />
-                        <div class="title"> {{temp.lessonTitle}} </div>
-                    </div>
-                    <!-- <div class="video-card">
-                            <img style="width: 100% " class="video-img" src="https://drive.google.com/thumbnail?authuser=0&sz=w320&id={{temp?.lessonContent}}" alt="Video thumbnail" />                            
-                        <div class="video-container">
-                            <h4>
-                                <b>Jane Doe</b>
-                            </h4>
-                            <p>Interior Designer</p>
+                    <div  class="video-thumbnail">
+                        <img src="{{(temp?.lessonContent==='NA')?'assets/components/images/kiemduyet.jpg': 'https://drive.google.com/thumbnail?authuser=0&sz=w320&id=' + temp?.lessonContent}}" alt="Video thumbnail" />
+                        <div (click)="updateLink( ( temp?.lessonContent==='NA')? temp?.lessonContent2 : temp?.lessonContent )"   class="title"> {{temp.lessonTitle}}
                         </div>
-                    </div> -->
-
+                        <div class="action">
+                                <button style="height: 27px;" (click)="xoaBaiHoc(temp)" pButton type="button" class="ui-button-danger">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- <p-lightbox type="content">
-                    <a class="group" href="#">
-                        Watch Video
-                    </a>
-                </p-lightbox> -->
-
+        </div>
                 <div *ngIf="isXemVideo" class="video-modal">
                         <span (click)="isXemVideo =! isXemVideo" class="video-close">&times;</span>
                         <div class="video-modal-content" > 
@@ -179,8 +179,7 @@
                                 <p-progressSpinner></p-progressSpinner>
                         </div>
                       </div>
-                      <button (click)="isXemVideo =! isXemVideo" > show </button>
-            <pre> {{ selectLesson?.listOfLesson | json }}</pre>
+            <!-- <pre> {{ selectLesson?.listOfLesson | json }}</pre> -->
             <!-- <pre>{{ listCharter | json }}</pre>    -->
         </p-fieldset>
     </div>
@@ -257,10 +256,14 @@
                         <div class="ui-grid-col-2">
                             Danh sách chương:
                         </div>
-                        <div class="ui-grid-col-10">
-
+                        
+                        <div  class="ui-grid-col-10">      
+                                <div *ngIf="submitted" >
+                                        <p-progressSpinner></p-progressSpinner>
+                                    </div>
                             <p-fieldset [collapsed]="true" legend="Xem thêm" [toggleable]="true">
-                                <div *ngFor="let temp of listCharter" class="ui-messages ui-widget ui-corner-all ui-messages-success" style="display:block"
+                                <div *ngIf="!submitted"  >
+                                <div  *ngFor="let temp of listCharter"   class="ui-messages ui-widget ui-corner-all ui-messages-success" style="display:block"
                                     ng-reflect-klass="ui-messages ui-widget ui-corne" ng-reflect-ng-class="[object Object]">
                                     <a class="ui-messages-close" (click)="clickXoaChuong(temp)">
                                         <i class="fa fa-close"></i>
@@ -275,7 +278,9 @@
                                 </div>
                                 <button pButton type="button" (click)="clickThemChuongMuc()" icon="fa-plus" label="Thêm chương mục" class="ui-button-info"></button>
                                 <!-- <pre>{{ listCharter | json }}</pre>    -->
+                            </div>
                             </p-fieldset>
+                        
                         </div>
                     </div>
 

@@ -7,6 +7,8 @@ export class ConfigValue {
      role_user = 'ROLE_USER';
      token = 'token';
       url_port =  'http://127.0.0.1:8080'; // chế độ thật
+      // url_port = 'http://localhost:8080/';
     // url_port = 'http://10.5.50.74:8080';
      remember = 'remember';
+     auth_refresh = '/auth/refresh';
 }

@@ -1,9 +1,8 @@
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { HttpErrorResponse } from '@angular/common/http/src/response';
 import { Router } from '@angular/router';
 import { Chapter } from './../../../_models/Chapter';
 import { ConfigValue } from './../../../_helpers/config-value';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NodeService } from './../../../../showcase/service/nodeservice';
 import { MenuItem } from './../../../../components/common/menuitem';
 import { TreeNode } from './../../../../components/common/treenode';
@@ -46,7 +45,8 @@ export class AuthorCourseComponent implements OnInit {
     visibleChater;
     visibleEditChater;
     visibleLesson;
-    isXemVideo ;
+    isXemVideo  = false;
+    isThemBaiHoc = false;
     uploadedFiles: any[] = [];
 
     // tao khoa học
@@ -66,7 +66,7 @@ export class AuthorCourseComponent implements OnInit {
     listCharter: any = [];
     isXemDanhSachChuong = false;
     url_video =   '1ZlThHQI5HND7l96FsF7T6dl1HV7MAJvk' ;
- id_video = '1ZlThHQI5HND7l96FsF7T6dl1HV7MAJvk';
+   id_video = '1ZlThHQI5HND7l96FsF7T6dl1HV7MAJvk';
     videoUrl: SafeResourceUrl;
     constructor(private nodeService: NodeService
         , private http: HttpClient,
@@ -147,7 +147,7 @@ export class AuthorCourseComponent implements OnInit {
         const lessonForm = new FormGroup({
             lessonID: new FormControl('' ),
             lessonTitle: new FormControl('', Validators.required),
-            lessonContent: new FormControl('' , Validators.required),
+            lessonContent: new FormControl(''),
             chapterID: new FormControl('')
         });
         this.lessonForm  = lessonForm ;
@@ -186,6 +186,7 @@ export class AuthorCourseComponent implements OnInit {
         );
     }
     nodeSelect(event) {
+        console.log(event);
         // thêm file vào bài học
         if (event.node.data instanceof FileOfLesson) {
             this.selectFile = event.node.data;
@@ -211,8 +212,75 @@ export class AuthorCourseComponent implements OnInit {
         this.msgs = [];
         this.msgs.push({ severity: 'info', summary: 'Node Selected', detail: event.node.label });
     }
+    // xoa bai hoc
+    xoaBaiHoc ($event) {
+        this.submitted = true;
+        console.log('xoa ' + $event);
+        this.http.delete(`${this.config.url_port}/admin/lesson/${$event.lessonID}`).subscribe(
+            (data: any ) => {
+                console.log(data);
+                const filesTree11 = [...this.filesTree11];
+                // deo biet tai sao khong builing
+                for (let i = 0; i < filesTree11[0].children.length; i++) {
+                    for (let j = 0; j < filesTree11[0].children[i].children.length; j++) {
+                            if ($event.lessonID === filesTree11[0].children[i].children[j].data.lessonID) {
+                                filesTree11[0].children[i].children.splice(j, 1);
+                                this.selectLesson.listOfLesson.splice(j, 1);
+                            }
+                    }
+                }
+                this.filesTree11 = filesTree11;
+                this.submitted = false;
+            }, ( err: HttpErrorResponse ) => {
+                alert('Xóa không thành ');
+                this.submitted = false;
+            }
+        );
+    }
+    // het xoa bai hoc
+    // them khoa hoc
     themBaiHoc() {
+        // tslint:disable-next-line:max-line-length
+        // this.http.get('https://drive.google.com/thumbnail?authuser=0&amp;sz=w320&amp;id=1JBMEDmssiywmJfjJjdR-Ef1Mq9VJPdAE').subscribe(data => {
+        //     console.log('link ok');
+        // } , (err: HttpErrorResponse ) => {
+        //     console.log('link 404');
+        // });
+        this.submitted = true;
         console.log(this.lessonForm.value);
+        this.lessonForm.value.chapterID = this.selectLesson.chapterID ;
+        this.lessonForm.value.listOfLessonAttach = [];
+        this.http.post(`${this.config.url_port}/admin/lesson`, this.lessonForm.value).subscribe(
+           ( data: any )  => {
+              data.lessonContent2 =  data.lessonContent ;
+              data.lessonContent = 'NA';
+                const filesTree11 = [...this.filesTree11];
+                for (let i = 0; i < filesTree11[0].children.length; i++) {
+                         if (  filesTree11[0].children[i].data.chapterID === this.selectLesson.chapterID ) {
+                             console.log('ngon');
+                             const node: TreeNode = {};
+                             node.label = this.lessonForm.value.lessonTitle ;
+                             node.data =  data;
+                             node.expandedIcon = 'fa fa-file-text';
+                             node.collapsedIcon = 'fa fa-file-text-o';
+                             const listNodeFile: TreeNode[] = [];
+                             node.children =   listNodeFile ;
+                             filesTree11[0].children[i].children.push(node);
+                             const  selectLesson =  this.selectLesson   ;
+                                      selectLesson.listOfLesson.push(data);
+                            this.selectLesson = selectLesson ;
+                         }
+                }
+                this.filesTree11 = filesTree11;
+                this.submitted  = false ;
+                this.visibleLesson = false;
+                this.isThemBaiHoc = false;
+            }, (err: HttpErrorResponse) => {
+                alert('erro');
+                this.submitted  = false;
+                this.visibleLesson = false;
+            }
+        );
     }
     clickThemBaiHoc() {
         this.initFormLesson();
@@ -230,7 +298,7 @@ export class AuthorCourseComponent implements OnInit {
     }
     public  chinhSuaChuongMuc( ) {
         this.submitted = true ;
-        this.http.patch('/users/chapter', this.chapterForm.value ).subscribe( ( res: any ) => {
+        this.http.patch(`${this.config.url_port}/users/chapter`, this.chapterForm.value ).subscribe( ( res: any ) => {
             // console.log(res);
             const filesTree11 = [...this.filesTree11];
             for (let i = 0; i < filesTree11[0].children.length; i++) {
@@ -255,7 +323,7 @@ export class AuthorCourseComponent implements OnInit {
     }
     public themChuongMuc() {
         this.submitted = true;
-        this.http.post('/users/chapter' , this.chapterForm.value ).subscribe(
+        this.http.post(`${this.config.url_port}/users/chapter` , this.chapterForm.value ).subscribe(
             (data: any ) => {
              const listCharter =   this.listCharter ;
              listCharter.push(data);
@@ -277,20 +345,28 @@ export class AuthorCourseComponent implements OnInit {
         console.log(this.chapterForm.value);
     }
     public clickXoaChuong($event): void {
-        const listCharter = [...this.listCharter] ;
-        for ( let i = 0 ; i < listCharter.length ; i++ ) {
-            if ( listCharter[i].chapterID === $event.chapterID ) {
-                listCharter.splice(i , 1 );
+        this.submitted =  true;
+        this.http.delete(this.config.url_port + '/users/chapter/' + $event.chapterID).subscribe( (data: any  ) => {
+            console.log(data);
+            const listCharter = [...this.listCharter] ;
+            for ( let i = 0 ; i < listCharter.length ; i++ ) {
+                if ( listCharter[i].chapterID === $event.chapterID ) {
+                    listCharter.splice(i , 1 );
+                }
             }
-        }
-        this.listCharter = listCharter;
-        const filesTree11 = [...this.filesTree11];
-        for (let i = 0; i < filesTree11[0].children.length; i++) {
-            if (   filesTree11[0].children[i].data.chapterID === $event.chapterID  ) {
-                filesTree11[0].children.splice(i, 1);
+            this.listCharter = listCharter;
+            const filesTree11 = [...this.filesTree11];
+            for (let i = 0; i < filesTree11[0].children.length; i++) {
+                if (   filesTree11[0].children[i].data.chapterID === $event.chapterID  ) {
+                    filesTree11[0].children.splice(i, 1);
+                }
             }
-        }
-        this.filesTree11 = filesTree11;
+            this.filesTree11 = filesTree11;
+                this.submitted = false;
+        }, (err: HttpErrorResponse) => ( data: any ) => {
+            alert('delete erro');
+            this.submitted = false;
+        });
     }
     public clickXoaFile(): void {
         this.visibleEditFile = false;
@@ -328,6 +404,19 @@ export class AuthorCourseComponent implements OnInit {
                 this.expandRecursive(childNode, isExpand);
             });
         }
+    }
+    // upload video
+    onUploadVideo($event) {
+        console.log($event);
+        const lessonForm = this.lessonForm ;
+        const response = $event.res.body;
+        const data = JSON.parse(response);
+        const auth = JSON.parse(data[0].fileProperties);
+       console.log(auth.id);
+       lessonForm.value.lessonContent  = auth.id;
+       this.lessonForm = lessonForm;
+       console.log(this.lessonForm);
+       this.isThemBaiHoc = true;
     }
     // upload hinh anh khoa hoc
     onBasicUploadAuto($event) {

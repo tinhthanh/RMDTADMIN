@@ -108,6 +108,25 @@
       font-size: 1.2em;
   }
 
+  .video-thumbnail .action {
+    font-family: 'Norican', 'Trebuchet MS', sans-serif;
+      position:  absolute ;
+      top: 0 ;
+      right: 0;
+      margin-bottom: 10px;
+      padding-left: 15px;
+      line-height: 1.25em;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #F5F5F5;
+      font-size: 1.2em;
+  }
+
+
+  
+
  
 
 

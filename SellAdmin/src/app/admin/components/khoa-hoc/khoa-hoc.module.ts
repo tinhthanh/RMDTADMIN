@@ -1,3 +1,4 @@
+import { UploadFileService } from './../../_services/upload/UploadFileService';
 import { LightboxModule } from './../../../components/lightbox/lightbox';
 import { DataListModule } from './../../../components/datalist/datalist';
 import { AccordionModule } from './../../../components/accordion/accordion';
@@ -31,6 +32,7 @@ import { AuthorCourseComponent } from '../../components/khoa-hoc/author-course/a
 import { TreeModule } from 'app/components/tree/tree';
 import { ContextMenuModule } from 'app/components/contextmenu/contextmenu';
 import { RadioButtonModule } from 'app/components/radiobutton/radiobutton';
+import { FormUploadComponent } from 'app/admin/components/khoa-hoc/form-upload/form-upload.component';
 
 @NgModule({
     imports: [
@@ -63,7 +65,11 @@ import { RadioButtonModule } from 'app/components/radiobutton/radiobutton';
     exports: [],
     declarations: [KhoaHocComponent, ThemKhoaHocComponent, TrangThaiKhoaHocComponent, CapNhatKhoaHocComponent, DoiMatKhauComponent
        , DanhSachKhoaHocComponent ,
-       AuthorCourseComponent ],
-    providers: [],
+       AuthorCourseComponent,
+       FormUploadComponent
+     ],
+    providers: [
+        UploadFileService
+    ],
 })
 export class KhoaHocModule { }

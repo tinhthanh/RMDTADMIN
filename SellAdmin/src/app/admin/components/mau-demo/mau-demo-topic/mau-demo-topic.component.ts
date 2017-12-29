@@ -1,11 +1,11 @@
-import { ConfigValue } from "./../../../_helpers/config-value";
-import { CarService } from "./../../../../showcase/service/carservice";
-import { Car } from "./../../../../showcase/domain/car";
-import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { ConfigValue } from './../../../_helpers/config-value';
+import { CarService } from './../../../../showcase/service/carservice';
+import { Car } from './../../../../showcase/domain/car';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  templateUrl: "mau-demo-topic.component.html"
+  templateUrl: 'mau-demo-topic.component.html'
 })
 export class MauDemoTopicComponent implements OnInit {
   totalRow = 0; // tổng số row trong database

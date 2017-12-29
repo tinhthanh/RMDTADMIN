@@ -528,21 +528,7 @@ export class AuthorCourseComponent implements OnInit {
             // lấy danh sách chapter
             this.http.get(this.config.url_port + `/users/course/${this.khoahoc.courseID}/chapter`).subscribe(
                 (chapter: any[]) => {
-<<<<<<< HEAD
-                    this.listCharter = chapter;
-=======
-<<<<<<< HEAD
-                    console.log(chapter);
-                    for ( let i  = 0 ; i < chapter.length ; i++) {
-                        const node: TreeNode  = {};
-                        node.label =  chapter[i].chapterTitle.substring(0, 30)  ;
-                        node.data  = chapter[i];
-                        node.expandedIcon = 'fa-folder-open';
-                        node.collapsedIcon = 'fa-folder';
-                        const danhSachBaiHoc: Lesson[] = chapter[i].listOfLesson ;
-=======
                     this.listCharter = chapter ;
->>>>>>> f715c974fb4b7f6769c97ef59a6c053e535546d4
                     for (let i = 0; i < chapter.length; i++) {
                         const node: TreeNode = {};
                         node.label = chapter[i].chapterTitle;
@@ -550,7 +536,6 @@ export class AuthorCourseComponent implements OnInit {
                         node.expandedIcon = 'fa fa-file-text';
                         node.collapsedIcon = 'fa fa-file-text-o';
                         const danhSachBaiHoc: Lesson[] = chapter[i].listOfLesson;
->>>>>>> master
                         const nodeBaiHoc: TreeNode[] = [];
                         for (let j = 0; j < danhSachBaiHoc.length; j++) {
                             const baihoc: TreeNode = {};

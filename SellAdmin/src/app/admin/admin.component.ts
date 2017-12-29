@@ -16,6 +16,7 @@ export class AdminComponent implements OnInit {
     public user: User;
     activeMenuId: string;
     menuActive: boolean;
+    development = false;
     constructor(
         private auth: AuthenticationService,
         private router: Router ) { }

@@ -21,6 +21,12 @@ export class ChapterRestInterceptor implements HttpInterceptor {
         return Observable.of(null).mergeMap(() => {
             // thêm chapter
             // url /users/chapter
+            // body gửi lên
+            // private String courseID;
+            // private String chapterTitle;
+            // private String chapterContent;
+            // private String chapterSummary;
+            // trả về chapter vừa thêm
             if (request.url.endsWith('/users/chapter') && request.method === 'POST') {
                 //  tìm thấy nếu có bất kỳ người dùng phù hợp với thông tin đăng nhập
                 if (request.body) {
@@ -52,6 +58,13 @@ export class ChapterRestInterceptor implements HttpInterceptor {
             }
             // chỉnh sửa chapter
             // url /users/chapter
+            // body gửi lên 
+            // private String chapterID;
+            // private String courseID;
+            // private String chapterTitle;
+            // private String chapterContent;
+            // private String chapterSummary;
+            // trả về cái cái vừa thêm
             if (request.url.endsWith('/users/chapter') && request.method === 'PATCH') {
                 //  tìm thấy nếu có bất kỳ người dùng phù hợp với thông tin đăng nhập
                 if (request.body) {

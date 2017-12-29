@@ -18,6 +18,12 @@ export class FileOfLessonRestInterceptor implements HttpInterceptor {
               return Observable.of(null).mergeMap(() => {
                 // thêm file
                 // url /admin/file-of-lesson
+                // body gửi lên
+                // {
+                // private String lessonID;
+                // private String lesonAttachContent;
+                // }
+                // trả về lesson vừa thêm
                 if (request.url.endsWith('/admin/file-of-lesson') && request.method === 'POST') {
                     if (request.body) {
                        const body = request.body ;

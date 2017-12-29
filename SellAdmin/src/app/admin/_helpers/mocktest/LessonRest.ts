@@ -18,6 +18,11 @@ export class LessonRestInterceptor implements HttpInterceptor {
               return Observable.of(null).mergeMap(() => {
                 // thêm chapter
                 // url /admin/lesson
+                // body gởi lên
+                // private String lessonTitle;
+                // private String lessonContent;
+                // private String chapterID;
+            // trả về chapter vừa thêm vào
                 console.log(request);
                 if (request.url.endsWith('/admin/lesson') && request.method === 'POST') {
                     if (request.body) {
@@ -30,6 +35,13 @@ export class LessonRestInterceptor implements HttpInterceptor {
                 }
                 // chỉnh sửa lesson
                 // url /admin/lesson
+
+                    // body gởi lên
+                    // private String lessonID;
+                    // private String lessonTitle;
+                    // private String lessonContent;
+                    // private String chapterID;
+            // trả về chapter vừa chỉnh sửa
                 if (request.url.endsWith('/admin/lesson') && request.method === 'PATCH') {
                     if (request.body) {
                        const chapter = request.body ;

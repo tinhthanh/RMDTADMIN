@@ -9,7 +9,10 @@ export class JwtInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // làm mới token
         const auth = this.injector.get(AuthenticationService);
-         auth.refreshToken();
+        if (  !(request.method === 'GET'  && request.url.endsWith(this.config.auth_refresh) )) {
+            auth.refreshToken();
+            console.log(request.url + ' ' + request.method ) ;
+        }
         const currentUser = JSON.parse(localStorage.getItem(this.config.token));
         if (currentUser ) {
             request = request.clone({

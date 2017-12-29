@@ -22,28 +22,16 @@ export class AuthenticationService {
     logout() {
         localStorage.removeItem(this.config.token);
     }
-    public refreshToken(): any {
-        // alert('chinh chinh');
-        // lam mới token khi token còn thời hạng
-        return this.http.get(this.config.url_port + this.config.auth_refresh).map(
-          data => {
-            let user: any = {};
-            user = data;
+    public refreshToken(): void {
+        this.http.get(this.config.url_port + this.config.auth_refresh).subscribe((user: any) => {
             if (user && user.access_token) {
-              localStorage.setItem(
-                this.config.token,
-                JSON.stringify(user.access_token)
-              );
-              console.log('làm mới token');
-            }
-            return user;
-          },
-          (err: HttpErrorResponse) => {
-            if (err.status === 403) {
-             alert('Chưa đăng nhập!');
-            }
-          }
-        );
+                localStorage.setItem(
+                  this.config.token,
+                  JSON.stringify(user.access_token)
+                );
+                console.log('làm mới token');
+              }
+        });
       }
     public getInformation() {
        return this.http.get(this.config.url_port + '/user/info')

@@ -165,6 +165,12 @@
                                 <button style="height: 27px;" (click)="xoaBaiHoc(temp)" pButton type="button" class="ui-button-danger">
                                         <i class="fa fa-times" aria-hidden="true"></i>
                                 </button>
+                                <button style="height: 27px;" (click)="xoaBaiHoc(temp)" pButton type="button" class="ui-button-success">
+                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                            </button>
+                            <button style="height: 27px;" (click)="updateLink( ( temp?.lessonContent==='NA')? temp?.lessonContent2 : temp?.lessonContent )"  pButton type="button" class="ui-button-info">
+                                <i class="fa fa-eye " aria-hidden="true"></i>
+                        </button>
                         </div>
                     </div>
                 </div>
@@ -182,6 +188,7 @@
             <!-- <pre> {{ selectLesson?.listOfLesson | json }}</pre> -->
             <!-- <pre>{{ listCharter | json }}</pre>    -->
         </p-fieldset>
+        <div style="margin-bottom: 100px;" ></div>
     </div>
 </p-sidebar>
 <!-- end chỉnh sửa chương muc  -->

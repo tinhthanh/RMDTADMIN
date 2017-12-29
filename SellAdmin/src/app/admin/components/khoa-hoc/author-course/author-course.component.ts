@@ -199,7 +199,7 @@ export class AuthorCourseComponent implements OnInit {
     nodeSelect(event) {
         console.log(event);
         // thêm file vào bài học
-        if (event.node.data instanceof FileOfLesson) {
+        if (event.node.data.lessonID &&  event.node.data.lesonAttachContent) {
             this.selectFile = event.node.data;
             this.visibleEditFile = true;
         }
@@ -262,7 +262,7 @@ export class AuthorCourseComponent implements OnInit {
     chinhSuaBaiHoc() {
         this.submitted = true;
         console.log(this.lessonForm.value);
-        this.http.patch(this.config.url_port + '/admin/lesson', this.lessonForm.value).subscribe( (data: any ) => {
+        this.http.patch(this.config.url_port + '/admin/lesson', this.lessonForm.value).subscribe((data: any) => {
             console.log(data);
             const filesTree11 = [...this.filesTree11];
             data.lessonContent2 = data.lessonContent;
@@ -271,12 +271,12 @@ export class AuthorCourseComponent implements OnInit {
             for (let i = 0; i < filesTree11[0].children.length; i++) {
                 for (let j = 0; j < filesTree11[0].children[i].children.length; j++) {
                     if (this.lessonForm.value.lessonID === filesTree11[0].children[i].children[j].data.lessonID) {
-                        filesTree11[0].children[i].children[j].label =  this.lessonForm.value.lessonTitle;
+                        filesTree11[0].children[i].children[j].label = this.lessonForm.value.lessonTitle;
                         filesTree11[0].children[i].children[j].data.lessonTitle = this.lessonForm.value.lessonTitle;
                         filesTree11[0].children[i].children[j].data.lessonContent = data.lessonContent;
-                        filesTree11[0].children[i].children[j].data.lessonContent2 =  data.lessonContent2;
-                        this.selectLesson.listOfLesson[j].lessonTitle =  this.lessonForm.value.lessonTitle;
-                        this.selectLesson.listOfLesson[j].lessonContent =  this.lessonForm.value.lessonContent;
+                        filesTree11[0].children[i].children[j].data.lessonContent2 = data.lessonContent2;
+                        this.selectLesson.listOfLesson[j].lessonTitle = this.lessonForm.value.lessonTitle;
+                        this.selectLesson.listOfLesson[j].lessonContent = this.lessonForm.value.lessonContent;
                     }
                 }
             }
@@ -393,7 +393,7 @@ export class AuthorCourseComponent implements OnInit {
                 node.expandedIcon = 'fa fa-file-text';
                 node.collapsedIcon = 'fa fa-file-text-o';
                 const children: TreeNode[] = [];
-                node.children = children ;
+                node.children = children;
                 filesTree11[0].children.push(node);
                 this.filesTree11 = filesTree11;
                 this.listCharter = listCharter;
@@ -433,18 +433,28 @@ export class AuthorCourseComponent implements OnInit {
         this.xoaFile();
     }
     public xoaFile(): void {
-        const filesTree11 = [...this.filesTree11];
-        // deo biet tai sao khong builing
-        for (let i = 0; i < filesTree11[0].children.length; i++) {
-            for (let j = 0; j < filesTree11[0].children[i].children.length; j++) {
-                for (let k = 0; k < filesTree11[0].children[i].children[j].children.length; k++) {
-                    if (this.selectFile.maBaiHoc === filesTree11[0].children[i].children[j].children[k].data.maBaiHoc) {
-                        filesTree11[0].children[i].children[j].children.splice(k, 1);
+        // this.submitted = true;
+        this.http.delete(this.config.url_port + '/admin/file-of-lesson/' + this.selectFile.lessonAttachID).subscribe(
+            (data: FileOfLesson) => {
+                console.log(data);
+                const filesTree11 = [...this.filesTree11];
+                // deo biet tai sao khong builing
+                for (let i = 0; i < filesTree11[0].children.length; i++) {
+                    for (let j = 0; j < filesTree11[0].children[i].children.length; j++) {
+                        for (let k = 0; k < filesTree11[0].children[i].children[j].children.length; k++) {
+                            if (this.selectFile.lessonAttachID === filesTree11[0].children[i].children[j].children[k].data.lessonAttachID) {
+                                console.log(filesTree11[0].children[i].children[j].children[k]);
+                                filesTree11[0].children[i].children[j].children.splice(k, 1);
+                            }
+                        }
                     }
                 }
-            }
-        }
-        this.filesTree11 = filesTree11;
+                this.filesTree11 = filesTree11;
+                // this.submitted = false ;
+            }, (err: HttpErrorResponse) => {
+                alert('Không thể xóa ');
+                // this.submitted = false;
+            } );
     }
     expandAll() {
         this.filesTree11.forEach(node => {
@@ -479,8 +489,8 @@ export class AuthorCourseComponent implements OnInit {
             console.log(this.lessonForm);
             this.isThemBaiHoc = true;
         }
-        if ($event.submitted ) {
-            this.isThemBaiHoc = $event.submitted.value ;
+        if ($event.submitted) {
+            this.isThemBaiHoc = $event.submitted.value;
             console.log($event);
         }
     }
@@ -501,10 +511,34 @@ export class AuthorCourseComponent implements OnInit {
     }
     onUpload(event) {
         this.uploadImgProress = false;
-        console.log(JSON.parse(event.xhr.response));
-        for (const file of event.files) {
-            // this.uploadedFiles.push(file);
-            console.log(file);
+       console.log(this.selectFile);
+         const data =  JSON.parse(event.xhr.response);
+         console.log(data);
+        for ( let i = 0 ; i < data.length ; i ++) {
+        const driver = JSON.parse(data[i].fileProperties);
+            const fileOfLesson: any = {};
+             fileOfLesson.lessonID = this.selectFile.lessonID ;
+             fileOfLesson.lesonAttachContent =  `https://drive.google.com/uc?id=${driver.id}`;
+            this.http.post(this.config.url_port + '/admin/file-of-lesson', fileOfLesson ).subscribe( (res: any ) => {
+            console.log(res);
+            const filesTree11 = [...this.filesTree11];
+            // deo biet tai sao khong builing
+            for (let n = 0; n < filesTree11[0].children.length; n++) {
+                for (let j = 0; j < filesTree11[0].children[n].children.length; j++) {
+                    console.log(res.lessonID  + ' ' + filesTree11[0].children[n].children[j].data.lessonID);
+                    if (res.lessonID === filesTree11[0].children[n].children[j].data.lessonID) {
+                        console.log(filesTree11[0].children[n].children[j]);
+                        const file1: TreeNode = {};
+                        file1.label = res.lesonAttachContent;
+                        file1.data = res;
+                        file1.icon = 'fa-file-word-o';
+                       filesTree11[0].children[n].children[j].children.push(file1) ;
+                       this.visibleEditFile = false;
+                    }
+                }
+            }
+            this.filesTree11 = filesTree11;
+            });
         }
         this.msgs = [];
         this.msgs.push({ severity: 'info', summary: 'File Uploaded', detail: '' });
@@ -528,7 +562,7 @@ export class AuthorCourseComponent implements OnInit {
             // lấy danh sách chapter
             this.http.get(this.config.url_port + `/users/course/${this.khoahoc.courseID}/chapter`).subscribe(
                 (chapter: any[]) => {
-                    this.listCharter = chapter ;
+                    this.listCharter = chapter;
                     for (let i = 0; i < chapter.length; i++) {
                         const node: TreeNode = {};
                         node.label = chapter[i].chapterTitle;
@@ -548,15 +582,16 @@ export class AuthorCourseComponent implements OnInit {
                             const listFileOfLesson: FileOfLesson[] = [];
                             for (let k = 0; k < lengtSize; k++) {
                                 const fileOfLesson = new FileOfLesson();
-                                fileOfLesson.maBaiHoc = `MA-${Math.floor(Math.random() * 99999)}`;
+                                fileOfLesson.lessonAttachID = `MA-${Math.floor(Math.random() * 99999)}`;
                                 // tslint:disable-next-line:max-line-length
-                                fileOfLesson.noiDung = `file-${Math.floor(Math.random() * 99999)}-doc${Math.floor(Math.random() * 99999)}.docx`;
+                                fileOfLesson.lessonID = danhSachBaiHoc[j].lessonID;
+                                fileOfLesson.lesonAttachContent = `file-${Math.floor(Math.random() * 99999)}-doc${Math.floor(Math.random() * 99999)}.docx`;
                                 listFileOfLesson.push(fileOfLesson);
                             }
                             const listNodeFile: TreeNode[] = [];
                             for (let k = 0; k < listFileOfLesson.length; k++) {
                                 const file: TreeNode = {};
-                                file.label = listFileOfLesson[k].noiDung;
+                                file.label = listFileOfLesson[k].lesonAttachContent;
                                 file.data = listFileOfLesson[k];
                                 file.icon = 'fa-file-word-o';
                                 listNodeFile.push(file);

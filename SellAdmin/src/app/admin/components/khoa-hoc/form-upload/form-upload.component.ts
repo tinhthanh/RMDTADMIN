@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
 import { UploadFileService } from 'app/admin/_services/upload/UploadFileService';
-import { Output , EventEmitter } from '@angular/core';
+import { Output , Input , EventEmitter } from '@angular/core';
 
 
 
@@ -28,6 +28,7 @@ export class FormUploadComponent implements OnInit {
     this.upload();
   }
   public upload() {
+    this.eventUp.emit({submitted: {value: false}});
     this.progress.percentage = 0;
     this.currentFileUpload = this.selectedFiles.item(0) ;
     this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
@@ -38,6 +39,7 @@ export class FormUploadComponent implements OnInit {
         console.log('File is completely uploaded!');
          this.thongbao = '';
         this.eventUp.emit({res : event});
+        this.eventUp.emit({submitted: {value: true}});
       }
     }) ;
     this.selectedFiles = undefined ;

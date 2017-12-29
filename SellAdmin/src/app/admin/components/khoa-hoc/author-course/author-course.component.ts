@@ -32,7 +32,7 @@ export class AuthorCourseComponent implements OnInit {
     // khoa hoc
     selectFile: FileOfLesson;
     khoahoc: Course;
-    selectLesson: Chapter ;
+    selectLesson: Chapter;
     msgs: Message[];
     @ViewChild('expandingTree')
     expandingTree: Tree;
@@ -45,16 +45,16 @@ export class AuthorCourseComponent implements OnInit {
     visibleChater;
     visibleEditChater;
     visibleLesson;
-    isXemVideo  = false;
+    isXemVideo = false;
     isThemBaiHoc = false;
     uploadedFiles: any[] = [];
 
     // tao khoa học
     userform: FormGroup;
-  // tao chương mục
-   chapterForm: FormGroup ;
-   // tao bài hoc ,
-   lessonForm: FormGroup;
+    // tao chương mục
+    chapterForm: FormGroup;
+    // tao bài hoc ,
+    lessonForm: FormGroup;
 
     courseTypeID: SelectItem[];
     submitted: boolean;
@@ -65,18 +65,18 @@ export class AuthorCourseComponent implements OnInit {
     uploadImgProress = false; // hiển thị đang upload
     listCharter: any = [];
     isXemDanhSachChuong = false;
-    url_video =   '1ZlThHQI5HND7l96FsF7T6dl1HV7MAJvk' ;
-   id_video = '1ZlThHQI5HND7l96FsF7T6dl1HV7MAJvk';
+    url_video = '1ZlThHQI5HND7l96FsF7T6dl1HV7MAJvk';
+    id_video = '1ZlThHQI5HND7l96FsF7T6dl1HV7MAJvk';
     videoUrl: SafeResourceUrl;
     constructor(private nodeService: NodeService
         , private http: HttpClient,
         private config: ConfigValue,
         private router: Router,
-        private fb: FormBuilder ,
+        private fb: FormBuilder,
         private sanitizer: DomSanitizer
     ) {
     }
-    public updateLink( id: string ) {
+    public updateLink(id: string) {
         console.log(id);
         this.url_video = `https://drive.google.com/file/d/${id}/preview`;
         this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.url_video);
@@ -93,27 +93,27 @@ export class AuthorCourseComponent implements OnInit {
         this.msgs = [];
         this.msgs.push({ severity: 'info', summary: 'Success', detail: 'Form Submitted' });
         // data
-        const dataSend: any = {} ;
-        dataSend.courseAvatar = this.courseAvatar_temp ;
-        dataSend.courseDescription = this.userform.value.courseDescription ;
-        dataSend.courseDetail = this.userform.value.courseDetail ;
-        dataSend.courseID =  this.khoahoc.courseID ;
-        dataSend.courseTitle = this.userform.value.courseTitle ;
-        dataSend.courseTypeID = this.userform.value.courseTypeID ;
-        dataSend.price =  (this.userform.value.courseTypeID === 'CO' ) ? this.userform.value.price : 0  ;
-        dataSend.status = this.userform.value.status ;
-        dataSend.topicID = this.userform.value.topicID ;
-        this.http.patch( `${this.config.url_port}/user/course`, dataSend ).subscribe(
-            (data: any ) => {
-                this.khoahoc = data ;
+        const dataSend: any = {};
+        dataSend.courseAvatar = this.courseAvatar_temp;
+        dataSend.courseDescription = this.userform.value.courseDescription;
+        dataSend.courseDetail = this.userform.value.courseDetail;
+        dataSend.courseID = this.khoahoc.courseID;
+        dataSend.courseTitle = this.userform.value.courseTitle;
+        dataSend.courseTypeID = this.userform.value.courseTypeID;
+        dataSend.price = (this.userform.value.courseTypeID === 'CO') ? this.userform.value.price : 0;
+        dataSend.status = this.userform.value.status;
+        dataSend.topicID = this.userform.value.topicID;
+        this.http.patch(`${this.config.url_port}/user/course`, dataSend).subscribe(
+            (data: any) => {
+                this.khoahoc = data;
                 this.visibleCource = false;
                 this.submitted = false;
-            }, ( err: HttpErrorResponse ) => {
-                 if ( err.status === 401  ) {
-                    alert('token hết hạng ') ;
+            }, (err: HttpErrorResponse) => {
+                if (err.status === 401) {
+                    alert('token hết hạng ');
                 }
-                if ( err.status === 405 ) {
-                    alert( ' sai logic ');
+                if (err.status === 405) {
+                    alert(' sai logic ');
                 }
                 console.log('erro');
             }
@@ -121,41 +121,52 @@ export class AuthorCourseComponent implements OnInit {
     }
     public initFormChapter(chapter?: null) {
 
-         const data: any  = chapter;
-        if ( chapter ) {
+        const data: any = chapter;
+        if (chapter) {
             // console.log('1');
-            const  chapterForm = new FormGroup({
-                chapterID: new FormControl(data.chapterID) ,
+            const chapterForm = new FormGroup({
+                chapterID: new FormControl(data.chapterID),
                 courseID: new FormControl(data.courseID),
-                chapterTitle: new FormControl(data.chapterTitle , Validators.required),
-                chapterContent : new FormControl(data.chapterContent , Validators.required ),
-                chapterSummary : new FormControl(data.chapterSummary , Validators.required)
+                chapterTitle: new FormControl(data.chapterTitle, Validators.required),
+                chapterContent: new FormControl(data.chapterContent, Validators.required),
+                chapterSummary: new FormControl(data.chapterSummary, Validators.required)
             });
-            this.chapterForm = chapterForm ;
+            this.chapterForm = chapterForm;
         } else {
             // console.log('2');
-            const  chapterForm = new FormGroup({
+            const chapterForm = new FormGroup({
                 courseID: new FormControl(this.khoahoc.courseID),
-                chapterTitle: new FormControl('' , Validators.required),
-                chapterContent : new FormControl('' , Validators.required ),
-                chapterSummary : new FormControl('' , Validators.required)
+                chapterTitle: new FormControl('', Validators.required),
+                chapterContent: new FormControl('', Validators.required),
+                chapterSummary: new FormControl('', Validators.required)
             });
-            this.chapterForm = chapterForm ;
+            this.chapterForm = chapterForm;
         }
     }
-    public initFormLesson() {
-        const lessonForm = new FormGroup({
-            lessonID: new FormControl('' ),
-            lessonTitle: new FormControl('', Validators.required),
-            lessonContent: new FormControl(''),
-            chapterID: new FormControl('')
-        });
-        this.lessonForm  = lessonForm ;
+    public initFormLesson(data?: null) {
+        const lesson: any = data;
+        if (lesson) {
+            const lessonForm = new FormGroup({
+                lessonID: new FormControl(lesson.lessonID),
+                lessonTitle: new FormControl(lesson.lessonTitle, Validators.required),
+                lessonContent: new FormControl(lesson.lessonContent),
+                chapterID: new FormControl(lesson.chapterID)
+            });
+            this.lessonForm = lessonForm;
+        } else {
+            const lessonForm = new FormGroup({
+                lessonID: new FormControl(''),
+                lessonTitle: new FormControl('', Validators.required),
+                lessonContent: new FormControl(''),
+                chapterID: new FormControl('')
+            });
+            this.lessonForm = lessonForm;
+        }
     }
     public initForm() {
         // tslint:disable-next-line:max-line-length
         this.khoahoc.courseAvatar = this.khoahoc.courseAvatar ? this.khoahoc.courseAvatar : 'https://www.caperlan.co.uk/sites/caperlan/files/styles/460x460/public/default_images/no-picture.png';
-        this.courseAvatar_temp = this.khoahoc.courseAvatar ;
+        this.courseAvatar_temp = this.khoahoc.courseAvatar;
         this.userform = this.fb.group({
             courseTitle: new FormControl(this.khoahoc.courseTitle, Validators.required),
             courseDescription: new FormControl(this.khoahoc.courseDescription, Validators.required),
@@ -202,9 +213,9 @@ export class AuthorCourseComponent implements OnInit {
             this.filesTree11 = filesTree11;
         }
         if (event.node.data.courseID && event.node.data.chapterID) {
-            this.initFormChapter( event.node.data );
+            this.initFormChapter(event.node.data);
             this.visibleEditChater = true;
-            this.selectLesson = event.node.data ;
+            this.selectLesson = event.node.data;
         }
         if (event.node.data.chapterID && event.node.data.lessonID) {
             console.log('lessonID');
@@ -213,31 +224,71 @@ export class AuthorCourseComponent implements OnInit {
         this.msgs.push({ severity: 'info', summary: 'Node Selected', detail: event.node.label });
     }
     // xoa bai hoc
-    xoaBaiHoc ($event) {
+    xoaBaiHoc($event) {
         this.submitted = true;
         console.log('xoa ' + $event);
         this.http.delete(`${this.config.url_port}/admin/lesson/${$event.lessonID}`).subscribe(
-            (data: any ) => {
+            (data: any) => {
                 console.log(data);
                 const filesTree11 = [...this.filesTree11];
                 // deo biet tai sao khong builing
                 for (let i = 0; i < filesTree11[0].children.length; i++) {
                     for (let j = 0; j < filesTree11[0].children[i].children.length; j++) {
-                            if ($event.lessonID === filesTree11[0].children[i].children[j].data.lessonID) {
-                                filesTree11[0].children[i].children.splice(j, 1);
-                                this.selectLesson.listOfLesson.splice(j, 1);
-                            }
+                        if ($event.lessonID === filesTree11[0].children[i].children[j].data.lessonID) {
+                            filesTree11[0].children[i].children.splice(j, 1);
+                            this.selectLesson.listOfLesson.splice(j, 1);
+                        }
                     }
                 }
                 this.filesTree11 = filesTree11;
                 this.submitted = false;
-            }, ( err: HttpErrorResponse ) => {
+            }, (err: HttpErrorResponse) => {
                 alert('Xóa không thành ');
                 this.submitted = false;
             }
         );
     }
     // het xoa bai hoc
+    // click chinh sửa bài học
+    public clickChinhSuaBaiHoc($event) {
+        console.log('chinh sửa bài hoc');
+        console.log($event);
+        this.initFormLesson($event);
+        this.isThemBaiHoc = true;
+        this.visibleLesson = true;
+    }
+    // hết clcik chỉnh sửa bài học
+    // chinh sua bai hoc
+    chinhSuaBaiHoc() {
+        this.submitted = true;
+        console.log(this.lessonForm.value);
+        this.http.patch(this.config.url_port + '/admin/lesson', this.lessonForm.value).subscribe( (data: any ) => {
+            console.log(data);
+            const filesTree11 = [...this.filesTree11];
+            data.lessonContent2 = data.lessonContent;
+            data.lessonContent = 'NA';
+            // deo biet tai sao khong builing
+            for (let i = 0; i < filesTree11[0].children.length; i++) {
+                for (let j = 0; j < filesTree11[0].children[i].children.length; j++) {
+                    if (this.lessonForm.value.lessonID === filesTree11[0].children[i].children[j].data.lessonID) {
+                        filesTree11[0].children[i].children[j].label =  this.lessonForm.value.lessonTitle;
+                        filesTree11[0].children[i].children[j].data.lessonTitle = this.lessonForm.value.lessonTitle;
+                        filesTree11[0].children[i].children[j].data.lessonContent = data.lessonContent;
+                        filesTree11[0].children[i].children[j].data.lessonContent2 =  data.lessonContent2;
+                        this.selectLesson.listOfLesson[j].lessonTitle =  this.lessonForm.value.lessonTitle;
+                        this.selectLesson.listOfLesson[j].lessonContent =  this.lessonForm.value.lessonContent;
+                    }
+                }
+            }
+            this.filesTree11 = filesTree11;
+            this.submitted = false;
+            this.visibleLesson = false;
+        }, (err: HttpErrorResponse) => {
+            console.log(err.error);
+            this.submitted = false;
+        });
+    }
+    // het chinh sửa bài hoc
     // them khoa hoc
     themBaiHoc() {
         // tslint:disable-next-line:max-line-length
@@ -246,41 +297,47 @@ export class AuthorCourseComponent implements OnInit {
         // } , (err: HttpErrorResponse ) => {
         //     console.log('link 404');
         // });
-        this.submitted = true;
-        console.log(this.lessonForm.value);
-        this.lessonForm.value.chapterID = this.selectLesson.chapterID ;
-        this.lessonForm.value.listOfLessonAttach = [];
-        this.http.post(`${this.config.url_port}/admin/lesson`, this.lessonForm.value).subscribe(
-           ( data: any )  => {
-              data.lessonContent2 =  data.lessonContent ;
-              data.lessonContent = 'NA';
-                const filesTree11 = [...this.filesTree11];
-                for (let i = 0; i < filesTree11[0].children.length; i++) {
-                         if (  filesTree11[0].children[i].data.chapterID === this.selectLesson.chapterID ) {
-                             console.log('ngon');
-                             const node: TreeNode = {};
-                             node.label = this.lessonForm.value.lessonTitle ;
-                             node.data =  data;
-                             node.expandedIcon = 'fa fa-file-text';
-                             node.collapsedIcon = 'fa fa-file-text-o';
-                             const listNodeFile: TreeNode[] = [];
-                             node.children =   listNodeFile ;
-                             filesTree11[0].children[i].children.push(node);
-                             const  selectLesson =  this.selectLesson   ;
-                                      selectLesson.listOfLesson.push(data);
-                            this.selectLesson = selectLesson ;
-                         }
+        if (this.lessonForm.value.lessonID) {
+            this.chinhSuaBaiHoc();
+        } else {
+
+            this.submitted = true;
+            console.log(this.lessonForm.value);
+            this.lessonForm.value.chapterID = this.selectLesson.chapterID;
+            this.lessonForm.value.listOfLessonAttach = [];
+            this.http.post(`${this.config.url_port}/admin/lesson`, this.lessonForm.value).subscribe(
+                (data: any) => {
+                    console.log(data);
+                    data.lessonContent2 = data.lessonContent;
+                    data.lessonContent = 'NA';
+                    const filesTree11 = [...this.filesTree11];
+                    for (let i = 0; i < filesTree11[0].children.length; i++) {
+                        if (filesTree11[0].children[i].data.chapterID === this.selectLesson.chapterID) {
+                            console.log('ngon');
+                            const node: TreeNode = {};
+                            node.label = this.lessonForm.value.lessonTitle;
+                            node.data = data;
+                            node.expandedIcon = 'fa fa-file-text';
+                            node.collapsedIcon = 'fa fa-file-text-o';
+                            const listNodeFile: TreeNode[] = [];
+                            node.children = listNodeFile;
+                            filesTree11[0].children[i].children.push(node);
+                            const selectLesson = this.selectLesson;
+                            selectLesson.listOfLesson.push(data);
+                            this.selectLesson = selectLesson;
+                        }
+                    }
+                    this.filesTree11 = filesTree11;
+                    this.submitted = false;
+                    this.visibleLesson = false;
+                    this.isThemBaiHoc = false;
+                }, (err: HttpErrorResponse) => {
+                    alert('erro');
+                    this.submitted = false;
+                    this.visibleLesson = false;
                 }
-                this.filesTree11 = filesTree11;
-                this.submitted  = false ;
-                this.visibleLesson = false;
-                this.isThemBaiHoc = false;
-            }, (err: HttpErrorResponse) => {
-                alert('erro');
-                this.submitted  = false;
-                this.visibleLesson = false;
-            }
-        );
+            );
+        }
     }
     clickThemBaiHoc() {
         this.initFormLesson();
@@ -288,82 +345,85 @@ export class AuthorCourseComponent implements OnInit {
         console.log(this.lessonForm);
     }
     xemDanhSachKhoaHoc($event) {
-        if ( $event.collapsed ) {
+        if ($event.collapsed) {
             console.log('1');
-           this.isXemDanhSachChuong = true;
+            this.isXemDanhSachChuong = true;
         } else {
             console.log('2');
             this.isXemDanhSachChuong = false;
         }
     }
-    public  chinhSuaChuongMuc( ) {
-        this.submitted = true ;
-        this.http.patch(`${this.config.url_port}/users/chapter`, this.chapterForm.value ).subscribe( ( res: any ) => {
+    public chinhSuaChuongMuc() {
+        this.submitted = true;
+        this.http.patch(`${this.config.url_port}/users/chapter`, this.chapterForm.value).subscribe((res: any) => {
             // console.log(res);
             const filesTree11 = [...this.filesTree11];
             for (let i = 0; i < filesTree11[0].children.length; i++) {
-                   if (filesTree11[0].children[i].data.chapterID === res.chapterID  ) {
+                if (filesTree11[0].children[i].data.chapterID === res.chapterID) {
                     filesTree11[0].children[i].data.chapterTitle = res.chapterTitle;
                     filesTree11[0].children[i].data.chapterContent = res.chapterContent;
                     filesTree11[0].children[i].data.chapterSummary = res.chapterSummary;
                     filesTree11[0].children[i].label = res.chapterTitle;
-                   }
+                }
             }
             this.filesTree11 = filesTree11;
-            this.submitted = false ;
+            this.submitted = false;
             this.visibleEditChater = false;
         });
     }
-    public  clickThemChuongMuc() {
+    public clickThemChuongMuc() {
         this.initFormChapter();
         console.log(this.chapterForm.value);
-        this.visibleCource = false ;
+        this.visibleCource = false;
         this.visibleChater = true;
         // console.log('them chuong muc');
     }
     public themChuongMuc() {
         this.submitted = true;
-        this.http.post(`${this.config.url_port}/users/chapter` , this.chapterForm.value ).subscribe(
-            (data: any ) => {
-             const listCharter =   this.listCharter ;
-             listCharter.push(data);
-             const filesTree11 = [...this.filesTree11];
-             // deo biet tai sao khong builing
-             const node: TreeNode = {};
-             node.label = data.chapterTitle ;
-             node.data = data;
-             node.expandedIcon = 'fa fa-file-text';
-             node.collapsedIcon = 'fa fa-file-text-o';
-             filesTree11[0].children.push(node);
-             this.filesTree11 = filesTree11;
-             this.listCharter = listCharter;
+        this.http.post(`${this.config.url_port}/users/chapter`, this.chapterForm.value).subscribe(
+            (data: any) => {
+                data.listOfLesson = [];
+                const listCharter = this.listCharter;
+                listCharter.push(data);
+                const filesTree11 = [...this.filesTree11];
+                // deo biet tai sao khong builing
+                const node: TreeNode = {};
+                node.label = data.chapterTitle;
+                node.data = data;
+                node.expandedIcon = 'fa fa-file-text';
+                node.collapsedIcon = 'fa fa-file-text-o';
+                const children: TreeNode[] = [];
+                node.children = children ;
+                filesTree11[0].children.push(node);
+                this.filesTree11 = filesTree11;
+                this.listCharter = listCharter;
                 console.log(data);
                 this.submitted = false;
-                 this.visibleChater = false;
+                this.visibleChater = false;
             }
         );
         console.log(this.chapterForm.value);
     }
     public clickXoaChuong($event): void {
-        this.submitted =  true;
-        this.http.delete(this.config.url_port + '/users/chapter/' + $event.chapterID).subscribe( (data: any  ) => {
+        this.submitted = true;
+        this.http.delete(this.config.url_port + '/users/chapter/' + $event.chapterID).subscribe((data: any) => {
             console.log(data);
-            const listCharter = [...this.listCharter] ;
-            for ( let i = 0 ; i < listCharter.length ; i++ ) {
-                if ( listCharter[i].chapterID === $event.chapterID ) {
-                    listCharter.splice(i , 1 );
+            const listCharter = [...this.listCharter];
+            for (let i = 0; i < listCharter.length; i++) {
+                if (listCharter[i].chapterID === $event.chapterID) {
+                    listCharter.splice(i, 1);
                 }
             }
             this.listCharter = listCharter;
             const filesTree11 = [...this.filesTree11];
             for (let i = 0; i < filesTree11[0].children.length; i++) {
-                if (   filesTree11[0].children[i].data.chapterID === $event.chapterID  ) {
+                if (filesTree11[0].children[i].data.chapterID === $event.chapterID) {
                     filesTree11[0].children.splice(i, 1);
                 }
             }
             this.filesTree11 = filesTree11;
-                this.submitted = false;
-        }, (err: HttpErrorResponse) => ( data: any ) => {
+            this.submitted = false;
+        }, (err: HttpErrorResponse) => (data: any) => {
             alert('delete erro');
             this.submitted = false;
         });
@@ -407,16 +467,22 @@ export class AuthorCourseComponent implements OnInit {
     }
     // upload video
     onUploadVideo($event) {
-        console.log($event);
-        const lessonForm = this.lessonForm ;
-        const response = $event.res.body;
-        const data = JSON.parse(response);
-        const auth = JSON.parse(data[0].fileProperties);
-       console.log(auth.id);
-       lessonForm.value.lessonContent  = auth.id;
-       this.lessonForm = lessonForm;
-       console.log(this.lessonForm);
-       this.isThemBaiHoc = true;
+        if ($event.res) {
+            console.log($event);
+            const lessonForm = this.lessonForm;
+            const response = $event.res.body;
+            const data = JSON.parse(response);
+            const auth = JSON.parse(data[0].fileProperties);
+            console.log(auth.id);
+            lessonForm.value.lessonContent = auth.id;
+            this.lessonForm = lessonForm;
+            console.log(this.lessonForm);
+            this.isThemBaiHoc = true;
+        }
+        if ($event.submitted ) {
+            this.isThemBaiHoc = $event.submitted.value ;
+            console.log($event);
+        }
     }
     // upload hinh anh khoa hoc
     onBasicUploadAuto($event) {
@@ -425,10 +491,10 @@ export class AuthorCourseComponent implements OnInit {
         const auth = JSON.parse(obj[0].fileProperties);
         const url = `https://drive.google.com/uc?id=${auth.id}`;
         this.courseAvatar_temp = url;
-        const userform = this.userform ;
+        const userform = this.userform;
         userform.value.courseAvatar = url;
-        this.userform = userform ;
-        const khoahoc = this.khoahoc ;
+        this.userform = userform;
+        const khoahoc = this.khoahoc;
         khoahoc.courseAvatar = url;
         this.khoahoc = khoahoc;
         this.uploadImgProress = false;
@@ -462,7 +528,7 @@ export class AuthorCourseComponent implements OnInit {
             // lấy danh sách chapter
             this.http.get(this.config.url_port + `/users/course/${this.khoahoc.courseID}/chapter`).subscribe(
                 (chapter: any[]) => {
-                    this.listCharter = chapter ;
+                    this.listCharter = chapter;
                     for (let i = 0; i < chapter.length; i++) {
                         const node: TreeNode = {};
                         node.label = chapter[i].chapterTitle;

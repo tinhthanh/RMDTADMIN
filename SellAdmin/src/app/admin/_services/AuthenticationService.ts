@@ -31,7 +31,9 @@ export class AuthenticationService {
                 );
                 console.log('làm mới token');
               }
-        });
+         }, error => {
+             console.log(error);
+         });
       }
     public getInformation() {
        return this.http.get(this.config.url_port + '/user/info')

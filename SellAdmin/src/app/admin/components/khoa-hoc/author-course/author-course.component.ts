@@ -1,5 +1,5 @@
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Chapter } from './../../../_models/Chapter';
 import { ConfigValue } from './../../../_helpers/config-value';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -33,6 +33,8 @@ export class AuthorCourseComponent implements OnInit {
     selectFile: FileOfLesson;
     khoahoc: Course;
     selectLesson: Chapter;
+    selectLessonFile: Lesson ;
+   public  isSelectLessonFile = false;
     msgs: Message[];
     @ViewChild('expandingTree')
     expandingTree: Tree;
@@ -73,7 +75,8 @@ export class AuthorCourseComponent implements OnInit {
         private config: ConfigValue,
         private router: Router,
         private fb: FormBuilder,
-        private sanitizer: DomSanitizer
+        private sanitizer: DomSanitizer,
+        private route: ActivatedRoute
     ) {
     }
     public updateLink(id: string) {
@@ -84,9 +87,13 @@ export class AuthorCourseComponent implements OnInit {
     }
     ngOnInit() {
         this.url_upload = this.config.url_port;
-        this.loadingCource('KH1');
         // this.loading = true;
         console.log(this.router);
+        if ( this.route.snapshot.queryParams['id']) {
+            this.loadingCource(this.route.snapshot.queryParams['id'] );
+        } else {
+            this.router.navigate(['/admin/khoa-hoc/danh-sach-khoa-hoc']);
+        }
     }
     onSubmit(value: string) {
         this.submitted = true;
@@ -201,6 +208,7 @@ export class AuthorCourseComponent implements OnInit {
         // thêm file vào bài học
         if (event.node.data.lessonID &&  event.node.data.lesonAttachContent) {
             this.selectFile = event.node.data;
+            this.isSelectLessonFile = false;
             this.visibleEditFile = true;
         }
         // xem chi tiết khóa học
@@ -219,6 +227,9 @@ export class AuthorCourseComponent implements OnInit {
         }
         if (event.node.data.chapterID && event.node.data.lessonID) {
             console.log('lessonID');
+            this.selectLessonFile = event.node.data;
+            this.isSelectLessonFile = true;
+            this.visibleEditFile = true;
         }
         this.msgs = [];
         this.msgs.push({ severity: 'info', summary: 'Node Selected', detail: event.node.label });
@@ -433,7 +444,7 @@ export class AuthorCourseComponent implements OnInit {
         this.xoaFile();
     }
     public xoaFile(): void {
-        // this.submitted = true;
+        this.submitted = true;
         this.http.delete(this.config.url_port + '/admin/file-of-lesson/' + this.selectFile.lessonAttachID).subscribe(
             (data: FileOfLesson) => {
                 console.log(data);
@@ -450,10 +461,10 @@ export class AuthorCourseComponent implements OnInit {
                     }
                 }
                 this.filesTree11 = filesTree11;
-                // this.submitted = false ;
+                this.submitted = false ;
             }, (err: HttpErrorResponse) => {
                 alert('Không thể xóa ');
-                // this.submitted = false;
+                this.submitted = false;
             } );
     }
     expandAll() {
@@ -517,7 +528,11 @@ export class AuthorCourseComponent implements OnInit {
         for ( let i = 0 ; i < data.length ; i ++) {
         const driver = JSON.parse(data[i].fileProperties);
             const fileOfLesson: any = {};
+            if ( this.isSelectLessonFile ) {
+                fileOfLesson.lessonID = this.selectLessonFile.lessonID ;
+            }else {
              fileOfLesson.lessonID = this.selectFile.lessonID ;
+            }
              fileOfLesson.lesonAttachContent =  `https://drive.google.com/uc?id=${driver.id}`;
             this.http.post(this.config.url_port + '/admin/file-of-lesson', fileOfLesson ).subscribe( (res: any ) => {
             console.log(res);

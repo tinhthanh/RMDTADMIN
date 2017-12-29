@@ -26,9 +26,11 @@
 <button pButton type="button" (click)="visibleSidebar5 = true" icon="fa-arrows-alt"></button>
 
 <p-sidebar [(visible)]="visibleEditFile" position="top" [baseZIndex]="10000">
+        <div *ngIf="!isSelectLessonFile">
     <h1 style="font-weight:normal">{{selectFile?.lesonAttachContent}}</h1>
     <button pButton type="button" (click)="clickXoaFile()" label="Xóa tập tin này" class="ui-button-success"></button>
     <button pButton type="button" (click)="visibleEditFile = false" label="Cancel" class="ui-button-secondary"></button>
+        </div>
     <h3 class="first">Thêm mới</h3>
     <p-fileUpload name="file" url="{{url_upload}}/upload" (onUpload)="onUpload($event)" multiple="multiple" accept="image/*"
         maxFileSize="1000000">

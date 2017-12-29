@@ -18,6 +18,7 @@ export class LessonRestInterceptor implements HttpInterceptor {
               return Observable.of(null).mergeMap(() => {
                 // thêm chapter
                 // url /admin/lesson
+                console.log(request);
                 if (request.url.endsWith('/admin/lesson') && request.method === 'POST') {
                     if (request.body) {
                        const lesson = request.body ;

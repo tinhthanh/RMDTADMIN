@@ -23,6 +23,7 @@ import { CommonModule } from '@angular/common';
 import { ChapterRest } from 'app/admin/_helpers/mocktest/ChapterRest';
 import { LessonRest } from 'app/admin/_helpers/mocktest/LessonRest';
 import { FileOfLessonRest } from 'app/admin/_helpers/mocktest/FileOfLessonRes';
+import { CourseRest } from 'app/admin/_helpers/mocktest/CoureRes';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { FileOfLessonRest } from 'app/admin/_helpers/mocktest/FileOfLessonRes';
     //  UserRest,
     ChapterRest,
     LessonRest,
-    FileOfLessonRest
+    FileOfLessonRest,
+    CourseRest
 
   ],
   bootstrap: [AppComponent]

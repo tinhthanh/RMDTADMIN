@@ -22,8 +22,7 @@
     <div style="margin-top:8px">Selected Node: {{selectedFile3 ? selectedFile3.label : 'none'&#125;&#125;</div>
 </div>
 
-<button pButton type="button" (click)="visibleEditFile = true" icon="fa-arrow-up"></button>
-<button pButton type="button" (click)="visibleSidebar5 = true" icon="fa-arrows-alt"></button>
+<button (click)="toBack()" class="ui-button-success ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" label="Success" pbutton="" type="button" ng-reflect-label="Success"><span class="ui-button-text ui-clickable">Trở về</span></button>
 
 <p-sidebar [(visible)]="visibleEditFile" position="top" [baseZIndex]="10000">
         <div *ngIf="!isSelectLessonFile">

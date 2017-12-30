@@ -70,6 +70,7 @@ export class AuthorCourseComponent implements OnInit {
     url_video = '1ZlThHQI5HND7l96FsF7T6dl1HV7MAJvk';
     id_video = '1ZlThHQI5HND7l96FsF7T6dl1HV7MAJvk';
     videoUrl: SafeResourceUrl;
+    url_back: string;
     constructor(private nodeService: NodeService
         , private http: HttpClient,
         private config: ConfigValue,
@@ -92,8 +93,12 @@ export class AuthorCourseComponent implements OnInit {
         if ( this.route.snapshot.queryParams['id']) {
             this.loadingCource(this.route.snapshot.queryParams['id'] );
         } else {
-            this.router.navigate(['/admin/khoa-hoc/danh-sach-khoa-hoc']);
+            this.router.navigate(['/admin/khoa-hoc/quan-ly-khoa-hoc']);
         }
+              this.url_back  = this.route.snapshot.queryParams['url'] || '/';
+    }
+    toBack() {
+        this.router.navigate([this.url_back]);
     }
     onSubmit(value: string) {
         this.submitted = true;

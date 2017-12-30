@@ -46,7 +46,7 @@ export class FileOfLessonRestInterceptor implements HttpInterceptor {
                 }
                 return next.handle(request);
             }).materialize()
-                .delay(1500)
+                .delay(0)
                 .dematerialize();
           }
     }

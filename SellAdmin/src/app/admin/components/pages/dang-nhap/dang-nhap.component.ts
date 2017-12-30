@@ -14,7 +14,7 @@ export class DangNhapComponent implements OnInit {
     public sms: string; // hiển thị thông báo mã lỗi
     public isLogin = false; // ẩn hiện nút đăng nhập khi người dùng nhấn đăng nhập
     private userRemember: any = {}; // biến lưu thông tin nhớ mật khẩu
-    private   returnUrl: string; // biến chứa url chuyển từ một trang khác đén
+    private returnUrl: string; // biến chứa url chuyển từ một trang khác đén
     constructor(
         private fb: FormBuilder,
         private http: HttpClient,
@@ -59,13 +59,17 @@ export class DangNhapComponent implements OnInit {
                 } else {
                     localStorage.removeItem(this.config.remember);
                 }
-                this.router.navigate([ this.returnUrl ]);
+                this.router.navigate([this.returnUrl]);
             }, (err: HttpErrorResponse) => {
                 console.log(err);
                 if (err.status === 403) {
                     this.sms = 'Tài khoản hoặc mật khẩu không đúng!'; // hiển thị thông báo
                     this.isLogin = false; // hiển thị nút đăng nhập lại
                 }
+                if (err.status === 0) {
+                    alert('Chưa chạy service ba');
+                }
+                this.isLogin = false;
             });
         }
     }

@@ -22,6 +22,19 @@ export class AuthenticationService {
     logout() {
         localStorage.removeItem(this.config.token);
     }
+    public refreshToken(): void {
+        this.http.get(this.config.url_port + this.config.auth_refresh).subscribe((user: any) => {
+            if (user && user.access_token) {
+                localStorage.setItem(
+                  this.config.token,
+                  JSON.stringify(user.access_token)
+                );
+                console.log('làm mới token');
+              }
+         }, error => {
+             console.log(error);
+         });
+      }
     public getInformation() {
        return this.http.get(this.config.url_port + '/user/info')
         .map

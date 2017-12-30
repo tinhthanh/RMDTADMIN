@@ -1,6 +1,6 @@
 export class FileOfLesson {
-    maFile: string;
-    maBaiHoc: string;
-    noiDung: string;
-    ngayThem: any;
+    lessonAttachID: string;
+    lessonID: string;
+    lesonAttachContent: string;
+    dayAdded: any;
 }

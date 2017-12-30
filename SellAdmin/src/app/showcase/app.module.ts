@@ -20,6 +20,11 @@ import { NodeService } from './service/nodeservice';
 import { AdminComponent } from 'app/admin/admin.component';
 import { AuthenticationRest, UserRest } from '../admin/_helpers';
 import { CommonModule } from '@angular/common';
+import { ChapterRest } from 'app/admin/_helpers/mocktest/ChapterRest';
+import { LessonRest } from 'app/admin/_helpers/mocktest/LessonRest';
+import { FileOfLessonRest } from 'app/admin/_helpers/mocktest/FileOfLessonRes';
+import { CourseRest } from 'app/admin/_helpers/mocktest/CoureRes';
+import { FollowRest } from 'app/admin/_helpers/mocktest/FollowRes';
 
 @NgModule({
   declarations: [
@@ -49,6 +54,11 @@ import { CommonModule } from '@angular/common';
       // mocktest
   //    AuthenticationRest,
     //  UserRest,
+    ChapterRest,
+    LessonRest,
+    FileOfLessonRest,
+    CourseRest,
+    FollowRest
 
   ],
   bootstrap: [AppComponent]

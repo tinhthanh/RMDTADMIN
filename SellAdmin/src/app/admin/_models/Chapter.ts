@@ -1,9 +1,10 @@
 import { Lesson } from './Lesson';
 export class Chapter {
-    private chapterID: string;
-    private courseID: string;
-    private chapterTitle: string;
-    private chapterContent: string;
-    private chapterSummary: string;
-    private listOfLession: Lesson[];
+    chapterID: string;
+    courseID: string;
+    chapterTitle: string;
+    chapterContent: string;
+    chapterSummary: string;
+    listOfLesson: Lesson[];
+
 }

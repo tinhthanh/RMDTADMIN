@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { ConfigValue } from './../../../_helpers/config-value';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Message, SelectItem } from 'app/components/common/api';
@@ -18,10 +21,11 @@ export class ThemKhoaHocComponent implements OnInit {
 
     avts: Message[] = [];
     uploadedAvt: any[] = [];
-    
+
     uploadedFiles: any[] = [];
-    
-    constructor(private fb: FormBuilder) { }
+
+    constructor(private fb: FormBuilder, private http: HttpClient, private config: ConfigValue
+    , private router: Router ) { }
 
     ngOnInit() {
         this.userform = this.fb.group({
@@ -38,7 +42,7 @@ export class ThemKhoaHocComponent implements OnInit {
         this.courseTypeID.push({ label: 'Chọn loại khóa học', value: '' });
         this.courseTypeID.push({ label: 'Miễn phí', value: 'NCO' });
         this.courseTypeID.push({ label: 'Có phí', value: 'CO' });
-// loading lên nha nha thắng
+        // loading lên nha nha thắng
         this.topicID = [];
         this.topicID.push({ label: 'Chọn loại chủ đề ', value: '' });
         this.topicID.push({ label: 'Angular ', value: 'CD1' });
@@ -46,17 +50,24 @@ export class ThemKhoaHocComponent implements OnInit {
     }
 
 
- 
+
     onUpload(event) {
         console.log(event);
-        for(let file of event.files) {
+        for (  const file of event.files) {
             this.uploadedFiles.push(file);
         }
         this.msgs = [];
-        this.msgs.push({severity: 'info', summary: 'Success', detail: 'File Uploaded'});
+        this.msgs.push({ severity: 'info', summary: 'Success', detail: 'File Uploaded' });
     }
 
-    onSubmit(value: string) {
+    onSubmit() {
+        console.log(this.userform.value);
+        this.http.post(this.config.url_port + '/users/course', this.userform.value).subscribe((data: any) => {
+            console.log(data);
+            this.router.navigate(['/admin/khoa-hoc/khoa-hoc-cua-toi'], { queryParams: { id: data.courseID } });
+        } , ( err: HttpErrorResponse) => {
+            alert('Không thêm được ');
+        });
         this.submitted = true;
         this.msgs = [];
         this.msgs.push({ severity: 'info', summary: 'Success', detail: 'Form Submitted' });

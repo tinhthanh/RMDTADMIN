@@ -1,3 +1,4 @@
+import { LichSuGiaoDichComponent } from './lich-su-giao-dich/lich-su-giao-dich.component';
 import { KhoaHocDaMuaComponent } from './khoa-hoc-da-mua/khoa-hoc-da-mua.component';
 import { FieldsetModule } from './../../../components/fieldset/fieldset';
 import { ConfirmationService } from './../../../components/common/confirmationservice';
@@ -39,9 +40,12 @@ import { InplaceModule } from 'app/components/inplace/inplace';
     FieldsetModule
   ],
   exports: [],
-  declarations: [DanhSachNguoiDungComponent, NguoiDungComponent,
-  DangKyXemSauComponent,
-  KhoaHocDaMuaComponent
+  declarations: [
+    DanhSachNguoiDungComponent,
+    NguoiDungComponent,
+    DangKyXemSauComponent,
+    KhoaHocDaMuaComponent,
+    LichSuGiaoDichComponent
   ],
   providers: [
     ConfirmationService

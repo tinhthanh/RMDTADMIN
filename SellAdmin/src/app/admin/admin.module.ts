@@ -8,10 +8,7 @@ import { MenuModule } from 'app/components/menu/menu';
 @NgModule({
     imports: [
         AdminRoutingModule,
-<<<<<<< HEAD
-=======
         MenuModule,
->>>>>>> master
     ],
     exports: [],
     declarations: [AdminMainComponent] ,

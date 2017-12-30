@@ -1,3 +1,4 @@
+import { DangKyXemSauComponent } from './dang-ky-xem-sau/dang-ky-xem-sau.component';
 import { DanhSachNguoiDungComponent } from './danh-dach-nguoi-dung/danh-sach-nguoi-dung.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -11,6 +12,10 @@ const routes: Routes =   [
         {
           path: 'danh-sach-nguoi-dung',
           component: DanhSachNguoiDungComponent
+        },
+        {
+          path: 'dang-ky-xem-sau',
+          component: DangKyXemSauComponent
         }
       ]
     }

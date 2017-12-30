@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 
 export class NguoiDungComponent implements OnInit {
   constructor(private router: Router) {
-     this.router.navigate(['/admin/nguoi-dung/danh-sach-nguoi-dung']);
   }
 
   ngOnInit() {

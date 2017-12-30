@@ -24,6 +24,7 @@ import { ChapterRest } from 'app/admin/_helpers/mocktest/ChapterRest';
 import { LessonRest } from 'app/admin/_helpers/mocktest/LessonRest';
 import { FileOfLessonRest } from 'app/admin/_helpers/mocktest/FileOfLessonRes';
 import { CourseRest } from 'app/admin/_helpers/mocktest/CoureRes';
+import { FollowRest } from 'app/admin/_helpers/mocktest/FollowRes';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { CourseRest } from 'app/admin/_helpers/mocktest/CoureRes';
     ChapterRest,
     LessonRest,
     FileOfLessonRest,
-    CourseRest
+    CourseRest,
+    FollowRest
 
   ],
   bootstrap: [AppComponent]

@@ -118,6 +118,10 @@ export class AuthorCourseComponent implements OnInit {
         this.http.patch(`${this.config.url_port}/user/course`, dataSend).subscribe(
             (data: any) => {
                 this.khoahoc = data;
+                const  filesTree11 = [...this.filesTree11];
+                filesTree11[0].label = this.khoahoc.courseTitle;
+                filesTree11[0].data = this.khoahoc ;
+                this.filesTree11 = filesTree11 ;
                 this.visibleCource = false;
                 this.submitted = false;
             }, (err: HttpErrorResponse) => {

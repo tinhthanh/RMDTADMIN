@@ -77,9 +77,8 @@
         <span>Khóa học</span>
       </a>
       <div [ngClass]="{'submenushow': (khoaHocMenu.id == activeMenuId), 'submenuhide': (khoaHocMenu.id != activeMenuId)}">
-        <a [routerLink]="['/admin/khoa-hoc/danh-sach-khoa-hoc']" (click)="menuActive = false">&#9679; Danh sách khóa học</a>
-        <a [routerLink]="['/admin/khoa-hoc/khoa-hoc-cua-toi']" (click)="menuActive = false">&#9679; Khóa học của tôi</a>
-        <a [routerLink]="['/admin/khoa-hoc/them-khoa-hoc']" (click)="menuActive = false">&#9679; Thêm khóa học</a>
+        <a [routerLink]="['/admin/khoa-hoc/quan-ly-khoa-hoc']" (click)="menuActive = false">&#9679; Quản lý khóa học</a>
+        <a [routerLink]="['/admin/khoa-hoc/them-khoa-hoc-moi']" (click)="menuActive = false">&#9679; Thêm khóa học</a>
       </div>
       <a id="chu_de_menu" #chuDeMenu [class.active-menuitem]="chuDeMenu.id == activeMenuId" (click)="activeMenuId = (activeMenuId === chuDeMenu.id ? null : chuDeMenu.id)">
         <img src="assets/showcase/images/icons/misc-active.svg" class="layout-menu-icon-active" />

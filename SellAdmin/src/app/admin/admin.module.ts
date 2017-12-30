@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 
 @NgModule({
     imports: [
-        AdminRoutingModule
+        AdminRoutingModule,
     ],
     exports: [],
     declarations: [AdminMainComponent] ,

@@ -1,3 +1,4 @@
+import { KhoaHocDaMuaComponent } from './khoa-hoc-da-mua/khoa-hoc-da-mua.component';
 import { FieldsetModule } from './../../../components/fieldset/fieldset';
 import { ConfirmationService } from './../../../components/common/confirmationservice';
 import { ConfirmDialogModule } from './../../../components/confirmdialog/confirmdialog';
@@ -39,7 +40,8 @@ import { InplaceModule } from 'app/components/inplace/inplace';
   ],
   exports: [],
   declarations: [DanhSachNguoiDungComponent, NguoiDungComponent,
-  DangKyXemSauComponent
+  DangKyXemSauComponent,
+  KhoaHocDaMuaComponent
   ],
   providers: [
     ConfirmationService

@@ -1,3 +1,9 @@
+import { SafePipe } from './../../_Pipe/SafePipe';
+import { InputTextModule } from 'app/components/inputtext/inputtext';
+import { FormUploadComponent } from 'app/admin/components/khoa-hoc/form-upload/form-upload.component';
+import { FileUploadModule } from './../../../components/fileupload/fileupload';
+import { SidebarModule } from './../../../components/sidebar/sidebar';
+import { TreeModule } from './../../../components/tree/tree';
 import { KhoaHocDaMuaComponent } from './khoa-hoc-da-mua/khoa-hoc-da-mua.component';
 import { FieldsetModule } from './../../../components/fieldset/fieldset';
 import { ConfirmationService } from './../../../components/common/confirmationservice';
@@ -18,6 +24,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GrowlModule } from 'app/components/growl/growl';
 import { DangKyXemSauComponent } from 'app/admin/components/nguoi-dung/dang-ky-xem-sau/dang-ky-xem-sau.component';
 import { InplaceModule } from 'app/components/inplace/inplace';
+import { KhoaHocDaMuaChiTietComponent } from '../nguoi-dung/khoa-hoc-da-mua/khoa-hoc-da-mua-chi-tiet/khoa-hoc-da-mua-chi-tiet.component';
+import { ProgressSpinnerModule } from 'app/components/progressspinner/progressspinner';
+import { PanelModule } from 'app/components/panel/panel';
+import { RadioButtonModule } from 'app/components/radiobutton/radiobutton';
 
 @NgModule({
   imports: [
@@ -32,19 +42,27 @@ import { InplaceModule } from 'app/components/inplace/inplace';
     EditorModule,
     ButtonModule,
     GrowlModule,
-
+    InputTextModule,
     ProgressBarModule,
     ConfirmDialogModule,
     InplaceModule,
-    FieldsetModule
+    FieldsetModule,
+    ProgressSpinnerModule,
+    TreeModule,
+    SidebarModule,
+    FileUploadModule,
+    PanelModule,
+    RadioButtonModule
   ],
   exports: [],
   declarations: [DanhSachNguoiDungComponent, NguoiDungComponent,
   DangKyXemSauComponent,
-  KhoaHocDaMuaComponent
+  KhoaHocDaMuaComponent,
+  KhoaHocDaMuaChiTietComponent,
+  SafePipe
   ],
   providers: [
-    ConfirmationService
+    ConfirmationService,
   ],
 })
 export class NguoiDungModule { }

@@ -8,4 +8,5 @@ export * from './Topic';
 export * from './User';
 export * from './UserCustom';
 export * from './FileOfLesson';
+export * from './GhimVideo';
 export * from './json';

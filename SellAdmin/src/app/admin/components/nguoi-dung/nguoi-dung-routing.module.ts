@@ -1,3 +1,4 @@
+import { KhoaHocDaMuaChiTietComponent } from './khoa-hoc-da-mua/khoa-hoc-da-mua-chi-tiet/khoa-hoc-da-mua-chi-tiet.component';
 import { KhoaHocDaMuaComponent } from './khoa-hoc-da-mua/khoa-hoc-da-mua.component';
 import { DangKyXemSauComponent } from './dang-ky-xem-sau/dang-ky-xem-sau.component';
 import { DanhSachNguoiDungComponent } from './danh-dach-nguoi-dung/danh-sach-nguoi-dung.component';
@@ -21,6 +22,9 @@ const routes: Routes =   [
         {
           path: 'khoa-hoc-da-mua' ,
           component: KhoaHocDaMuaComponent
+        }, {
+          path: 'khoa-hoc-da-mua-chi-tiet',
+          component: KhoaHocDaMuaChiTietComponent
         }
       ]
     }

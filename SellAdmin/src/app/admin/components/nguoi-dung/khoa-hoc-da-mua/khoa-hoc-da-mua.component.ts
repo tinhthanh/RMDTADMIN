@@ -60,7 +60,7 @@ thaoTacXoa($event) {
     }
     thaoTacCapNhap($event) {
         console.log($event);
-         alert('chưa gắn link chuyển sang khóa học này');
+        this.roter.navigate(['/admin/nguoi-dung/khoa-hoc-da-mua-chi-tiet'], { queryParams: { id: $event.courseID }});
         }
 public loadingTopic() {
     this.loading = true;
@@ -72,4 +72,3 @@ public loadingTopic() {
     });
 }
 }
-

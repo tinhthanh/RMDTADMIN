@@ -166,6 +166,7 @@ export class KhoaHocDaMuaChiTietComponent implements OnInit {
         }
         if (event.node.data.chapterID && event.node.data.lessonID) {
             this.selectLessonFile = event.node.data;
+            this.isZoomVideo = true;
             this.updateVideoView(this.selectLessonFile.lessonContent);
         }
         this.msgs = [];
@@ -175,9 +176,6 @@ export class KhoaHocDaMuaChiTietComponent implements OnInit {
     // het xoa bai hoc
     // click chinh sửa bài học
     public clickChinhSuaBaiHoc($event) {
-        console.log('chinh sửa bài hoc');
-        console.log($event);
-        alert('ghim');
         const videoghim = new GhimVideo();
         videoghim.cource_id = this.khoahoc.courseID ;
         videoghim.cource_name = this.khoahoc.courseTitle ;
@@ -190,6 +188,8 @@ export class KhoaHocDaMuaChiTietComponent implements OnInit {
         this.listghim  = this.ghim.getListGhim();
         this.isThemBaiHoc = true;
         this.visibleLesson = true;
+        this.msgs = [];
+        this.msgs.push({ severity: 'info', summary: 'Thành công ', detail: 'Bạn đã ghim video ' + videoghim.lesson_name  });
     }
     // hết clcik chỉnh sửa bài học
     // chinh sua bai hoc
@@ -320,9 +320,11 @@ export class KhoaHocDaMuaChiTietComponent implements OnInit {
     }
 
     public xoaGhim( $event ) {
-        alert('xoa ghim');
         this.ghim.deleteGhim($event.lesson_id);
         this.listghim = this.ghim.getListGhim();
+        this.msgs = [];
+        this.msgs.push({ severity: 'info', summary: 'Thành công ', detail: 'Bạn đã xóa ghim video ' + $event.lesson_name });
+  
     }
     public playGhim($event) {
         // alert('play ghim');

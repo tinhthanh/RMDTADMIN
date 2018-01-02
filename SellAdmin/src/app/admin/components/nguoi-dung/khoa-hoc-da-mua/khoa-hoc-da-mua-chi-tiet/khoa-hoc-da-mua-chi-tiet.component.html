@@ -34,7 +34,10 @@
 
 <!-- thêm bài học -->
 <p-sidebar [(visible)]="visibleLesson" position="right" [baseZIndex]="10000">
-    <pre>{{ selectLesson |  json}}</pre>
+        <h1 style="font-weight:normal">Ghim video thành công </h1>
+    <button pButton type="button" (click)="visibleLesson = false ; visibleEditChater = false" label="Về thư mục gốc" class="ui-button-success"></button>
+    <button pButton type="button" (click)="visibleLesson = false" label="Đóng" class="ui-button-secondary"></button>
+
 </p-sidebar>
 <!-- end thêm bài học -->
 <!-- // chỉnh sửa chương mục -->

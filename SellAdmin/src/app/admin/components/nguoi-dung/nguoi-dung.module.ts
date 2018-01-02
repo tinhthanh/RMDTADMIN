@@ -28,6 +28,10 @@ import { KhoaHocDaMuaChiTietComponent } from '../nguoi-dung/khoa-hoc-da-mua/khoa
 import { ProgressSpinnerModule } from 'app/components/progressspinner/progressspinner';
 import { PanelModule } from 'app/components/panel/panel';
 import { RadioButtonModule } from 'app/components/radiobutton/radiobutton';
+import { QuanLyNguoiDungComponent } from './admin/quan-ly-nguoi-dung/quan-ly-nguoi-dung.component';
+import { QuanLyTaiKhoanBiKhoaComponent } from './admin/quan-ly-nguoi-dung/quan-ly-tai-khoan-bi-khoa/quan-ly-tai-khoan-bi-khoa.component';
+import {
+  QuanLyTaiKhoanHoatDongComponent } from './admin/quan-ly-nguoi-dung/quan-ly-tai-khoan-hoat-dong/quan-ly-tai-khoan-hoat-dong.component';
 
 @NgModule({
   imports: [
@@ -59,7 +63,10 @@ import { RadioButtonModule } from 'app/components/radiobutton/radiobutton';
   DangKyXemSauComponent,
   KhoaHocDaMuaComponent,
   KhoaHocDaMuaChiTietComponent,
-  SafePipe
+  SafePipe,
+  QuanLyNguoiDungComponent,
+  QuanLyTaiKhoanBiKhoaComponent,
+  QuanLyTaiKhoanHoatDongComponent
   ],
   providers: [
     ConfirmationService,

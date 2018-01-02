@@ -94,7 +94,9 @@
         <span>Người dùng</span>
       </a>
       <div [ngClass]="{'submenushow': (accountMenu.id == activeMenuId), 'submenuhide': (accountMenu.id != activeMenuId)}">
-        <a [routerLink]="['/admin/nguoi-dung/danh-sach-nguoi-dung']" (click)="menuActive = false">&#9679; Danh sách người dùng</a>
+        <a [routerLink]="['/admin/nguoi-dung/quan-ly/quan-ly-tai-khoan-hoat-dong']" (click)="menuActive = false">&#9679; Admdin Danh sách người dùng hoạt động</a>
+        <a [routerLink]="['/admin/nguoi-dung/quan-ly/quan-ly-tai-khoan-bi-khoa']" (click)="menuActive = false">&#9679; Admdin Danh sách người dùng bị khóa</a>
+        
         <a [routerLink]="['/admin/nguoi-dung/dang-ky-xem-sau']" (click)="menuActive = false">&#9679; Khóa học đăng ký xem sau</a>
         <a [routerLink]="['/admin/nguoi-dung/khoa-hoc-da-mua']" (click)="menuActive = false">&#9679; Danh sách các khóa học đã mua</a>
         

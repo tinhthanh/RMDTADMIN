@@ -11,10 +11,15 @@
 </div>
 <p-dataTable [value]="danhSachGiaoDich" [responsive]="true">
     <p-column field="transactionHistoryID" header="Mã giao dịch"></p-column>
-    <p-column field="transactionDate.dayOfMonth;transactionDate.monthValue;transactionDate.year~>$join('/')" header="Ngày giao dịch"></p-column>
+    <p-column field="transactionDate" header="Ngày giao dịch" >
+        <ng-template let-col let-car="rowData" pTemplate="body">
+            <span >{{car[col.field].year + '/'+  car[col.field].monthValue + '/' + car[col.field].dayOfMonth }}</span>
+        </ng-template>
+    </p-column>
     <p-column field="transactionForm.transactionFormName" header="Hình thức" ></p-column>
     <p-column field="debt" header="Nợ"></p-column>
     <p-column field="balance" header="Có"></p-column>
-    <p-column field="transactionDescription" header="Nội dung" ></p-column>
+    <p-column field="transactionDescription" header="Nội dung" >
+    </p-column>
 </p-dataTable>
-<p-paginator rows="size" totalRecords="totalRow" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[10,20,30]"></p-paginator>
+<p-paginator rows="{{size}}"  totalRecords="{{totalRow}}" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5, 10, 20, 100]" ></p-paginator>

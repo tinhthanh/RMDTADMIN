@@ -158,7 +158,7 @@
                 <div *ngIf="!submitted" > 
             <div class="ui-grid-row">
                 <div *ngFor="let temp of selectLesson?.listOfLesson" class="ui-grid-col-3">
-                    <div  class="video-thumbnail">
+                    <div  style="margin-top: 50px;" class="video-thumbnail">
                         <img src="{{(temp?.lessonContent==='NA')?'assets/components/images/kiemduyet.jpg': 'https://drive.google.com/thumbnail?authuser=0&sz=w320&id=' + temp?.lessonContent}}" alt="Video thumbnail" />
                         <div (click)="updateLink( ( temp?.lessonContent==='NA')? temp?.lessonContent2 : temp?.lessonContent )"   class="title"> {{temp.lessonTitle}}
                         </div>

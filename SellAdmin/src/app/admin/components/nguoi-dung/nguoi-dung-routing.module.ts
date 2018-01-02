@@ -5,6 +5,7 @@ import { DanhSachNguoiDungComponent } from './danh-dach-nguoi-dung/danh-sach-ngu
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NguoiDungComponent } from 'app/admin/components/nguoi-dung/nguoi-dung.component';
+import { LichSuGiaoDichComponent } from 'app/admin/components/nguoi-dung/lich-su-giao-dich/lich-su-giao-dich.component';
 
 const routes: Routes =   [
   {
@@ -25,6 +26,9 @@ const routes: Routes =   [
         }, {
           path: 'khoa-hoc-da-mua-chi-tiet',
           component: KhoaHocDaMuaChiTietComponent
+        }, {
+          path: 'lich-su-giao-dich',
+          component: LichSuGiaoDichComponent
         }
       ]
     }

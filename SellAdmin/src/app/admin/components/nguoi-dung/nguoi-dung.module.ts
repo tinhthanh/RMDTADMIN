@@ -28,6 +28,7 @@ import { KhoaHocDaMuaChiTietComponent } from '../nguoi-dung/khoa-hoc-da-mua/khoa
 import { ProgressSpinnerModule } from 'app/components/progressspinner/progressspinner';
 import { PanelModule } from 'app/components/panel/panel';
 import { RadioButtonModule } from 'app/components/radiobutton/radiobutton';
+import { LichSuGiaoDichComponent } from 'app/admin/components/nguoi-dung/lich-su-giao-dich/lich-su-giao-dich.component';
 
 @NgModule({
   imports: [
@@ -59,7 +60,8 @@ import { RadioButtonModule } from 'app/components/radiobutton/radiobutton';
   DangKyXemSauComponent,
   KhoaHocDaMuaComponent,
   KhoaHocDaMuaChiTietComponent,
-  SafePipe
+  SafePipe,
+  LichSuGiaoDichComponent
   ],
   providers: [
     ConfirmationService,

@@ -1,9 +1,13 @@
+<<<<<<< HEAD
+import { LichSuGiaoDichComponent } from './lich-su-giao-dich/lich-su-giao-dich.component';
+=======
 import { SafePipe } from './../../_Pipe/SafePipe';
 import { InputTextModule } from 'app/components/inputtext/inputtext';
 import { FormUploadComponent } from 'app/admin/components/khoa-hoc/form-upload/form-upload.component';
 import { FileUploadModule } from './../../../components/fileupload/fileupload';
 import { SidebarModule } from './../../../components/sidebar/sidebar';
 import { TreeModule } from './../../../components/tree/tree';
+>>>>>>> master
 import { KhoaHocDaMuaComponent } from './khoa-hoc-da-mua/khoa-hoc-da-mua.component';
 import { FieldsetModule } from './../../../components/fieldset/fieldset';
 import { ConfirmationService } from './../../../components/common/confirmationservice';
@@ -55,11 +59,20 @@ import { RadioButtonModule } from 'app/components/radiobutton/radiobutton';
     RadioButtonModule
   ],
   exports: [],
+<<<<<<< HEAD
+  declarations: [
+    DanhSachNguoiDungComponent,
+    NguoiDungComponent,
+    DangKyXemSauComponent,
+    KhoaHocDaMuaComponent,
+    LichSuGiaoDichComponent
+=======
   declarations: [DanhSachNguoiDungComponent, NguoiDungComponent,
   DangKyXemSauComponent,
   KhoaHocDaMuaComponent,
   KhoaHocDaMuaChiTietComponent,
   SafePipe
+>>>>>>> master
   ],
   providers: [
     ConfirmationService,

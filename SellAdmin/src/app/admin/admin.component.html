@@ -52,14 +52,32 @@
       <a id="button_menutitle" #buttonmenutitle [class.active-menuitem]="buttonmenutitle.id == activeMenuId" (click)="activeMenuId = (activeMenuId === buttonmenutitle.id ? null : buttonmenutitle.id)">
         <img src="assets/showcase/images/icons/button-active.svg" class="layout-menu-icon-active" />
         <img src="assets/showcase/images/icons/button.svg" class="layout-menu-icon-inactive" />
-        <span>Prestashop</span>
+        <span>Thống kê  </span>
       </a>
       <div [ngClass]="{'submenushow': (buttonmenutitle.id == activeMenuId), 'submenuhide': (buttonmenutitle.id != activeMenuId)}">
-        <a [routerLink]="['/admin/prestashop/main']" (click)="menuActive = false">&#9679; Main</a>
-        <a [routerLink]="['/admin/prestashop/edit']" (click)="menuActive = false">&#9679; Thêm nhân viên</a>
-        <a [routerLink]="['/admin/prestashop/edit']" (click)="menuActive = false">&#9679; Cập nhật Nhân Viên</a>
-        <a [routerLink]="['/admin/prestashop/delete']" (click)="menuActive = false">&#9679; Sa thải Nhân viên</a>
+        <a [routerLink]="['/']" (click)="menuActive = false">&#9679; Thông kê theo chủ đề</a>
       </div>
+
+
+      <a id="quan_ly_binh_luan" #quan_ly_binh_luan [class.active-menuitem]="quan_ly_binh_luan.id == activeMenuId" (click)="activeMenuId = (activeMenuId === quan_ly_binh_luan.id ? null : quan_ly_binh_luan.id)">
+          <img src="assets/showcase/images/icons/message-active.svg" class="layout-menu-icon-active" />
+          <img src="assets/showcase/images/icons/message.svg" class="layout-menu-icon-inactive" />
+          <span>Quản lý bình luận</span>
+        </a>
+        <div [ngClass]="{'submenushow': (quan_ly_binh_luan.id == activeMenuId), 'submenuhide': (quan_ly_binh_luan.id != activeMenuId)}">
+          <a [routerLink]="['/messages']" (click)="menuActive = false">&#9679; Messages</a>
+          <a [routerLink]="['/growl']" (click)="menuActive = false">&#9679; Growl</a>
+        </div>
+
+        <a id="lich_su_giao_dich" #lich_su_giao_dich [class.active-menuitem]="lich_su_giao_dich.id == activeMenuId" (click)="activeMenuId = (activeMenuId === lich_su_giao_dich.id ? null : lich_su_giao_dich.id)">
+            <img src="assets/showcase/images/icons/message-active.svg" class="layout-menu-icon-active" />
+            <img src="assets/showcase/images/icons/message.svg" class="layout-menu-icon-inactive" />
+            <span>Lịch sử giao dich</span>
+          </a>
+          <div [ngClass]="{'submenushow': (lich_su_giao_dich.id == activeMenuId), 'submenuhide': (lich_su_giao_dich.id != activeMenuId)}">
+            <a [routerLink]="['/messages']" (click)="menuActive = false">&#9679; Messages</a>
+            <a [routerLink]="['/growl']" (click)="menuActive = false">&#9679; Growl</a>
+          </div>
 
       <a id="menu_misc" #misctitle [class.active-menuitem]="misctitle.id == activeMenuId" (click)="activeMenuId = (activeMenuId === misctitle.id ? null : misctitle.id)">
         <img src="assets/showcase/images/icons/misc-active.svg" class="layout-menu-icon-active" />

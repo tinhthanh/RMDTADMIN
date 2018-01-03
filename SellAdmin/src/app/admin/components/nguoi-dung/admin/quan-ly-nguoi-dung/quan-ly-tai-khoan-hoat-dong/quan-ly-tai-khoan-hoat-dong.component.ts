@@ -46,17 +46,17 @@ export class QuanLyTaiKhoanHoatDongComponent implements OnInit {
         this.roles = [];
         const role_admin = new Role();
         role_admin.roleID  = 1 ;
-        role_admin.roleName = 'ROLE_ADMIN';
+        role_admin.roleName =  'ROLE_USER' ;
         const role_user = new Role();
         role_user.roleID = 2;
-        role_user.roleName = 'ROLE_USER';
+        role_user.roleName = 'ROLE_ADMIN' ;
         this.roles.push(role_admin);
         this.roles.push(role_user);
         // end role
     }
     public inintFormUser( user: UserInfo ): void {
         this.url_img_upload = user.avatar;
-        console.log(user);
+      //  console.log(user);
         this.userform = this.fb.group({
             userName: new FormControl(user.userName ? user.userName : '', Validators.required),
             phoneNumber: new FormControl(user.phoneNumber ? user.phoneNumber : '' , Validators.required),
@@ -108,20 +108,22 @@ this.soTien = 0 ;
 this.isNapTien = false;
     }
     public clickThemQuen($event) {
-        this.selectRoles = [];
+        const selectRoles: Role[] = [];
         this.selectUser = $event;
         for ( let i = 0 ; i < this.roles.length  ; i++) {
-            const temp  = this.selectUser.permission.filter( role =>  {
+            const temp  = $event.permission.filter( role =>  {
                 return this.roles[i].roleID === role.roleID ;
             });
-            if (temp.length) {
-                this.selectRoles.push(this.roles[i]);
+            if ( !temp.length) {
+                 selectRoles.push(this.roles[i]);
             }
         }
-        console.log(this.selectRoles);
+        this.selectRoles = selectRoles;
         this.isThemQuyen = true;
     }
     public themQuyen($event): void {
+    console.log(this.selectUser);
+    console.log($event);
         const listUser = [...this.listUser];
         for ( let i = 0 ; i < listUser.length ; i++) {
            if ( listUser[i].userID === this.selectUser.userID ) {
@@ -134,17 +136,18 @@ this.isNapTien = false;
         this.msgs = [{severity: 'info', summary: 'success', detail: 'Thêm thành công'}];
     }
     public xoaQuyen( $role , $user ) {
-        this.selectUser = $user;
-         for ( let i = 0 ; i < $user.permission.length ; i++) {
-             if ( $role.roleID  === $user.permission[i].roleID ) {
-                $user.permission.splice(i, 1);
+        const selectUser = $user;
+         for ( let i = 0 ; i < selectUser.permission.length ; i++) {
+             if ( $role.roleID  === selectUser.permission[i].roleID ) {
+                selectUser.permission.splice(i, 1);
              }
          }
-         console.log($user.permission);
+         this.selectUser = selectUser ;
+        //  console.log($user.permission);
         const listUser = [...this.listUser];
          for ( let i = 0 ; i < listUser.length ; i++) {
-            if ( listUser[i].userID === this.selectUser.userID ) {
-                listUser[i].score  = this.soTien ;
+            if ( listUser[i].userID === $user.userID ) {
+                listUser[i] = this.selectUser;
             }
         }
         this.listUser = listUser ;
@@ -159,7 +162,7 @@ this.isNapTien = false;
     }
     onSubmit() {
         this.submitted = true;
-        console.log(this.userform.value);
+        // console.log(this.userform.value);
         const editUser: any = {} ;
         editUser.address = this.userform.value.address ;
         editUser.avatar = this.url_img_upload ;
@@ -170,14 +173,14 @@ this.isNapTien = false;
             (data: any) => {
                 const listUser = [...this.listUser] ;
                 for ( let i = 0  ; i < listUser.length ; i++) {
-                    console.log(listUser[i].userID);
-                    console.log(data.userID);
+                    // console.log(listUser[i].userID);
+                    // console.log(data.userID);
                     if ( listUser[i].userID === data.userID ) {
                         listUser[i] = data;
                     }
                 }
                 this.listUser = listUser ;
-                console.log(data);
+                // console.log(data);
                 this.submitted = false ;
                 this.displayEditUser = false;
                 this.msgs = [{severity: 'info', summary: 'success', detail: 'Thành công'}];
@@ -195,7 +198,7 @@ this.isNapTien = false;
             icon: 'fa fa-lock',
             accept: () => {
                 this.http.delete(this.config.url_port + '/users/follow/' + $event.courseID ).subscribe( ( data: any ) => {
-                    console.log(data);
+                    // console.log(data);
                     const listUser   = [...this.listUser];
                     for ( let i = 0  ; i < listUser.length ; i++  ) {
                         if ( listUser[i].userID === $event.userID) {

@@ -32,6 +32,10 @@ import { ProgressSpinnerModule } from 'app/components/progressspinner/progresssp
 import { PanelModule } from 'app/components/panel/panel';
 import { RadioButtonModule } from 'app/components/radiobutton/radiobutton';
 import { LichSuGiaoDichComponent } from 'app/admin/components/nguoi-dung/lich-su-giao-dich/lich-su-giao-dich.component';
+import { QuanLyNguoiDungComponent } from './admin/quan-ly-nguoi-dung/quan-ly-nguoi-dung.component';
+import { QuanLyTaiKhoanBiKhoaComponent } from './admin/quan-ly-nguoi-dung/quan-ly-tai-khoan-bi-khoa/quan-ly-tai-khoan-bi-khoa.component';
+import {
+  QuanLyTaiKhoanHoatDongComponent } from './admin/quan-ly-nguoi-dung/quan-ly-tai-khoan-hoat-dong/quan-ly-tai-khoan-hoat-dong.component';
 
 @NgModule({
   imports: [
@@ -67,7 +71,10 @@ import { LichSuGiaoDichComponent } from 'app/admin/components/nguoi-dung/lich-su
   LichSuGiaoDichComponent,
   DanhSachLichSuGiaoDichComponent,
   BinhLuanComponent,
-  LichSuGiaoDichCuaToiComponent
+  LichSuGiaoDichCuaToiComponent,
+  QuanLyNguoiDungComponent,
+  QuanLyTaiKhoanBiKhoaComponent,
+  QuanLyTaiKhoanHoatDongComponent
   ],
   providers: [
     ConfirmationService,

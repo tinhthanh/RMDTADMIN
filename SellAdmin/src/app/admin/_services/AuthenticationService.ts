@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { User } from './../_models/User';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
@@ -7,7 +8,8 @@ import { ConfigValue } from '../_helpers/config-value';
 @Injectable()
 export class AuthenticationService {
     constructor(private http: HttpClient
-     , private config: ConfigValue ) { }
+     , private config: ConfigValue,
+    private route: Router ) { }
     login(username: string, password: string) {
         console.log(this.config.url_port);
          return this.http.post<any>(this.config.url_port + '/auth/login', { email: username, password: password })
@@ -33,6 +35,7 @@ export class AuthenticationService {
               }
          }, error => {
              console.log(error);
+             this.route.navigate(['/pages/dang-nhap'], { queryParams: {returnUrl: this.route.url }});
          });
       }
     public getInformation() {

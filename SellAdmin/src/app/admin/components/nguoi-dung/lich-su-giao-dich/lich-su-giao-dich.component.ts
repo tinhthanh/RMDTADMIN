@@ -13,7 +13,7 @@ export class LichSuGiaoDichComponent implements OnInit {
     msgs: Message[] = [];
     totalRow = 0 ; // tổng số row trong database
     page = 0 ; // vi tri trang đang đứng
-    size  = 1 ; // số row muốn hiển thị
+    size  = 10 ; // số row muốn hiển thị
     public danhSachGiaoDich: any  = [];
     public user: any;
 
@@ -27,6 +27,7 @@ export class LichSuGiaoDichComponent implements OnInit {
         this.route.params.subscribe(params => {
             this.getUserInfo(params['userID']);
             if (this.user === null) {
+                this.loading = false;
                 console.log('Người dùng không tồn tại');
             } else {
                 this.getAllTransactionHistory(params['userID']);
@@ -43,24 +44,22 @@ export class LichSuGiaoDichComponent implements OnInit {
     }
 
     getAllTransactionHistory(userID: String): void {
-        this.loading = true;
         // tslint:disable-next-line:max-line-length
+        this.loading = true;
         this.httpClient.get(this.config.url_port + `/admin/transaction_history/${userID}/?page=${this.page + 1}&size=${this.size}`).subscribe( (data: any)  => {
         this.totalRow = data.numberOfRecord;
         this.danhSachGiaoDich = data.listOfResult ;
-        this.loading = false;
         console.log(this.danhSachGiaoDich);
         });
+        this.loading = false;
     }
 
     getUserInfo(userID: String) {
-        this.loading = true;
         this.httpClient.get(this.config.url_port + `/user/info/${userID}`).subscribe(
             (data: any) => {
                 this.user = data;
                 return this.user;
             }
         );
-        this.loading = false;
     }
 }

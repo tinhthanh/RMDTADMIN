@@ -1,4 +1,5 @@
 import { LichSuGiaoDichCuaToiComponent } from './lich-su-giao-dich-cua-toi/lich-su-giao-dich-cua-toi.component';
+import { QuanLyNguoiDungComponent } from './admin/quan-ly-nguoi-dung/quan-ly-nguoi-dung.component';
 import { KhoaHocDaMuaChiTietComponent } from './khoa-hoc-da-mua/khoa-hoc-da-mua-chi-tiet/khoa-hoc-da-mua-chi-tiet.component';
 import { KhoaHocDaMuaComponent } from './khoa-hoc-da-mua/khoa-hoc-da-mua.component';
 import { DangKyXemSauComponent } from './dang-ky-xem-sau/dang-ky-xem-sau.component';
@@ -9,6 +10,9 @@ import { NguoiDungComponent } from 'app/admin/components/nguoi-dung/nguoi-dung.c
 import { LichSuGiaoDichComponent } from 'app/admin/components/nguoi-dung/lich-su-giao-dich/lich-su-giao-dich.component';
 // tslint:disable-next-line:max-line-length
 import { DanhSachLichSuGiaoDichComponent } from 'app/admin/components/nguoi-dung/danh-sach-lich-su-giao-dich/danh-sach-lich-su-giao-dich.component';
+import { QuanLyTaiKhoanBiKhoaComponent } from './admin/quan-ly-nguoi-dung/quan-ly-tai-khoan-bi-khoa/quan-ly-tai-khoan-bi-khoa.component';
+import {
+  QuanLyTaiKhoanHoatDongComponent } from './admin/quan-ly-nguoi-dung/quan-ly-tai-khoan-hoat-dong/quan-ly-tai-khoan-hoat-dong.component';
 
 const routes: Routes =   [
   {
@@ -38,6 +42,19 @@ const routes: Routes =   [
         }, {
           path: 'lich-su-giao-dich-cua-toi',
           component: LichSuGiaoDichCuaToiComponent
+        }
+      ]
+    }, {
+      path : 'quan-ly',
+      component: QuanLyNguoiDungComponent,
+      children: [
+        {
+          path: 'quan-ly-tai-khoan-bi-khoa',
+          component: QuanLyTaiKhoanBiKhoaComponent
+        },
+        {
+          path: 'quan-ly-tai-khoan-hoat-dong',
+          component: QuanLyTaiKhoanHoatDongComponent
         }
       ]
     }

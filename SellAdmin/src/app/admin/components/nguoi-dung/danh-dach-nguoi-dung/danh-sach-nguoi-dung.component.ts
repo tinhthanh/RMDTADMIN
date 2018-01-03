@@ -21,7 +21,7 @@ export class DanhSachNguoiDungComponent implements OnInit {
 
   selectedCars1: string[] = [];
 
-  constructor(private http: HttpClient, private config: ConfigValue) {}
+  constructor(private http: HttpClient, private config: ConfigValue) { }
 
   ngOnInit() {
     this.loadTopic();
@@ -38,8 +38,8 @@ export class DanhSachNguoiDungComponent implements OnInit {
   public loadTopic(): void {
     this.http
       .get(
-        this.config.url_port +
-          `/admin/user_info?page=${this.pages}&size=${this.rows}`
+      this.config.url_port +
+      `/user/danh-sach-nguoi-dung?page=${this.pages}&size=${this.rows}`
       )
       .subscribe((data: any) => {
         this.toltalRow = data.numberOfRecord;
@@ -68,35 +68,35 @@ export class DanhSachNguoiDungComponent implements OnInit {
     const user: any = {};
     user.address = this.selectedNguoiDung.address;
     user.avatar = this.selectedNguoiDung.avatar;
-    user.permission = role2 ;
+    user.permission = role2;
     user.phoneNumber = this.selectedNguoiDung.phoneNumber;
     user.score = this.selectedNguoiDung.score;
     user.status = this.selectedNguoiDung.status;
     user.userID = this.selectedNguoiDung.userID;
     user.userName = this.selectedNguoiDung.userName;
-    console.log(user) ;
+    console.log(user);
     this.display = false;
     this.http
       .patch(
-        this.config.url_port + '/user/cap-nhat-nguoi-dung',
-       user
+      this.config.url_port + '/user/cap-nhat-nguoi-dung',
+      user
       )
       .subscribe(
-        (data: any) => {
-          console.log(data);
-          this.msgs.push({
-            severity: 'info',
-            summary: 'Info Message',
-            detail: 'Thêm thành công'
-          });
-        },
-        (err: HttpErrorResponse) => {
-          this.msgs.push({
-            severity: 'error',
-            summary: 'Error Message',
-            detail: 'Thêm thất bại'
-          });
-        }
+      (data: any) => {
+        console.log(data);
+        this.msgs.push({
+          severity: 'info',
+          summary: 'Info Message',
+          detail: 'Thêm thành công'
+        });
+      },
+      (err: HttpErrorResponse) => {
+        this.msgs.push({
+          severity: 'error',
+          summary: 'Error Message',
+          detail: 'Thêm thất bại'
+        });
+      }
       );
   }
 }

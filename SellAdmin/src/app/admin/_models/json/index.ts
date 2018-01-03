@@ -8,3 +8,4 @@ export * from './PasswordReset';
 export * from './RegisterKey';
 export * from './TopicCreation';
 export * from './UserCustomCreate';
+export * from  './UserInfo';

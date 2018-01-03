@@ -32,7 +32,7 @@ export class DanhSachNguoiDungComponent implements OnInit {
        this.loadingTopic();
     }
     public loadingTopic(): void  {
- this.http.get(this.config.url_port + `/users/topic?page=${this.page}&size=${this.size}`).subscribe(
+ this.http.get(this.config.url_port + `/admin/user_info?page=${this.page}&size=${this.size}`).subscribe(
      ( data: any  ) => {
          this.totalRow = data.numberOfRecord;
          this.listNguoiDung = data.listOfResult ;

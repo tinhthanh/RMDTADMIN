@@ -1,3 +1,6 @@
+import { LichSuGiaoDichCuaToiComponent } from './lich-su-giao-dich-cua-toi/lich-su-giao-dich-cua-toi.component';
+import { DanhSachLichSuGiaoDichComponent } from './danh-sach-lich-su-giao-dich/danh-sach-lich-su-giao-dich.component';
+import { BinhLuanComponent } from './binh-luan/binh-luan.component';
 import { SafePipe } from './../../_Pipe/SafePipe';
 import { InputTextModule } from 'app/components/inputtext/inputtext';
 import { FormUploadComponent } from 'app/admin/components/khoa-hoc/form-upload/form-upload.component';
@@ -61,7 +64,10 @@ import { LichSuGiaoDichComponent } from 'app/admin/components/nguoi-dung/lich-su
   KhoaHocDaMuaComponent,
   KhoaHocDaMuaChiTietComponent,
   SafePipe,
-  LichSuGiaoDichComponent
+  LichSuGiaoDichComponent,
+  DanhSachLichSuGiaoDichComponent,
+  BinhLuanComponent,
+  LichSuGiaoDichCuaToiComponent
   ],
   providers: [
     ConfirmationService,

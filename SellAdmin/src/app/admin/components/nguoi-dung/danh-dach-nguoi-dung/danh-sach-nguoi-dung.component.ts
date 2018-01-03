@@ -1,12 +1,12 @@
-import { SelectItem } from "./../../../../components/common/selectitem";
-import { filter } from "rxjs/operator/filter";
-import { Message } from "./../../../../components/common/message";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
-import { ConfigValue } from "app/admin/_helpers/config-value";
+import { SelectItem } from './../../../../components/common/selectitem';
+import { filter } from 'rxjs/operator/filter';
+import { Message } from './../../../../components/common/message';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { ConfigValue } from 'app/admin/_helpers/config-value';
 
 @Component({
-  templateUrl: "danh-sach-nguoi-dung.component.html"
+  templateUrl: 'danh-sach-nguoi-dung.component.html'
 })
 export class DanhSachNguoiDungComponent implements OnInit {
   display = false;
@@ -26,7 +26,7 @@ export class DanhSachNguoiDungComponent implements OnInit {
   ngOnInit() {
     this.loadTopic();
 
-    this.cars = [{ label: "Admin", value: "1" }, { label: "User", value: '2' }];
+    // this.cars = [{ label: "Admin", value: "1" }, { label: "User", value: '2' }];
   }
   paginate(event) {
     // event.first = Index of the first record
@@ -39,7 +39,7 @@ export class DanhSachNguoiDungComponent implements OnInit {
     this.http
       .get(
         this.config.url_port +
-          `/user/danh-sach-nguoi-dung?page=${this.pages}&size=${this.rows}`
+          `/admin/user_info?page=${this.pages}&size=${this.rows}`
       )
       .subscribe((data: any) => {
         this.toltalRow = data.numberOfRecord;

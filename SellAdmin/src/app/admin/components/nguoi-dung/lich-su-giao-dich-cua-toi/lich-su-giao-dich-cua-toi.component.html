@@ -4,13 +4,12 @@
     <p-progressBar mode="indeterminate" [style]="{'height': '6px' }"></p-progressBar>    
 </div>
 <div class="content-section introduction">
-        <h1 *ngIf="user == null" style="color: orange;">Người dùng không tồn tại</h1>
-        <div *ngIf="user != null">
-            <span class="feature-title">Lịch sử giao dịch của {{user.userName}}</span>
-            <span>Các giao dịch người dùng có mã {{user.userID}} đã thực hiện gần đây</span>
+        <div>
+            <span class="feature-title">Lịch sử giao dịch của tôi</span>
+            <span>Các giao dịch bạn đã thực hiện gần đây</span>
         </div>
 </div>
-<p-dataTable *ngIf="user != null" [value]="danhSachGiaoDich" [responsive]="true">
+<p-dataTable [value]="danhSachGiaoDich" [responsive]="true">
     <p-column field="transactionHistoryID" header="Mã giao dịch"></p-column>
     <p-column field="transactionDate" header="Ngày giao dịch" >
         <ng-template let-col let-car="rowData" pTemplate="body">
@@ -23,4 +22,4 @@
     <p-column field="transactionDescription" header="Nội dung" >
     </p-column>
 </p-dataTable>
-<p-paginator *ngIf="user != null" rows="{{size}}"  totalRecords="{{totalRow}}" (onPageChange)="paginate($event, user.userID)" [rowsPerPageOptions]="[5, 10, 20, 100]" ></p-paginator>
+<p-paginator rows="{{size}}"  totalRecords="{{totalRow}}" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5, 10, 20, 100]" ></p-paginator>

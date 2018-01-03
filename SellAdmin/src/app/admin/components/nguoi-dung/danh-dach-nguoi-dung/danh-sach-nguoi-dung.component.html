@@ -2,6 +2,7 @@
 <h3>
   Danh sách người dùng</h3>
 <p-dataTable [value]="listNguoiDung" sortMode="multiple" [(selection)]="selectedNguoiDung" selectionMode="single" (onRowSelect)="suKienChon($event)">
+  <p-column field="userID" header="ID" [sortable]="true"></p-column>
   <p-column field="email" header="Email" [sortable]="true"></p-column>
   <p-column field="userName" header="Tên" [sortable]="true"></p-column>
   <p-column field="score" header="Điểm" [sortable]="true"></p-column>
@@ -10,9 +11,9 @@
       <span >{{(status[col.field]===1)?'Hoạt động':'Khóa ' }} </span>
   </ng-template>
   </p-column>
-  <p-column field="userID" header="Lịch sử giao dịch" >
+  <p-column header="Lịch sử giao dịch" >
     <ng-template  pTemplate="body">
-      <button type="button" pButton  icon="fa-history"></button>
+      <button type="button" pButton  icon="fa-history" router-Link="#"></button>
   </ng-template>
   </p-column>
 

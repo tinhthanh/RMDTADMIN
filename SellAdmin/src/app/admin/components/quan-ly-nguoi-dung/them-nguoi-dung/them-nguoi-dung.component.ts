@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    templateUrl: 'admin-main.component.html'
+    templateUrl: 'them-nguoi-dung.component.html'
 })
 
-export class AdminMainComponent implements OnInit {
+export class ThemNguoiDungComponent implements OnInit {
     constructor() { }
+
     ngOnInit() { }
 }

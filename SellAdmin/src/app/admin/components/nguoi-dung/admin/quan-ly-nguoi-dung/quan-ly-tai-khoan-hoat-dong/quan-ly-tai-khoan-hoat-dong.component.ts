@@ -103,6 +103,7 @@ export class QuanLyTaiKhoanHoatDongComponent implements OnInit {
          listUser[i].score  = this.soTien ;
      }
  }
+ this.msgs = [{severity: 'info', summary: 'success', detail: 'Thao tác thành công '}];
  this.listUser = listUser ;
 this.soTien = 0 ;
 this.isNapTien = false;

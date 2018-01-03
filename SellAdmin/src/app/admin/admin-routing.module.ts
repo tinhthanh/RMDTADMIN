@@ -1,7 +1,6 @@
-import { NguoiDungModule } from './components/nguoi-dung/nguoi-dung.module';
 import { AdminMainComponent } from './components/admin-main/admin-main.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {  Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
@@ -27,7 +26,7 @@ const routes: Routes = [
       {
         path: 'nguoi-dung',
         loadChildren : './components/nguoi-dung/nguoi-dung.module#NguoiDungModule'
-      }
+      },
     ]
   }
 ];

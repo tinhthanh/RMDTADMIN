@@ -1,3 +1,6 @@
+import { LichSuGiaoDichCuaToiComponent } from './lich-su-giao-dich-cua-toi/lich-su-giao-dich-cua-toi.component';
+import { DanhSachLichSuGiaoDichComponent } from './danh-sach-lich-su-giao-dich/danh-sach-lich-su-giao-dich.component';
+import { BinhLuanComponent } from './binh-luan/binh-luan.component';
 import { SafePipe } from './../../_Pipe/SafePipe';
 import { InputTextModule } from 'app/components/inputtext/inputtext';
 import { FormUploadComponent } from 'app/admin/components/khoa-hoc/form-upload/form-upload.component';
@@ -28,6 +31,7 @@ import { KhoaHocDaMuaChiTietComponent } from '../nguoi-dung/khoa-hoc-da-mua/khoa
 import { ProgressSpinnerModule } from 'app/components/progressspinner/progressspinner';
 import { PanelModule } from 'app/components/panel/panel';
 import { RadioButtonModule } from 'app/components/radiobutton/radiobutton';
+import { LichSuGiaoDichComponent } from 'app/admin/components/nguoi-dung/lich-su-giao-dich/lich-su-giao-dich.component';
 import { QuanLyNguoiDungComponent } from './admin/quan-ly-nguoi-dung/quan-ly-nguoi-dung.component';
 import { QuanLyTaiKhoanBiKhoaComponent } from './admin/quan-ly-nguoi-dung/quan-ly-tai-khoan-bi-khoa/quan-ly-tai-khoan-bi-khoa.component';
 import {
@@ -64,6 +68,10 @@ import {
   KhoaHocDaMuaComponent,
   KhoaHocDaMuaChiTietComponent,
   SafePipe,
+  LichSuGiaoDichComponent,
+  DanhSachLichSuGiaoDichComponent,
+  BinhLuanComponent,
+  LichSuGiaoDichCuaToiComponent,
   QuanLyNguoiDungComponent,
   QuanLyTaiKhoanBiKhoaComponent,
   QuanLyTaiKhoanHoatDongComponent

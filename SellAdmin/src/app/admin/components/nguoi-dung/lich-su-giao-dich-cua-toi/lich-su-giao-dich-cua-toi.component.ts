@@ -34,7 +34,7 @@ export class LichSuGiaoDichCuaToiComponent implements OnInit {
     getAllTransactionHistory(): void {
         this.loading = true;
         // tslint:disable-next-line:max-line-length
-        this.httpClient.get(this.config.url_port + `/users/transaction_history/?page=${this.page + 1}&size=${this.size}`).subscribe( (data: any)  => {
+        this.httpClient.get(this.config.url_port + `/user/transaction_history/?page=${this.page + 1}&size=${this.size}`).subscribe( (data: any)  => {
         this.totalRow = data.numberOfRecord;
         this.danhSachGiaoDich = data.listOfResult ;
         this.loading = false;

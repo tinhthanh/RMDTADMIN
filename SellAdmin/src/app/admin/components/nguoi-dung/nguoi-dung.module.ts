@@ -1,3 +1,4 @@
+import { KhoaHocDaDangComponent } from './khoa-hoc-da-dang/khoa-hoc-da-dang.component';
 import { LichSuGiaoDichCuaToiComponent } from './lich-su-giao-dich-cua-toi/lich-su-giao-dich-cua-toi.component';
 import { DanhSachLichSuGiaoDichComponent } from './danh-sach-lich-su-giao-dich/danh-sach-lich-su-giao-dich.component';
 import { BinhLuanComponent } from './binh-luan/binh-luan.component';
@@ -74,7 +75,8 @@ import {
   LichSuGiaoDichCuaToiComponent,
   QuanLyNguoiDungComponent,
   QuanLyTaiKhoanBiKhoaComponent,
-  QuanLyTaiKhoanHoatDongComponent
+  QuanLyTaiKhoanHoatDongComponent,
+  KhoaHocDaDangComponent
   ],
   providers: [
     ConfirmationService,

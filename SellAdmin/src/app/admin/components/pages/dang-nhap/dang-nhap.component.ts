@@ -28,6 +28,14 @@ export class DangNhapComponent implements OnInit {
         if (localStorage.getItem(this.config.remember)) { // kiểm tra có lưu đăng nhập cho người dùng không
             this.userRemember = JSON.parse(atob(localStorage.getItem(this.config.remember)));
         }
+        if ( !this.route.snapshot.queryParams['returnUrl']  ) {
+            this.returnUrl =  '/';
+         } else {
+            const returnUrl = this.route.snapshot.queryParams['returnUrl'] ;
+            const v = returnUrl.split('?');
+                this.returnUrl = v[0];
+         }
+         console.log(this.returnUrl);
         if (!this.userRemember) { // trường hợp không có lưu thông tin đăng nhâp thì ta tạo mới
             this.userRemember = {};
             this.userRemember.email = '';

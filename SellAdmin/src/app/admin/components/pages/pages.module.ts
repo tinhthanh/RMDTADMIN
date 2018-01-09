@@ -18,6 +18,7 @@ import { UserService } from './../../_services/user.service';
 import { NgModule } from '@angular/core';
 import { DangNhapComponent } from '../pages/dang-nhap/dang-nhap.component';
 import { PagesComponent } from '../pages/pages.component';
+import { ResetDataComponent } from './reset-data/reset-data.component';
 const EDIT_CUSTOMER = [
     GrowlModule,
     PanelModule,
@@ -45,7 +46,8 @@ const MAIN_CUSTOMER = [
     ],
     declarations: [
         DangNhapComponent,
-        PagesComponent
+        PagesComponent,
+        ResetDataComponent
     ],
     exports: [],
     providers: [

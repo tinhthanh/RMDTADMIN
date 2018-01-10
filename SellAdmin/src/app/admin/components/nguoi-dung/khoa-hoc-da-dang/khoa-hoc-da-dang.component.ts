@@ -1,16 +1,15 @@
-
 import { ConfirmationService } from './../../../../components/common/confirmationservice';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { ConfigValue } from './../../../_helpers/config-value';
-import { HttpClient } from '@angular/common/http';
+import { ConfigValue } from 'app/admin/_helpers/config-value';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Message } from 'app/components/common/api';
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-    templateUrl: 'khoa-hoc-da-mua.component.html'
+    templateUrl: 'khoa-hoc-da-dang.component.html'
 })
-export class KhoaHocDaMuaComponent implements OnInit {
+
+export class KhoaHocDaDangComponent implements OnInit {
     loading = false;
     msgs: Message[] = [];
     totalRow = 0 ; // tổng số row trong database
@@ -62,13 +61,13 @@ thaoTacXoa($event) {
         console.log($event);
         this.roter.navigate(['/admin/nguoi-dung/khoa-hoc-da-mua-chi-tiet'], { queryParams: { id: $event.courseID }});
         }
-public loadingTopic() {
-    this.loading = true;
-    this.http.get(this.config.url_port + `/user/course/register?page=${ this.page + 1 }&size=${this.size}` ).subscribe( (data: any)  => {
-        this.totalRow = data.numberOfRecord;
-        this.danhSachKhoaHoc = data.listOfResult ;
-        this.loading = false;
-        console.log(this.danhSachKhoaHoc);
-    });
-}
+    public loadingTopic() {
+        this.loading = true;
+        this.http.get(this.config.url_port + `/users/course?page=${ this.page + 1 }&size=${this.size}` ).subscribe( (data: any)  => {
+            this.totalRow = data.numberOfRecord;
+            this.danhSachKhoaHoc = data.listOfResult ;
+            this.loading = false;
+            console.log(this.danhSachKhoaHoc);
+        });
+    }
 }

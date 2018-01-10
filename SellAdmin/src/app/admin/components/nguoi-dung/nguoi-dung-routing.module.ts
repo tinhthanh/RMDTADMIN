@@ -1,4 +1,3 @@
-import { KhoaHocDaDangComponent } from './khoa-hoc-da-dang/khoa-hoc-da-dang.component';
 import { LichSuGiaoDichCuaToiComponent } from './lich-su-giao-dich-cua-toi/lich-su-giao-dich-cua-toi.component';
 import { QuanLyNguoiDungComponent } from './admin/quan-ly-nguoi-dung/quan-ly-nguoi-dung.component';
 import { KhoaHocDaMuaChiTietComponent } from './khoa-hoc-da-mua/khoa-hoc-da-mua-chi-tiet/khoa-hoc-da-mua-chi-tiet.component';
@@ -43,9 +42,6 @@ const routes: Routes =   [
         }, {
           path: 'lich-su-giao-dich-cua-toi',
           component: LichSuGiaoDichCuaToiComponent
-        }, {
-          path: 'khoa-hoc-da-dang',
-          component: KhoaHocDaDangComponent
         }
       ]
     }, {

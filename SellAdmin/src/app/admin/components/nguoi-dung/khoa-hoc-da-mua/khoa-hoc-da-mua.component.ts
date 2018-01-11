@@ -59,8 +59,8 @@ thaoTacXoa($event) {
     });
     }
     thaoTacCapNhap($event) {
-        console.log($event.course.courseID);
-        this.roter.navigate(['/admin/nguoi-dung/khoa-hoc-da-mua-chi-tiet'], { queryParams: { id: $event.course.courseID }});
+        console.log($event);
+        this.roter.navigate(['/admin/nguoi-dung/khoa-hoc-da-mua-chi-tiet'], { queryParams: { id: $event.courseID }});
         }
 public loadingTopic() {
     this.loading = true;

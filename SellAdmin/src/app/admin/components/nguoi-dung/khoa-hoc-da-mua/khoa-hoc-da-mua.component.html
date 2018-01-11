@@ -14,36 +14,57 @@
 <div style="margin: 0 5px 0 5px" >
     <p-dataTable [value]="danhSachKhoaHoc"  [responsive]="true">
         <p-column field="course.courseTitle" header="Tên khóa học" [sortable]="true"></p-column>
-        <p-column field="course.author" header="Người đăng" [sortable]="true">
+        <p-column field="course.courseDescription" header="Người đăng" [sortable]="true">
             <ng-template let-col let-khoahoc="rowData" pTemplate="body">
-                    <p-inplace>
-                            <span pInplaceDisplay>
-                             <span class="fa fa-user">Xem người đăng</span> <br>
-                                <span style="margin-left:8px">
-                                        <span [innerHTML]="khoahoc[col.field]"></span>
-                                </span>
-                            </span>
-                            <p-fieldset legend="Thông tin người đăng" pInplaceContent [toggleable]="true">
+                <p-inplace>
+                        <span pInplaceDisplay>
+                            <span class="fa fa-user">  Xem người đăng  </span> <br>
+                        </span>
+                        <span pInplaceContent>
                                 <table class="doc-table">
-                                    <tr>
-                                        <td> <img src="khoahoc[col.field].avatar"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <b>Tên:</b>
-                                            <h4>{{khoahoc.course.author.userName}}</h4>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <b>Email:</b>
-                                            <h4>{{khoahoc.course.author.email}}</h4>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </p-fieldset>
-                        </p-inplace>
-            </ng-template>
+                                        <thead>
+                                            <tr>
+                                                <th>Thông tin người đăng</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td> <img src="{{khoahoc.course.author.avatar}}" style="
+                        border-radius: 50%;
+                        width: 20%;
+                        float: left;
+                    ">
+                    <div style="
+                        width: 80%;
+                        /* float: left; */
+                        margin-left: 57px;
+                    "> <h4> {{khoahoc.course.author.userName}} </h4></div> </td>
+                    
+                    
+                                            </tr>
+                    <tr>
+                                                <td> <div style="
+                        border-radius: 50%;
+                        width: 20%;
+                        float: left;
+                                "> <h4>Email:</h4>  </div>
+                    <div style="
+                        width: 80%;
+                        /* float: left; */
+                        margin-left: 57px;
+                    "> <h4> {{khoahoc.course.author.email}}</h4></div> </td>
+                    
+                    
+                                            </tr>
+                                          
+                                        </tbody>
+                                    </table>
+                        </span>
+                    </p-inplace>
+
+                    
+          
+        </ng-template>
         </p-column>
         <p-column field="registerDate" header="Ngày mua" >
             <ng-template let-col let-khoahoc="rowData" pTemplate="body">

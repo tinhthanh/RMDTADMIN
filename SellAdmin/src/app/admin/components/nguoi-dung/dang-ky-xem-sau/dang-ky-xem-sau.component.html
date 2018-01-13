@@ -24,18 +24,18 @@
             <ng-template let-khoahoc="rowData" pTemplate="body">
                    <img style="width: 80px; white-space: nowrap;
                    overflow: hidden;
-                   text-overflow: ellipsis;" src="{{khoahoc.courseAvatar}}" >
+                   text-overflow: ellipsis;" src="{{ ( khoahoc.course.courseAvatar === '' ) ?  'https://www.caperlan.co.uk/sites/caperlan/files/styles/460x460/public/default_images/no-picture.png' : khoahoc.course.courseAvatar  }}" >
             </ng-template>
         </p-column>
         
-        <p-column field="courseTitle" header="Tên khóa học" [sortable]="true"></p-column>
+        <p-column field="course.courseTitle" header="Tên khóa học" [sortable]="true"></p-column>
         <p-column field="courseDescription" header="Mô tả khóa học " [sortable]="true">
             <ng-template let-col let-khoahoc="rowData" pTemplate="body">
                     <p-inplace>
                             <span pInplaceDisplay>
                              <span class="fa fa-user">  Xem người đăng  </span> <br>
                                 <span style="margin-left:8px">
-                                        <span [innerHTML]="khoahoc[col.field]"></span>
+                                        <span [innerHTML]="khoahoc.course.courseDescription"></span>
                                 </span>
                             </span>
                             <span pInplaceContent>
@@ -47,7 +47,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td> <img src="{{khoahoc.author.avatar}}" style="
+                                                    <td> <img src="{{khoahoc.course.author.avatar}}" style="
                             border-radius: 50%;
                             width: 20%;
                             float: left;
@@ -56,7 +56,7 @@
                             width: 80%;
                             /* float: left; */
                             margin-left: 57px;
-                        "> <h4> {{khoahoc.author.userName}} </h4></div> </td>
+                        "> <h4> {{khoahoc.course.author.userName}} </h4></div> </td>
                         
                         
                                                 </tr>
@@ -70,7 +70,7 @@
                             width: 80%;
                             /* float: left; */
                             margin-left: 57px;
-                        "> <h4> {{khoahoc.author.email}}</h4></div> </td>
+                        "> <h4> {{khoahoc.course.author.email}}</h4></div> </td>
                         
                         
                                                 </tr>
@@ -91,12 +91,12 @@
                 <p-inplace>
                     <span pInplaceDisplay>
                       <a>   <span class="fa fa-eye"> Xem chi tiết Chủ đề </span>  </a><br><span style="margin-left:8px">
-                            <pre> {{ khoahoc.topic.topicName  }}</pre>
+                            <pre> {{ khoahoc.course.topic.topicName  }}</pre>
                         </span>
                     </span>
                     <span pInplaceContent>
                             <p-fieldset legend="Mô tả chủ đề" [toggleable]="true">
-                                    {{ khoahoc.topic.topicDescription }} 
+                                    {{ khoahoc.course.topic.topicDescription }} 
                                         </p-fieldset>
                           
                     </span>
@@ -119,7 +119,6 @@
             </ng-template>
         </p-column>
     </p-dataTable>
-<p-paginator rows="{{size}}"  totalRecords="{{totalRow}}" (onPageChange)="paginate($event)" [rowsPerPageOptions]="[5,10,20, 100]" ></p-paginator>
 
     
     </div>

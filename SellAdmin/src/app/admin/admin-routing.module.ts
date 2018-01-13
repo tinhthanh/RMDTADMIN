@@ -27,10 +27,6 @@ const routes: Routes = [
         path: 'nguoi-dung',
         loadChildren : './components/nguoi-dung/nguoi-dung.module#NguoiDungModule'
       },
-      {
-        path: 'thong-ke',
-        loadChildren: './components/thong-ke/thong-ke.module#ThongKeModule'
-      }
     ]
   }
 ];

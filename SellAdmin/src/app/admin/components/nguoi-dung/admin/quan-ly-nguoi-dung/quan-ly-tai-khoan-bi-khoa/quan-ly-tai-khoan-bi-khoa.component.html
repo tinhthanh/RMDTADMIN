@@ -32,11 +32,13 @@
                         <h5>  <pre>{{user.email}}</pre></h5> 
                     </ng-template>
                 </p-column>
-            <p-column field="address" header="Địa chỉ " [sortable]="true">
-                <ng-template let-col let-user="rowData" pTemplate="body">
-                    <h5>  <pre>{{user.address}}</pre></h5> 
-                </ng-template>
-            </p-column>
+                <p-column field="address" header="Địa chỉ " [sortable]="true">
+                    <ng-template let-col let-user="rowData" pTemplate="body">
+                        <h5 innerHTML=" {{user.address}}">
+                           
+                        </h5>
+                    </ng-template>
+                </p-column>
             <p-column field="phoneNumber" header="Số điện thoại" [sortable]="true">
                     <ng-template let-col let-user="rowData" pTemplate="body">
                            <pre>{{user.phoneNumber}}</pre>

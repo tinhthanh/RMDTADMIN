@@ -20,6 +20,7 @@ import { TabViewModule } from 'app/components/tabview/tabview';
 import { CodeHighlighterModule } from 'app/components/codehighlighter/codehighlighter';
 import { EditorModule } from 'app/components/editor/editor';
 import { FileUploadModule } from 'app/components/fileupload/fileupload';
+import { RadioButtonModule } from 'app/components/radiobutton/radiobutton';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { FileUploadModule } from 'app/components/fileupload/fileupload';
         DataTableModule,
         PaginatorModule,
         DialogModule,
-        ProgressBarModule
+        ProgressBarModule,
+        RadioButtonModule
     ],
     exports: [],
     declarations: [ ChuDeComponent , DanhSachChuDeComponent ],

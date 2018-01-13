@@ -34,8 +34,8 @@
         </p-column>
         <p-column field="address" header="Địa chỉ " [sortable]="true">
             <ng-template let-col let-user="rowData" pTemplate="body">
-                <h5>
-                    <pre>{{user.address}}</pre>
+                <h5 innerHTML=" {{user.address}}">
+                   
                 </h5>
             </ng-template>
         </p-column>
@@ -55,7 +55,7 @@
             <ng-template let-col let-user="rowData" pTemplate="body">
                     <div *ngFor="let role of user.permission " class="ui-messages ui-widget ui-corner-all ui-messages-success" style="display:block" ng-reflect-klass="ui-messages ui-widget ui-corne" ng-reflect-ng-class="[object Object]">
                 <a class="ui-messages-close" (click)="xoaQuyen(role , user )">
-                                <i class="fa fa-close"></i>
+                                <i *ngIf=" (role.roleName !== 'ROLE_USER')" class="fa fa-close"></i>
                             </a>
                             <span ng-reflect-klass="ui-messages-icon fa fa-fw fa-2" ng-reflect-ng-class="fa-check"></span>
                             <ul><li><span class="ui-messages-summary">
@@ -102,7 +102,7 @@
     <p-dialog minWidth="600" minHeight="300" header="Chỉnh sữa thông tin người dùng" [(visible)]="displayEditUser">
 
 
-        <form *ngIf="userform" [formGroup]="userform" (ngSubmit)="onSubmit()">
+        <form *ngIf="userform && displayEditUser" [formGroup]="userform" (ngSubmit)="onSubmit()">
           
                 <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" >
                     <div class="ui-grid-row">
@@ -126,7 +126,7 @@
                             Địa chỉ :
                         </div>
                         <div class="ui-grid-col-10">
-                            <p-editor formControlName="address" [style]="{'height':'70px'}">
+                            <p-editor  formControlName="address" [style]="{'height':'70px'}">
                                 <p-header>
                                     <span class="ql-formats">
                                         <button class="ql-bold" aria-label="Bold"></button>

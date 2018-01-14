@@ -10,6 +10,7 @@
         </div>
 </div>
 <p-dataTable [value]="danhSachGiaoDich" [responsive]="true">
+    <p-column field="traders.userID" header="Mã người dùng" [sortable]="true"></p-column>
     <p-column field="transactionHistoryID" header="Mã giao dịch"></p-column>
     <p-column field="transactionDate" header="Ngày giao dịch" >
         <ng-template let-col let-car="rowData" pTemplate="body">

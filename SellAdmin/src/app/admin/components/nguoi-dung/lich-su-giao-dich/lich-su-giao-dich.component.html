@@ -7,20 +7,20 @@
         <h1 *ngIf="user == null" style="color: orange;">Người dùng không tồn tại</h1>
         <div *ngIf="user != null">
             <span class="feature-title">Lịch sử giao dịch của {{user.userName}}</span>
-            <span>Các giao dịch người dùng có mã {{user.userID}} đã thực hiện gần đây</span>
+            <span>Các giao dịch của người dùng có mã {{user.userID}} đã thực hiện gần đây</span>
         </div>
 </div>
 <p-dataTable *ngIf="user != null" [value]="danhSachGiaoDich" [responsive]="true">
     <p-column field="transactionHistoryID" header="Mã giao dịch"></p-column>
-    <p-column field="transactionDate" header="Ngày giao dịch" >
+    <p-column field="transactionDate" header="Ngày giao dịch">
         <ng-template let-col let-car="rowData" pTemplate="body">
             <span >{{car[col.field].year + '/'+  car[col.field].monthValue + '/' + car[col.field].dayOfMonth }}</span>
         </ng-template>
     </p-column>
-    <p-column field="transactionForm.transactionFormName" header="Hình thức" ></p-column>
+    <p-column field="transactionForm.transactionFormName" header="Hình thức"></p-column>
     <p-column field="debt" header="Nợ"></p-column>
     <p-column field="balance" header="Có"></p-column>
-    <p-column field="transactionDescription" header="Nội dung" >
+    <p-column field="transactionDescription" header="Nội dung">
     </p-column>
 </p-dataTable>
 <p-paginator *ngIf="user != null" rows="{{size}}"  totalRecords="{{totalRow}}" (onPageChange)="paginate($event, user.userID)" [rowsPerPageOptions]="[5, 10, 20, 100]" ></p-paginator>

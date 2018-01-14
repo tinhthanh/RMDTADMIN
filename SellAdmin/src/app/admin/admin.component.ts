@@ -9,7 +9,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
-    templateUrl: 'admin.component.html'
+    templateUrl: 'admin.component.html',
+    styleUrls: ['admin.component.css']
 })
 
 export class AdminComponent implements OnInit {

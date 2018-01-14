@@ -122,8 +122,10 @@ this.isNapTien = false;
         this.isThemQuyen = true;
     }
     public themQuyen($event): void {
-    console.log(this.selectUser);
-    console.log($event);
+        const roleDeleteting: any = {};
+        roleDeleteting.userID = this.selectUser.userID;
+    this.http.post(this.config.url_port + '/admin/access_role' , roleDeleteting  ).subscribe( (data: any ) => {
+        console.log('xoa thanh cong');
         const listUser = [...this.listUser];
         for ( let i = 0 ; i < listUser.length ; i++) {
            if ( listUser[i].userID === this.selectUser.userID ) {
@@ -134,24 +136,33 @@ this.isNapTien = false;
        this.listUser = listUser ;
         this.isThemQuyen = false;
         this.msgs = [{severity: 'info', summary: 'success', detail: 'Thêm thành công'}];
+    });
     }
     public xoaQuyen( $role , $user ) {
-        const selectUser = $user;
-         for ( let i = 0 ; i < selectUser.permission.length ; i++) {
-             if ( $role.roleID  === selectUser.permission[i].roleID ) {
-                selectUser.permission.splice(i, 1);
-             }
-         }
-         this.selectUser = selectUser ;
-        //  console.log($user.permission);
-        const listUser = [...this.listUser];
-         for ( let i = 0 ; i < listUser.length ; i++) {
-            if ( listUser[i].userID === $user.userID ) {
-                listUser[i] = this.selectUser;
+        if ($role.roleID   === 1 ) {
+            this.msgs = [{severity: 'error', summary: 'success', detail: ' Không thể xóa quyền User'}];
+        } else {
+            const selectUser = $user;
+            for ( let i = 0 ; i < selectUser.permission.length ; i++) {
+                if ( $role.roleID  === selectUser.permission[i].roleID ) {
+                     this.http.delete(this.config.url_port + '/admin/access_role?userID=' + selectUser.userID ).subscribe( (data: any ) => {
+            console.log('xoa thanh cong');
+            selectUser.permission.splice(i, 1);
+           this.msgs = [{severity: 'info', summary: 'success', detail: ' Xóa thành công'}];
+        });
+                }
             }
+            this.selectUser = selectUser ;
+           //  console.log($user.permission);
+           const listUser = [...this.listUser];
+            for ( let i = 0 ; i < listUser.length ; i++) {
+               if ( listUser[i].userID === $user.userID ) {
+                   listUser[i] = this.selectUser;
+               }
+           }
+           this.listUser = listUser ;
+
         }
-        this.listUser = listUser ;
-        this.msgs = [{severity: 'info', summary: 'success', detail: ' Xóa thành công'}];
     }
     public loadingListUser(): void {
         this.http.get( `${this.config.url_port}/admin/user_info?page=${this.page + 1}&size=${this.size}`).subscribe( (data: any) => {

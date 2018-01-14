@@ -64,9 +64,9 @@ thaoTacXoa($event) {
         }
 public loadingTopic() {
     this.loading = true;
-    this.http.get(this.config.url_port + `/users/course?page=${ this.page + 1 }&size=${this.size}` ).subscribe( (data: any)  => {
-        this.totalRow = data.numberOfRecord;
-        this.danhSachKhoaHoc = data.listOfResult ;
+    this.http.get(this.config.url_port + `/watch_later` ).subscribe( (data: any)  => {
+        this.danhSachKhoaHoc = data;
+        console.log(this.danhSachKhoaHoc);
         this.loading = false;
         console.log(this.danhSachKhoaHoc);
     });

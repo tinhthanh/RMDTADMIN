@@ -17,6 +17,8 @@ export class AdminComponent implements OnInit {
     activeMenuId: string;
     menuActive: boolean;
     development = false;
+    isAdmin = false ;
+    isUser = false;
     constructor(
         private auth: AuthenticationService,
         private router: Router ) { }
@@ -24,6 +26,17 @@ export class AdminComponent implements OnInit {
     ngOnInit() {
  this.auth.getInformation().subscribe(data => {
     console.log(data);
+    const permission =  data.permission;
+    for ( let i = 0 ; i < permission.length ; i++ ) {
+        if ( permission[i].roleName  === 'ROLE_ADMIN') {
+            this.isAdmin = true ;
+            // alert('admin');
+        }
+        if ( permission[i].roleName  === 'ROLE_USER') {
+            this.isUser = true ;
+          //  alert('user');
+        }
+    }
      this.user =  data;
     }, (err: HttpErrorResponse) => {
         if ( err.status  === 403 ) {

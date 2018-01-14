@@ -102,7 +102,7 @@
     <p-dialog minWidth="600" minHeight="300" header="Chỉnh sữa thông tin người dùng" [(visible)]="displayEditUser">
 
 
-        <form *ngIf="userform" [formGroup]="userform" (ngSubmit)="onSubmit()">
+        <form *ngIf="userform && displayEditUser" [formGroup]="userform" (ngSubmit)="onSubmit()">
           
                 <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" >
                     <div class="ui-grid-row">

@@ -56,12 +56,13 @@ export class QuanLyTaiKhoanHoatDongComponent implements OnInit {
     }
     public inintFormUser( user: UserInfo ): void {
         this.url_img_upload = user.avatar;
-      //  console.log(user);
-        this.userform = this.fb.group({
+       console.log(user);
+        const userfrom = this.fb.group({
             userName: new FormControl(user.userName ? user.userName : '', Validators.required),
             phoneNumber: new FormControl(user.phoneNumber ? user.phoneNumber : '' , Validators.required),
             address: new FormControl(user.address ? user.address : '' , Validators.required),
         });
+        this.userform  = userfrom;
     }
     progressUp($event) {
         this.uploadImgProress = true;
@@ -85,6 +86,7 @@ export class QuanLyTaiKhoanHoatDongComponent implements OnInit {
         this.displayEditUser = true;
     }
     thaoTacChinhSua($event) {
+
         this.selectUser = $event;
         this.inintFormUser(this.selectUser);
         this.displayEditUser = true;

@@ -59,7 +59,7 @@ thaoTacXoa($event) {
     }
     thaoTacCapNhap($event) {
         console.log($event);
-        this.roter.navigate(['/admin/nguoi-dung/khoa-hoc-da-mua-chi-tiet'], { queryParams: { id: $event.courseID }});
+        this.roter.navigate(['/admin/khoa-hoc/khoa-hoc-cua-toi'], { queryParams: { id: $event.courseID }});
         }
     public loadingTopic() {
         this.loading = true;

@@ -293,7 +293,7 @@ body {
 }
 
 #layout-sidebar .layout-menu > div a {
-    /* width: 50%; */
+    width: 50%;
     float: left;
     padding: 6px;
     box-sizing: border-box;

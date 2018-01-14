@@ -56,8 +56,8 @@ import { FollowRest } from 'app/admin/_helpers/mocktest/FollowRes';
     //  UserRest,
     ChapterRest,
     LessonRest,
-    FileOfLessonRest,
-    CourseRest,
+    // FileOfLessonRest,
+    // CourseRest,
     FollowRest
 
   ],

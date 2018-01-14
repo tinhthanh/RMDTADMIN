@@ -24,7 +24,7 @@
             <ng-template let-khoahoc="rowData" pTemplate="body">
                    <img style="width: 80px; white-space: nowrap;
                    overflow: hidden;
-                   text-overflow: ellipsis;" src="{{khoahoc.courseAvatar}}" >
+                   text-overflow: ellipsis;" src="{{(khoahoc.courseAvatar === '' ) ? 'https://www.caperlan.co.uk/sites/caperlan/files/styles/460x460/public/default_images/no-picture.png' : khoahoc.courseAvatar  }}" >
             </ng-template>
         </p-column>
         

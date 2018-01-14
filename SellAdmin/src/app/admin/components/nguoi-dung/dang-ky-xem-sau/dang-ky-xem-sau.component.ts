@@ -40,7 +40,7 @@ thaoTacXoa($event) {
         header: 'Xác nhận bỏ theo dõi',
         icon: 'fa fa-trash',
         accept: () => {
-            this.http.delete(this.config.url_port + '/users/follow/' + $event.courseID ).subscribe( ( data: any ) => {
+            this.http.delete(this.config.url_port + '/watch_later/' + $event.course.courseID ).subscribe( ( data: any ) => {
                 console.log(data);
                 const danhSachKhoaHoc   = [...this.danhSachKhoaHoc];
                 for ( let i = 0  ; i < danhSachKhoaHoc.length ; i++  ) {

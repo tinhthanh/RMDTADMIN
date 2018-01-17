@@ -43,19 +43,27 @@ this.confirmationService.confirm({
     header: 'Xác nhận duyệt',
     icon: 'fa fa-trash',
     accept: () => {
-        alert('ngon');
-        // this.http.delete(this.config.url_port + '/user/course/' + $event.courseID ).subscribe( ( data: any ) => {
-        //     console.log(data);
-        //     const danhSachKhoaHoc   = [...this.danhSachKhoaHoc];
-        //     for ( let i = 0  ; i < danhSachKhoaHoc.length ; i++  ) {
-        //         if ( danhSachKhoaHoc[i].courseID === $event.courseID) {
-        //             danhSachKhoaHoc.splice(i, 1);
-        //         }
-        //     }
-        //     this.danhSachKhoaHoc = danhSachKhoaHoc ;
-        // }, ( err: HttpErrorResponse) => {
-        //     console.log('Xóa khôn  thành công ');
-        // });
+        // {
+        //     "courseID": "",
+        //     "newStatus": 0
+        //   }
+        console.log($event.courseID);
+        const sendData: any  = {};
+        sendData.courseID =  $event.courseID ;
+        sendData.newStatus = 1 ;
+        console.log(sendData);
+        this.http.patch(this.config.url_port + '/admin/course/status', sendData).subscribe( ( data: any ) => {
+            // console.log(data);
+            const danhSachKhoaHoc   = [...this.danhSachKhoaHoc];
+            for ( let i = 0  ; i < danhSachKhoaHoc.length ; i++  ) {
+                if ( danhSachKhoaHoc[i].courseID === $event.courseID) {
+                    danhSachKhoaHoc.splice(i, 1);
+                }
+            }
+            this.danhSachKhoaHoc = danhSachKhoaHoc ;
+        }, ( err: HttpErrorResponse) => {
+            console.log('Xóa khôn  thành công ');
+        });
     },
     reject: () => {
         this.msgs = [{severity: 'info', summary: 'Rejected', detail: 'You have rejected'}];
@@ -77,7 +85,7 @@ paginate(event) { // sư kiện phân trang
 
 public loadingTopic() {
     this.loading = true;
-    this.http.get(this.config.url_port + `/users/course?page=${ this.page + 1 }&size=${this.size}` ).subscribe( (data: any)  => {
+    this.http.get(this.config.url_port + `/course/status/2?page=${ this.page + 1 }&size=${this.size}` ).subscribe( (data: any)  => {
         this.totalRow = data.numberOfRecord;
         this.danhSachKhoaHoc = data.listOfResult ;
         this.loading = false;

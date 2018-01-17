@@ -27,7 +27,8 @@
 <p-sidebar [(visible)]="visibleEditFile" position="top" [baseZIndex]="10000">
         <div *ngIf="!isSelectLessonFile">
     <h1 style="font-weight:normal">{{selectFile?.lesonAttachContent}}</h1>
-    <button pButton type="button" (click)="clickTaiXuong()" label="Tải xuống " class="ui-button-success"></button>
+    <a href="{{selectFile?.lesonAttachContent}}" >
+    <button pButton type="button"  label="Tải xuống " class="ui-button-success"> </button> </a>
     <button pButton type="button" (click)="visibleEditFile = false" label="Cancel" class="ui-button-secondary"></button>
         </div>
 </p-sidebar>
@@ -127,7 +128,7 @@
                             Tên khóa học:
                         </div>
                         <div class="ui-grid-col-6">
-                            <pre>{{khoahoc.courseTitle}}</pre>
+                            <h3>{{khoahoc.courseTitle}} </h3>
                         </div>
                         <div class="ui-grid-col-4">
                             <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userform.controls['courseTitle'].valid&&userform.controls['courseTitle'].dirty">
@@ -141,7 +142,7 @@
                             Mô tả:
                         </div>
                         <div class="ui-grid-col-6">
-                            <pre>{{khoahoc.courseDescription}}</pre>
+                           <h4 [innerHTML]="khoahoc.courseDescription"></h4>
                         </div>
                         <div class="ui-grid-col-4"></div>
                     </div>
@@ -150,7 +151,7 @@
                             Giá:
                         </div>
                         <div class="ui-grid-col-6">
-                            <pre>{{khoahoc.price}}</pre>
+                            <h5>{{khoahoc.price}}</h5>
                         </div>
                         <div class="ui-grid-col-4">
                             <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userform.controls['price'].valid&&userform.controls['price'].dirty">
@@ -161,21 +162,7 @@
                     </div>
                     <div class="ui-grid-row">
                         <div class="ui-grid-col-2">
-                            Mã loại khóa học *:
-                        </div>
-                        <div class="ui-grid-col-6">
-                            <pre>{{khoahoc.courseType.courseTitle}} </pre>
-                        </div>
-                        <div class="ui-grid-col-4">
-                            <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!userform.controls['courseTypeID'].valid&&userform.controls['courseTypeID'].dirty">
-                                <i class="fa fa-close"></i>
-                                Đây là trường bắt buộc
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui-grid-row">
-                        <div class="ui-grid-col-2">
-                            Mã chủ đề *:
+                            Tên chủ đề *:
                         </div>
                         <div class="ui-grid-col-6">
                             <pre>{{khoahoc.topic.topicName}}</pre>
@@ -208,7 +195,7 @@
 
                         </div>
                         <div class="ui-grid-col-6">
-                            <pre>{{ khoahoc.courseDetail}}</pre>
+                            <h4 [innerHTML]="khoahoc.courseDetail" ></h4>
                         </div>
                         <div class="ui-grid-col-4"></div>
                     </div>

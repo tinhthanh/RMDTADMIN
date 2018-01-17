@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ConfigValue } from 'app/admin/_helpers/config-value';
 @Component({
   selector: 'app-thong-ke-theo-chu-de',
   templateUrl: './thong-ke-theo-chu-de.component.html',
@@ -6,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThongKeTheoChuDeComponent implements OnInit {
   data: any;
-  mocktest: any = {};
   listColor:  any =  [
     '#FF6384',
     '#4BC0C0',
@@ -19,8 +20,6 @@ export class ThongKeTheoChuDeComponent implements OnInit {
     '#8a6d3b',
     '#333'
 ];
-listTopics:  any  = [];
-listTopicsValue: any  = [] ;
 // listTopics:  any =  [
 //     '#FF6384 ----------',
 //     '#4BC0C0 ----------',
@@ -34,32 +33,46 @@ listTopicsValue: any  = [] ;
 //     '#333'
 // ];
   ngOnInit(): void {
-      this.mocktest.data =
-      [
-      {name: 'Chủ đề 1' , value: 11},
-      {name: 'Chủ đề 2' , value: 21},
-      {name: 'Chủ đề 3' , value: 31},
-      {name: 'Chủ đề 4' , value: 15},
-      {name: 'Chủ đề 5' , value: 9},
-      {name: 'Chủ đề 6' , value: 25},
-      {name: 'Chủ đề 7' , value: 27},
-      {name: 'Chủ đề 8' , value: 29},
-      {name: 'Chủ đề 9' , value: 8},
-      {name: 'Còn lại' , value: 28}] ;
-      console.log(this.mocktest.data);
-      for ( let i = 0 ; i < this.mocktest.data.length ; i++ ) {
-        this.listTopics[i] = this.mocktest.data[i].name;
-        this.listTopicsValue[i] = this.mocktest.data[i].value;
-      }
-      this.data = {
-        datasets: [{
-            data: this.listTopicsValue,
-            backgroundColor: this.listColor,
-            label: 'My dataset'
-        }],
-        labels: this.listTopics
-    };
+    this.loadingData(2);
     }
-      constructor() {
+    loadingData(top: number) {
+      this.http.get(`${this.config.url_port}/admin/report/get-data-report-toppic/${top}`).subscribe( (rep: any ) => {
+        const temp   = rep.listOfResult;
+      let count = 0 ;
+        temp.forEach(element => {
+           count +=  element.value ;
+        });
+        temp.push( {name: 'Còn lại ' , value: rep.totalCourse - count });
+        console.log(temp);
+        const listTopics:  any  = [];
+       const  listTopicsValue: any  = [] ;
+        for ( let i = 0 ; i < temp.length ; i++ ) {
+          // listTopics[i] = temp[i].name;
+          if ( temp[i].value === 0  ) {
+           // listTopicsValue[i] = -1;
+          } else {
+            listTopics[i] = temp[i].name;
+            listTopicsValue[i]   = temp[i].value;
+          }
+        }
+        const data: any = {
+          datasets: [{
+              data: listTopicsValue,
+              backgroundColor: this.listColor,
+              label: 'Thông kê khóa học theo danh mục'
+          }],
+          labels: listTopics
+      };
+      this.data = data ;
+        });
+    }
+    thongke( $event ) {
+  console.log($event.target.value);
+  if ( $event.target.value !== '-1') {
+    this.loadingData($event.target.value);
+  }
+
+    }
+      constructor( private http: HttpClient , private config: ConfigValue) {
       }
   }

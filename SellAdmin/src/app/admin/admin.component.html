@@ -67,13 +67,13 @@
         <span>Thống kê  </span>
       </a>
       <div  *ngIf="isAdmin"  [ngClass]="{'submenushow': (buttonmenutitle?.id == activeMenuId), 'submenuhide': (buttonmenutitle?.id != activeMenuId)}">
-        <a style="  width: 100%; "  [routerLink]="['/admin/thong-ke/thong-ke-theo-danh-thu']" (click)="menuActive = false">&#9679; Thống kê doanh thu theo tháng </a>                
+        <a style="  width: 100%; "  [routerLink]="['/admin/thong-ke/thong-ke-theo-danh-thu']" (click)="menuActive = false">&#9679; Thống kê doanh thu </a>                
         <a style="  width: 100%; "  [routerLink]="['/admin/thong-ke/thong-ke-doanh-thu-theo-tuan']" (click)="menuActive = false">&#9679; Thống kê doanh thu theo tuần </a>                        
         <a style="  width: 100%; "  [routerLink]="['/admin/thong-ke/thong-ke-diem-nguoi-dung']" (click)="menuActive = false">&#9679; Thống kê điểm người dùng </a>                                
         <a style="  width: 100%; "  [routerLink]="['/admin/thong-ke/thong-ke-theo-chu-de']" (click)="menuActive = false">&#9679; Theo chủ đề</a>
         <a style="  width: 100%; "  [routerLink]="['/admin/thong-ke/thong-ke-luoc-xem-khoa-hoc']" (click)="menuActive = false">&#9679; Thống kê lược xem khóa học</a>        
-        <a style="  width: 100%; "  [routerLink]="['/admin/thong-ke/thong-ke-luoc-mua-khoa-hoc']" (click)="menuActive = false">&#9679; Thống kê lược mua khóa học</a>                
-        <a style="  width: 100%; "  [routerLink]="['/admin/thong-ke/thong-ke-chu-de-theo-luoc-xem']" (click)="menuActive = false">&#9679; Theo chủ đề theo lược xem</a>        
+        <!-- <a style="  width: 100%; "  [routerLink]="['/admin/thong-ke/thong-ke-luoc-mua-khoa-hoc']" (click)="menuActive = false">&#9679; Thống kê lược mua khóa học</a>                 -->
+        <!-- <a style="  width: 100%; "  [routerLink]="['/admin/thong-ke/thong-ke-chu-de-theo-luoc-xem']" (click)="menuActive = false">&#9679; Theo chủ đề theo lược xem</a>         -->
       </div>
         <a   *ngIf="isAdmin" style=" width: 100%; "  [routerLink]="['/admin/nguoi-dung/danh-sach-lich-su-giao-dich']">
             <img src="assets/showcase/images/icons/message-active.svg" class="layout-menu-icon-active" />

@@ -29,7 +29,12 @@
         </p-column>
         
         <p-column field="courseTitle" header="Tên khóa học" [sortable]="true"></p-column>
-        <p-column field="courseDescription" header="Mô tả khóa học "></p-column>
+        <p-column field="courseDescription" header="Mô tả khóa học ">
+            <ng-template let-col let-khoahoc="rowData" pTemplate="body">
+                <!-- <span >{{khoahoc[col.field].topic.topicName }}</span> -->
+                <span [innerHTML]="khoahoc.courseDescription" ></span> 
+            </ng-template>
+        </p-column>
         <p-column field="status" header="Chủ đề" >
             <ng-template let-col let-khoahoc="rowData" pTemplate="body">
                 <!-- <span >{{khoahoc[col.field].topic.topicName }}</span> -->
@@ -42,7 +47,7 @@
                     </span>
                     <span pInplaceContent>
                             <p-fieldset legend="Mô tả chủ đề" [toggleable]="true">
-                                    {{ khoahoc.topic.topicDescription }} 
+                                     <span [innerHTML]="khoahoc.topic.topicDescription" ></span> 
                                         </p-fieldset>
                           
                     </span>

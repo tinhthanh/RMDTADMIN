@@ -8,7 +8,8 @@ import { ConfigValue } from 'app/admin/_helpers/config-value';
 import { AuthenticationService } from 'app/admin/_services/AuthenticationService';
 
 @Component({
-    templateUrl: 'dang-nhap.component.html'
+    templateUrl: 'dang-nhap.component.html',
+    styleUrls: ['home/css/style.css']
 })
 export class DangNhapComponent implements OnInit {
     public sms: string; // hiển thị thông báo mã lỗi

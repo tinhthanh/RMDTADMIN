@@ -408,37 +408,33 @@ export class KhoaHocDaMuaChiTietComponent implements OnInit {
                         const node: TreeNode = {};
                         node.label = chapter[i].chapterTitle;
                         node.data = chapter[i];
-                        node.expandedIcon = 'fa fa-file-text';
-                        node.collapsedIcon = 'fa fa-file-text-o';
+                        node.expandedIcon = 'fa-folder-open';
+                        node.collapsedIcon = 'fa-folder-open-o';
                         const danhSachBaiHoc: Lesson[] = chapter[i].listOfLesson;
                         const nodeBaiHoc: TreeNode[] = [];
                         for (let j = 0; j < danhSachBaiHoc.length; j++) {
                             const baihoc: TreeNode = {};
                             baihoc.label = danhSachBaiHoc[j].lessonTitle;
                             baihoc.data = danhSachBaiHoc[j];
-                            baihoc.expandedIcon = 'fa fa-video-camera';
-                            baihoc.collapsedIcon = 'fa fa-file-video-o';
-                            // radmon file
-                            const lengtSize = Math.floor(Math.random() * 4) + 1;
-                            const listFileOfLesson: FileOfLesson[] = [];
-                            for (let k = 0; k < lengtSize; k++) {
-                                const fileOfLesson = new FileOfLesson();
-                                fileOfLesson.lessonAttachID = `MA-${Math.floor(Math.random() * 99999)}`;
-                                // tslint:disable-next-line:max-line-length
-                                fileOfLesson.lessonID = danhSachBaiHoc[j].lessonID;
-                                fileOfLesson.lesonAttachContent = `file-${Math.floor(Math.random() * 99999)}-doc${Math.floor(Math.random() * 99999)}.docx`;
-                                listFileOfLesson.push(fileOfLesson);
-                            }
-                            const listNodeFile: TreeNode[] = [];
-                            for (let k = 0; k < listFileOfLesson.length; k++) {
-                                const file: TreeNode = {};
-                                file.label = listFileOfLesson[k].lesonAttachContent;
-                                file.data = listFileOfLesson[k];
-                                file.icon = 'fa-file-word-o';
-                                listNodeFile.push(file);
-                            }
-                            baihoc.children = listNodeFile;
-                            nodeBaiHoc.push(baihoc);
+                            baihoc.expandedIcon = 'fa-file-video-o';
+                            baihoc.collapsedIcon = 'fa-video-camera';
+                           this.http.get(`${this.config.url_port}/lesson/${
+                                danhSachBaiHoc[j].lessonID
+                            }/lesson_attach`).subscribe(
+                                (attach: FileOfLesson[] ) => {
+                                    const listFileOfLesson = attach ;
+                                    const listNodeFile: TreeNode[] = [];
+                                    for (let k = 0; k < listFileOfLesson.length; k++) {
+                                        const file: TreeNode = {};
+                                        file.label = 'Tập tin đính kèm ' + ( k + 1 )  ;
+                                        file.data = listFileOfLesson[k];
+                                        file.icon = 'fa-file-word-o';
+                                        listNodeFile.push(file);
+                                    }
+                                    baihoc.children = listNodeFile;
+                                    nodeBaiHoc.push(baihoc);
+                                }
+                            );
                         }
                         node.children = nodeBaiHoc;
                         listNode.push(node);

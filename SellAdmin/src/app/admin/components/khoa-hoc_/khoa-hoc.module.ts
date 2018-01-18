@@ -1,4 +1,3 @@
-import { DuyeKhoaHocComponent } from './duyet-khoa-hoc/duyet-khoa-hoc.component';
 import { InplaceModule } from './../../../components/inplace/inplace';
 import { ConfirmationService } from './../../../components/common/confirmationservice';
 import { ConfirmDialogModule } from './../../../components/confirmdialog/confirmdialog';
@@ -76,8 +75,7 @@ import { QuanLyKhoaHocKhoaHocComponent } from 'app/admin/components/khoa-hoc/qua
        AuthorCourseComponent,
        FormUploadComponent,
        ThemKhoaHocMoiComponent,
-       QuanLyKhoaHocKhoaHocComponent,
-       DuyeKhoaHocComponent
+       QuanLyKhoaHocKhoaHocComponent
      ],
     providers: [
         ConfirmationService,

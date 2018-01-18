@@ -9,7 +9,6 @@ import { CapNhatKhoaHocComponent } from 'app/admin/components/khoa-hoc/cap-nhat-
 import { DoiMatKhauComponent } from 'app/admin/components/khoa-hoc/doi-mat-khau/doi-mat-khau.component';
 import { AuthorCourseComponent } from 'app/admin/components/khoa-hoc/author-course/author-course.component';
 import { ThemKhoaHocMoiComponent } from 'app/admin/components/khoa-hoc/them-khoa-hoc-moi/them-khoa-hoc-moi.component';
-import { DuyeKhoaHocComponent } from 'app/admin/components/khoa-hoc/duyet-khoa-hoc/duyet-khoa-hoc.component';
 const routes: Routes = [
   {
       path: '' ,
@@ -40,10 +39,6 @@ const routes: Routes = [
         } , {
           path : 'quan-ly-khoa-hoc',
           component : QuanLyKhoaHocKhoaHocComponent
-        },
-        {
-          path: 'duyet-khoa-hoc',
-          component: DuyeKhoaHocComponent
         }
       ]
     }

@@ -26,14 +26,13 @@
 
 <p-sidebar [(visible)]="visibleEditFile" position="top" [baseZIndex]="10000">
         <div *ngIf="!isSelectLessonFile">
-    <h1 style="font-weight:normal"><a href="{{selectFile?.lesonAttachContent}}" > {{selectFile?.lesonAttachContent}}</a></h1>
+    <h1 style="font-weight:normal">{{selectFile?.lesonAttachContent}}</h1>
     <button pButton type="button" (click)="clickXoaFile()" label="Xóa tập tin này" class="ui-button-success"></button>
     <button pButton type="button" (click)="visibleEditFile = false" label="Cancel" class="ui-button-secondary"></button>
         </div>
     <h3 class="first">Thêm mới</h3>
-    <p-fileUpload name="file" url="{{url_upload}}/upload" (onUpload)="onUpload($event)" multiple="multiple" 
-   
-        maxFileSize="10000000">
+    <p-fileUpload name="file" url="{{url_upload}}/upload" (onUpload)="onUpload($event)" multiple="multiple" accept="image/*"
+        maxFileSize="1000000">
         <ng-template pTemplate="content">
             <ul *ngIf="uploadedFiles.length">
                 <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
@@ -300,7 +299,7 @@
                         <div class="ui-grid-col-6">
                             <div class="ui-g" style="width:250px;margin-bottom:10px">
                                 <div class="ui-g-12">
-                                    <p-radioButton name="group1" value="2" label="Xuất bản" formControlName="status" inputId="opt2"></p-radioButton>
+                                    <p-radioButton name="group1" value="1" label="Xuất bản" formControlName="status" inputId="opt2"></p-radioButton>
                                 </div>
                                 <div class="ui-g-12">
                                     <p-radioButton name="group1" value="0" label="Đang cập nhật" formControlName="status" inputId="opt3"></p-radioButton>

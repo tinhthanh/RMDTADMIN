@@ -49,6 +49,8 @@ export class UIChart implements AfterViewInit, OnDestroy {
         if(this.chart) {
             let element = this.chart.getElementAtEvent(event);
             let dataset = this.chart.getDatasetAtEvent(event);
+            console.log(element);
+            console.log(dataset);
             if(element&&element[0]&&dataset) {
                 this.onDataSelect.emit({originalEvent: event, element: element[0], dataset: dataset});
             }

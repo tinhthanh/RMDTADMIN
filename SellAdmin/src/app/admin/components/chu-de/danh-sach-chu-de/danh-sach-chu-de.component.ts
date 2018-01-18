@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'app/components/common/api';
 import { Message } from './../../../../components/common/message';
 import { ConfigValue } from './../../../_helpers/config-value';
@@ -10,7 +10,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
     templateUrl: 'danh-sach-chu-de.component.html'
 })
 export class DanhSachChuDeComponent implements OnInit {
-        stacked = true ;
+        stacked = false ;
         loading = false;
         msgs: Message[] = [];
         totalRow = 0 ; // tổng số row trong database
@@ -23,7 +23,12 @@ export class DanhSachChuDeComponent implements OnInit {
         newTopic: boolean;  // trang thái có thêm topic mới hay không
         constructor(private carService: CarService, private http: HttpClient  ,
         private config: ConfigValue,
-        private router: Router ) { }
+        private router: Router , private route: ActivatedRoute ) {
+            if ( this.route.snapshot.queryParams['add']) {
+                alert(this.route.snapshot.queryParams['add']);
+                this.displayDialogTopic = true;
+            }
+        }
             ngOnInit() {
              this.loadingTopic();
             }

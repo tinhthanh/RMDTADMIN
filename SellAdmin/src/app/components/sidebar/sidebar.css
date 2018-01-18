@@ -18,7 +18,7 @@
 .ui-sidebar-right {
     top: 0;
     right: 0;
-    width: 20em;
+    width: 40em;
     height: 100%;
     -webkit-transform: translateX(100%);
     -ms-transform: translateX(100%);

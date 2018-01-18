@@ -1,3 +1,12 @@
+import { DuyeKhoaHocComponent } from './duyet-khoa-hoc/duyet-khoa-hoc.component';
+import { InplaceModule } from './../../../components/inplace/inplace';
+import { ConfirmationService } from './../../../components/common/confirmationservice';
+import { ConfirmDialogModule } from './../../../components/confirmdialog/confirmdialog';
+import { UploadFileService } from './../../_services/upload/UploadFileService';
+import { LightboxModule } from './../../../components/lightbox/lightbox';
+import { DataListModule } from './../../../components/datalist/datalist';
+import { AccordionModule } from './../../../components/accordion/accordion';
+import { FieldsetModule } from './../../../components/fieldset/fieldset';
 import { ProgressSpinnerModule } from './../../../components/progressspinner/progressspinner';
 import { SidebarModule } from './../../../components/sidebar/sidebar';
 import { PaginatorModule } from './../../../components/paginator/paginator';
@@ -27,6 +36,9 @@ import { AuthorCourseComponent } from '../../components/khoa-hoc/author-course/a
 import { TreeModule } from 'app/components/tree/tree';
 import { ContextMenuModule } from 'app/components/contextmenu/contextmenu';
 import { RadioButtonModule } from 'app/components/radiobutton/radiobutton';
+import { FormUploadComponent } from 'app/admin/components/khoa-hoc/form-upload/form-upload.component';
+import { ThemKhoaHocMoiComponent } from './them-khoa-hoc-moi/them-khoa-hoc-moi.component';
+import { QuanLyKhoaHocKhoaHocComponent } from 'app/admin/components/khoa-hoc/quan-ly-khoa-hoc/quan-ly-khoa-hoc.component';
 
 @NgModule({
     imports: [
@@ -50,12 +62,26 @@ import { RadioButtonModule } from 'app/components/radiobutton/radiobutton';
         ContextMenuModule,
         SidebarModule,
         ProgressSpinnerModule,
-        RadioButtonModule
+        RadioButtonModule,
+        FieldsetModule,
+        AccordionModule,
+        DataListModule,
+        LightboxModule,
+        ConfirmDialogModule,
+        InplaceModule
     ],
     exports: [],
     declarations: [KhoaHocComponent, ThemKhoaHocComponent, TrangThaiKhoaHocComponent, CapNhatKhoaHocComponent, DoiMatKhauComponent
        , DanhSachKhoaHocComponent ,
-       AuthorCourseComponent ],
-    providers: [],
+       AuthorCourseComponent,
+       FormUploadComponent,
+       ThemKhoaHocMoiComponent,
+       QuanLyKhoaHocKhoaHocComponent,
+       DuyeKhoaHocComponent
+     ],
+    providers: [
+        ConfirmationService,
+        UploadFileService
+    ],
 })
 export class KhoaHocModule { }

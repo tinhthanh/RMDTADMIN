@@ -1,23 +1,43 @@
+import { MenuItem } from './../components/common/menuitem';
+import { MenuModule } from 'app/components/menu/menu';
+
 import { User } from './_models/User';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'app/admin/_services/AuthenticationService';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
+
 @Component({
-    templateUrl: 'admin.component.html'
+    templateUrl: 'admin.component.html',
+    styleUrls: ['admin.component.css']
 })
 
 export class AdminComponent implements OnInit {
     public user: User;
     activeMenuId: string;
     menuActive: boolean;
+    development = false;
+    isAdmin = false ;
+    isUser = false;
     constructor(
         private auth: AuthenticationService,
         private router: Router ) { }
 
     ngOnInit() {
  this.auth.getInformation().subscribe(data => {
+    console.log(data);
+    const permission =  data.permission;
+    for ( let i = 0 ; i < permission.length ; i++ ) {
+        if ( permission[i].roleName  === 'ROLE_ADMIN') {
+            this.isAdmin = true ;
+            // alert('admin');
+        }
+        if ( permission[i].roleName  === 'ROLE_USER') {
+            this.isUser = true ;
+          //  alert('user');
+        }
+    }
      this.user =  data;
     }, (err: HttpErrorResponse) => {
         if ( err.status  === 403 ) {
